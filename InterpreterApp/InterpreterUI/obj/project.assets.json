@@ -2,9 +2,25 @@
   "version": 3,
   "targets": {
     "net7.0-windows7.0": {
+      "Antlr4.Runtime.Standard/4.13.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Antlr4.Runtime.Standard.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Antlr4.Runtime.Standard.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "InterpreterModules/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Antlr4.Runtime.Standard": "4.13.1"
+        },
         "compile": {
           "bin/placeholder/InterpreterModules.dll": {}
         },
@@ -15,6 +31,21 @@
     }
   },
   "libraries": {
+    "Antlr4.Runtime.Standard/4.13.1": {
+      "sha512": "Da5+i4kFHUseJRZGcBG5fmZGpA/Ns180ibrQMxgZzjpQOnENVvSL5gi5HZ8Ncz8/AR2WsKbOg2lMBzjz0HUQcA==",
+      "type": "package",
+      "path": "antlr4.runtime.standard/4.13.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "antlr4.runtime.standard.4.13.1.nupkg.sha512",
+        "antlr4.runtime.standard.nuspec",
+        "lib/net45/Antlr4.Runtime.Standard.dll",
+        "lib/net45/Antlr4.Runtime.Standard.xml",
+        "lib/netstandard2.0/Antlr4.Runtime.Standard.dll",
+        "lib/netstandard2.0/Antlr4.Runtime.Standard.xml"
+      ]
+    },
     "InterpreterModules/1.0.0": {
       "type": "project",
       "path": "../InterpreterModules/InterpreterModules.csproj",
@@ -27,39 +58,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\kiril\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\baran\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub Repos\\SoftWarEvolution\\InterpreterApp\\InterpreterUI\\InterpreterUI.csproj",
+      "projectUniqueName": "C:\\Users\\baran\\SoftWarEvolution\\InterpreterApp\\InterpreterUI\\InterpreterUI.csproj",
       "projectName": "InterpreterUI",
-      "projectPath": "D:\\GitHub Repos\\SoftWarEvolution\\InterpreterApp\\InterpreterUI\\InterpreterUI.csproj",
-      "packagesPath": "C:\\Users\\kiril\\.nuget\\packages\\",
-      "outputPath": "D:\\GitHub Repos\\SoftWarEvolution\\InterpreterApp\\InterpreterUI\\obj\\",
+      "projectPath": "C:\\Users\\baran\\SoftWarEvolution\\InterpreterApp\\InterpreterUI\\InterpreterUI.csproj",
+      "packagesPath": "C:\\Users\\baran\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\baran\\SoftWarEvolution\\InterpreterApp\\InterpreterUI\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\kiril\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\baran\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0-windows"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "projectReferences": {
-            "D:\\GitHub Repos\\SoftWarEvolution\\InterpreterApp\\InterpreterModules\\InterpreterModules.csproj": {
-              "projectPath": "D:\\GitHub Repos\\SoftWarEvolution\\InterpreterApp\\InterpreterModules\\InterpreterModules.csproj"
+            "C:\\Users\\baran\\SoftWarEvolution\\InterpreterApp\\InterpreterModules\\InterpreterModules.csproj": {
+              "projectPath": "C:\\Users\\baran\\SoftWarEvolution\\InterpreterApp\\InterpreterModules\\InterpreterModules.csproj"
             }
           }
         }
@@ -84,6 +108,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.14, 7.0.14]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[7.0.14, 7.0.14]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.14, 7.0.14]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[7.0.14, 7.0.14]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
@@ -92,7 +134,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

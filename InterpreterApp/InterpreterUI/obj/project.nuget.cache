@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "/49zhsMBS83/xRJMmF2JMisif/k2elNatVbQHe+SnhuqBWaO8wS3pmbTm60N0QWOiW7yCeCOKaBDBOezYCDfbw==",
+  "dgSpecHash": "Fl7IEA7ZAb++OaXagGUROq1BkaH3S9/FhZUKZoVIx4uvokDD1fR+Z9E7o9FVUnT68wbKkfZI0GaT+geymWMq6g==",
   "success": true,
-  "projectFilePath": "D:\\GitHub Repos\\SoftWarEvolution\\InterpreterApp\\InterpreterUI\\InterpreterUI.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\baran\\SoftWarEvolution\\InterpreterApp\\InterpreterUI\\InterpreterUI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\baran\\.nuget\\packages\\antlr4.runtime.standard\\4.13.1\\antlr4.runtime.standard.4.13.1.nupkg.sha512",
+    "C:\\Users\\baran\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.14\\microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\baran\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.14\\microsoft.windowsdesktop.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\baran\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.14\\microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\baran\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.14\\microsoft.netcore.app.host.win-x64.7.0.14.nupkg.sha512"
+  ],
   "logs": []
 }
