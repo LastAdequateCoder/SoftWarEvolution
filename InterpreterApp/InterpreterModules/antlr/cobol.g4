@@ -1,21 +1,22 @@
 grammar cobol;
+import CobolTokens;
+options { caseInsensitive = true; }
 
 // Define the parser rules
-moveStatement
-    : MOVE moveFrom TO moveTo
+display
+    :   DISPLAY atomic+ withnoadvancing?
     ;
 
-moveFrom
-    : IDENTIFIER
-    | FIGURATIVE_VALUE
+withnoadvancing
+    :   WITH NO ADVANCING
     ;
 
-moveTo
-    : IDENTIFIER
+atomic
+    :   identifiers
+    |   INT
+    |   LITERAL
     ;
 
-// Define the lexer rules
-MOVE : 'MOVE';
-TO : 'TO';
-IDENTIFIER : [a-zA-Z0-9]+;
-FIGURATIVE_VALUE : 'SPACES' | 'ZEROES' | 'HIGH-VALUES' | 'LOW-VALUES';
+identifiers
+    :   IDENTIFIER (OF IDENTIFIER)* ('(' INT ')')?
+    ;

@@ -36,41 +36,53 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.CLSCompliant(false)]
 public partial class cobolBaseListener : IcobolListener {
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="cobolParser.moveStatement"/>.
+	/// Enter a parse tree produced by <see cref="cobolParser.display"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterMoveStatement([NotNull] cobolParser.MoveStatementContext context) { }
+	public virtual void EnterDisplay([NotNull] cobolParser.DisplayContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="cobolParser.moveStatement"/>.
+	/// Exit a parse tree produced by <see cref="cobolParser.display"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitMoveStatement([NotNull] cobolParser.MoveStatementContext context) { }
+	public virtual void ExitDisplay([NotNull] cobolParser.DisplayContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="cobolParser.moveFrom"/>.
+	/// Enter a parse tree produced by <see cref="cobolParser.withnoadvancing"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterMoveFrom([NotNull] cobolParser.MoveFromContext context) { }
+	public virtual void EnterWithnoadvancing([NotNull] cobolParser.WithnoadvancingContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="cobolParser.moveFrom"/>.
+	/// Exit a parse tree produced by <see cref="cobolParser.withnoadvancing"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitMoveFrom([NotNull] cobolParser.MoveFromContext context) { }
+	public virtual void ExitWithnoadvancing([NotNull] cobolParser.WithnoadvancingContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="cobolParser.moveTo"/>.
+	/// Enter a parse tree produced by <see cref="cobolParser.atomic"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterMoveTo([NotNull] cobolParser.MoveToContext context) { }
+	public virtual void EnterAtomic([NotNull] cobolParser.AtomicContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="cobolParser.moveTo"/>.
+	/// Exit a parse tree produced by <see cref="cobolParser.atomic"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitMoveTo([NotNull] cobolParser.MoveToContext context) { }
+	public virtual void ExitAtomic([NotNull] cobolParser.AtomicContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.identifiers"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterIdentifiers([NotNull] cobolParser.IdentifiersContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.identifiers"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitIdentifiers([NotNull] cobolParser.IdentifiersContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

@@ -36,18 +36,20 @@ public partial class cobolParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
-		MOVE=1, TO=2, IDENTIFIER=3, FIGURATIVE_VALUE=4;
+		T__0=1, T__1=2, DISPLAY=3, OF=4, WITH=5, NO=6, ADVANCING=7, IDENTIFIER=8, 
+		INT=9, SPACE=10, DOT=11, LITERAL=12;
 	public const int
-		RULE_moveStatement = 0, RULE_moveFrom = 1, RULE_moveTo = 2;
+		RULE_display = 0, RULE_withnoadvancing = 1, RULE_atomic = 2, RULE_identifiers = 3;
 	public static readonly string[] ruleNames = {
-		"moveStatement", "moveFrom", "moveTo"
+		"display", "withnoadvancing", "atomic", "identifiers"
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, "'MOVE'", "'TO'"
+		null, "'('", "')'", null, null, null, null, null, null, null, null, "'.'"
 	};
 	private static readonly string[] _SymbolicNames = {
-		null, "MOVE", "TO", "IDENTIFIER", "FIGURATIVE_VALUE"
+		null, null, null, "DISPLAY", "OF", "WITH", "NO", "ADVANCING", "IDENTIFIER", 
+		"INT", "SPACE", "DOT", "LITERAL"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -81,97 +83,68 @@ public partial class cobolParser : Parser {
 		Interpreter = new ParserATNSimulator(this, _ATN, decisionToDFA, sharedContextCache);
 	}
 
-	public partial class MoveStatementContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MOVE() { return GetToken(cobolParser.MOVE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public MoveFromContext moveFrom() {
-			return GetRuleContext<MoveFromContext>(0);
+	public partial class DisplayContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DISPLAY() { return GetToken(cobolParser.DISPLAY, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public AtomicContext[] atomic() {
+			return GetRuleContexts<AtomicContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TO() { return GetToken(cobolParser.TO, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public MoveToContext moveTo() {
-			return GetRuleContext<MoveToContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public AtomicContext atomic(int i) {
+			return GetRuleContext<AtomicContext>(i);
 		}
-		public MoveStatementContext(ParserRuleContext parent, int invokingState)
+		[System.Diagnostics.DebuggerNonUserCode] public WithnoadvancingContext withnoadvancing() {
+			return GetRuleContext<WithnoadvancingContext>(0);
+		}
+		public DisplayContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_moveStatement; } }
+		public override int RuleIndex { get { return RULE_display; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
 			IcobolListener typedListener = listener as IcobolListener;
-			if (typedListener != null) typedListener.EnterMoveStatement(this);
+			if (typedListener != null) typedListener.EnterDisplay(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
 			IcobolListener typedListener = listener as IcobolListener;
-			if (typedListener != null) typedListener.ExitMoveStatement(this);
+			if (typedListener != null) typedListener.ExitDisplay(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public MoveStatementContext moveStatement() {
-		MoveStatementContext _localctx = new MoveStatementContext(Context, State);
-		EnterRule(_localctx, 0, RULE_moveStatement);
-		try {
-			EnterOuterAlt(_localctx, 1);
-			{
-			State = 6;
-			Match(MOVE);
-			State = 7;
-			moveFrom();
-			State = 8;
-			Match(TO);
-			State = 9;
-			moveTo();
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			ErrorHandler.ReportError(this, re);
-			ErrorHandler.Recover(this, re);
-		}
-		finally {
-			ExitRule();
-		}
-		return _localctx;
-	}
-
-	public partial class MoveFromContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(cobolParser.IDENTIFIER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FIGURATIVE_VALUE() { return GetToken(cobolParser.FIGURATIVE_VALUE, 0); }
-		public MoveFromContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return RULE_moveFrom; } }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void EnterRule(IParseTreeListener listener) {
-			IcobolListener typedListener = listener as IcobolListener;
-			if (typedListener != null) typedListener.EnterMoveFrom(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void ExitRule(IParseTreeListener listener) {
-			IcobolListener typedListener = listener as IcobolListener;
-			if (typedListener != null) typedListener.ExitMoveFrom(this);
-		}
-	}
-
-	[RuleVersion(0)]
-	public MoveFromContext moveFrom() {
-		MoveFromContext _localctx = new MoveFromContext(Context, State);
-		EnterRule(_localctx, 2, RULE_moveFrom);
+	public DisplayContext display() {
+		DisplayContext _localctx = new DisplayContext(Context, State);
+		EnterRule(_localctx, 0, RULE_display);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 11;
+			State = 8;
+			Match(DISPLAY);
+			State = 10;
+			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if ( !(_la==IDENTIFIER || _la==FIGURATIVE_VALUE) ) {
-			ErrorHandler.RecoverInline(this);
+			do {
+				{
+				{
+				State = 9;
+				atomic();
+				}
+				}
+				State = 12;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 4864L) != 0) );
+			State = 15;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			if (_la==WITH) {
+				{
+				State = 14;
+				withnoadvancing();
+				}
 			}
-			else {
-				ErrorHandler.ReportMatch(this);
-			    Consume();
-			}
+
 			}
 		}
 		catch (RecognitionException re) {
@@ -185,34 +158,187 @@ public partial class cobolParser : Parser {
 		return _localctx;
 	}
 
-	public partial class MoveToContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(cobolParser.IDENTIFIER, 0); }
-		public MoveToContext(ParserRuleContext parent, int invokingState)
+	public partial class WithnoadvancingContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WITH() { return GetToken(cobolParser.WITH, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NO() { return GetToken(cobolParser.NO, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADVANCING() { return GetToken(cobolParser.ADVANCING, 0); }
+		public WithnoadvancingContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_moveTo; } }
+		public override int RuleIndex { get { return RULE_withnoadvancing; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
 			IcobolListener typedListener = listener as IcobolListener;
-			if (typedListener != null) typedListener.EnterMoveTo(this);
+			if (typedListener != null) typedListener.EnterWithnoadvancing(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
 			IcobolListener typedListener = listener as IcobolListener;
-			if (typedListener != null) typedListener.ExitMoveTo(this);
+			if (typedListener != null) typedListener.ExitWithnoadvancing(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public MoveToContext moveTo() {
-		MoveToContext _localctx = new MoveToContext(Context, State);
-		EnterRule(_localctx, 4, RULE_moveTo);
+	public WithnoadvancingContext withnoadvancing() {
+		WithnoadvancingContext _localctx = new WithnoadvancingContext(Context, State);
+		EnterRule(_localctx, 2, RULE_withnoadvancing);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 13;
+			State = 17;
+			Match(WITH);
+			State = 18;
+			Match(NO);
+			State = 19;
+			Match(ADVANCING);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class AtomicContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public IdentifiersContext identifiers() {
+			return GetRuleContext<IdentifiersContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INT() { return GetToken(cobolParser.INT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LITERAL() { return GetToken(cobolParser.LITERAL, 0); }
+		public AtomicContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_atomic; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterAtomic(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitAtomic(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public AtomicContext atomic() {
+		AtomicContext _localctx = new AtomicContext(Context, State);
+		EnterRule(_localctx, 4, RULE_atomic);
+		try {
+			State = 24;
+			ErrorHandler.Sync(this);
+			switch (TokenStream.LA(1)) {
+			case IDENTIFIER:
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 21;
+				identifiers();
+				}
+				break;
+			case INT:
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 22;
+				Match(INT);
+				}
+				break;
+			case LITERAL:
+				EnterOuterAlt(_localctx, 3);
+				{
+				State = 23;
+				Match(LITERAL);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class IdentifiersContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] IDENTIFIER() { return GetTokens(cobolParser.IDENTIFIER); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER(int i) {
+			return GetToken(cobolParser.IDENTIFIER, i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] OF() { return GetTokens(cobolParser.OF); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OF(int i) {
+			return GetToken(cobolParser.OF, i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INT() { return GetToken(cobolParser.INT, 0); }
+		public IdentifiersContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_identifiers; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterIdentifiers(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitIdentifiers(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public IdentifiersContext identifiers() {
+		IdentifiersContext _localctx = new IdentifiersContext(Context, State);
+		EnterRule(_localctx, 6, RULE_identifiers);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 26;
 			Match(IDENTIFIER);
+			State = 31;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			while (_la==OF) {
+				{
+				{
+				State = 27;
+				Match(OF);
+				State = 28;
+				Match(IDENTIFIER);
+				}
+				}
+				State = 33;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+			}
+			State = 37;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			if (_la==T__0) {
+				{
+				State = 34;
+				Match(T__0);
+				State = 35;
+				Match(INT);
+				State = 36;
+				Match(T__1);
+				}
+			}
+
 			}
 		}
 		catch (RecognitionException re) {
@@ -227,10 +353,18 @@ public partial class cobolParser : Parser {
 	}
 
 	private static int[] _serializedATN = {
-		4,1,4,16,2,0,7,0,2,1,7,1,2,2,7,2,1,0,1,0,1,0,1,0,1,0,1,1,1,1,1,2,1,2,1,
-		2,0,0,3,0,2,4,0,1,1,0,3,4,12,0,6,1,0,0,0,2,11,1,0,0,0,4,13,1,0,0,0,6,7,
-		5,1,0,0,7,8,3,2,1,0,8,9,5,2,0,0,9,10,3,4,2,0,10,1,1,0,0,0,11,12,7,0,0,
-		0,12,3,1,0,0,0,13,14,5,3,0,0,14,5,1,0,0,0,0
+		4,1,12,40,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,1,0,1,0,4,0,11,8,0,11,0,12,0,
+		12,1,0,3,0,16,8,0,1,1,1,1,1,1,1,1,1,2,1,2,1,2,3,2,25,8,2,1,3,1,3,1,3,5,
+		3,30,8,3,10,3,12,3,33,9,3,1,3,1,3,1,3,3,3,38,8,3,1,3,0,0,4,0,2,4,6,0,0,
+		41,0,8,1,0,0,0,2,17,1,0,0,0,4,24,1,0,0,0,6,26,1,0,0,0,8,10,5,3,0,0,9,11,
+		3,4,2,0,10,9,1,0,0,0,11,12,1,0,0,0,12,10,1,0,0,0,12,13,1,0,0,0,13,15,1,
+		0,0,0,14,16,3,2,1,0,15,14,1,0,0,0,15,16,1,0,0,0,16,1,1,0,0,0,17,18,5,5,
+		0,0,18,19,5,6,0,0,19,20,5,7,0,0,20,3,1,0,0,0,21,25,3,6,3,0,22,25,5,9,0,
+		0,23,25,5,12,0,0,24,21,1,0,0,0,24,22,1,0,0,0,24,23,1,0,0,0,25,5,1,0,0,
+		0,26,31,5,8,0,0,27,28,5,4,0,0,28,30,5,8,0,0,29,27,1,0,0,0,30,33,1,0,0,
+		0,31,29,1,0,0,0,31,32,1,0,0,0,32,37,1,0,0,0,33,31,1,0,0,0,34,35,5,1,0,
+		0,35,36,5,9,0,0,36,38,5,2,0,0,37,34,1,0,0,0,37,38,1,0,0,0,38,7,1,0,0,0,
+		5,12,15,24,31,37
 	};
 
 	public static readonly ATN _ATN =
