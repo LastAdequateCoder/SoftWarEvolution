@@ -109,6 +109,12 @@ public partial class cobolParser : Parser {
 			IcobolListener typedListener = listener as IcobolListener;
 			if (typedListener != null) typedListener.ExitDisplay(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitDisplay(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -177,6 +183,12 @@ public partial class cobolParser : Parser {
 			IcobolListener typedListener = listener as IcobolListener;
 			if (typedListener != null) typedListener.ExitWithnoadvancing(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitWithnoadvancing(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -225,6 +237,12 @@ public partial class cobolParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IcobolListener typedListener = listener as IcobolListener;
 			if (typedListener != null) typedListener.ExitAtomic(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAtomic(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -296,6 +314,12 @@ public partial class cobolParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IcobolListener typedListener = listener as IcobolListener;
 			if (typedListener != null) typedListener.ExitIdentifiers(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitIdentifiers(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
