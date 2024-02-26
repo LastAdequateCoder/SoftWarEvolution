@@ -1,10 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "mWyUT8Mg3fne4y4Qlra1DPPjZxHG2YsGG7akbMZg+s1/6B9aPvh6M6azHAsmKsil9JXT/K9hnhTR35G1YTp6kQ==",
+  "dgSpecHash": "PODCF2GEaCmglA19UcO/lKG5QmniYWesZNc7aTwqLNvNE1WaM/qL2Zt3paSBFS88GDjxEvROKESbe2Ga7KVQWw==",
   "success": true,
-  "projectFilePath": "D:\\GitHub Repos\\SoftWarEvolution\\InterpreterApp\\ConsoleLaunch\\ConsoleLaunch.csproj",
+  "projectFilePath": "C:\\Users\\baran\\SoftWarEvolution\\InterpreterApp\\ConsoleLaunch\\ConsoleLaunch.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\kiril\\.nuget\\packages\\antlr4.runtime.standard\\4.13.1\\antlr4.runtime.standard.4.13.1.nupkg.sha512"
+    "C:\\Users\\baran\\.nuget\\packages\\antlr4.runtime.standard\\4.13.1\\antlr4.runtime.standard.4.13.1.nupkg.sha512",
+    "C:\\Users\\baran\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.14\\microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\baran\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.14\\microsoft.windowsdesktop.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\baran\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.14\\microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\baran\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.14\\microsoft.netcore.app.host.win-x64.7.0.14.nupkg.sha512"
   ],
   "logs": []
 }

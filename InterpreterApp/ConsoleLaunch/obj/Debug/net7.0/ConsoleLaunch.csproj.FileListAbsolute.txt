@@ -17,3 +17,23 @@ D:\GitHub Repos\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\r
 D:\GitHub Repos\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\ConsoleLaunch.pdb
 D:\GitHub Repos\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\ConsoleLaunch.genruntimeconfig.cache
 D:\GitHub Repos\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\ref\ConsoleLaunch.dll
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\bin\Debug\net7.0\ConsoleLaunch.exe
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\bin\Debug\net7.0\ConsoleLaunch.deps.json
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\bin\Debug\net7.0\ConsoleLaunch.runtimeconfig.json
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\bin\Debug\net7.0\ConsoleLaunch.dll
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\bin\Debug\net7.0\ConsoleLaunch.pdb
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\bin\Debug\net7.0\Antlr4.Runtime.Standard.dll
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\bin\Debug\net7.0\InterpreterModules.dll
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\bin\Debug\net7.0\InterpreterModules.pdb
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\ConsoleLaunch.csproj.AssemblyReference.cache
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\ConsoleLaunch.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\ConsoleLaunch.AssemblyInfoInputs.cache
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\ConsoleLaunch.AssemblyInfo.cs
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\ConsoleLaunch.csproj.CoreCompileInputs.cache
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\ConsoleLaunch.sourcelink.json
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\ConsoleLaunch.csproj.CopyComplete
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\ConsoleLaunch.dll
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\refint\ConsoleLaunch.dll
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\ConsoleLaunch.pdb
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\ConsoleLaunch.genruntimeconfig.cache
+C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\ref\ConsoleLaunch.dll

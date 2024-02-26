@@ -8,12 +8,12 @@ class ConsoleLaunch
     {
         StringBuilder builtString = new StringBuilder();
         builtString.AppendLine("IDENTIFICATION DIVISION.");
-        builtString.AppendLine("PROGRAM - ID. \"TESTING\"");
+        builtString.AppendLine("PROGRAM-ID. \"TESTING\".");
         builtString.AppendLine("AUTHOR. \"KLEAN KODE\".INSTALLATION. \"1\".");
         builtString.AppendLine("DATE-WRITTEN. \"04/04/2023\".DATE-COMPILED. \"04/04/2023\".");
         builtString.AppendLine("DATA DIVISION.");
         builtString.AppendLine("PROCEDURE DIVISION.");
-        builtString.AppendLine("DISPLAY 123");
+        builtString.AppendLine("DISPLAY 123.");
         //Console.WriteLine(builtString.ToString());
         ICharStream input = CharStreams.fromString(builtString.ToString());
         cobolLexer lexer = new cobolLexer(input);

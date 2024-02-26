@@ -3,11 +3,11 @@ import CobolTokens;
 options { caseInsensitive = true; }
 
 program
-    : identification_division (data_division)? (procedure_division)? EOF
+    : identification_division (data_division)? (procedure_division) EOF
     ;
 
 identification_division
-    : IDENTIFICATION DIVISION DOT
+    : IDENTIFICATION DIVISION DOT (IDENTIFIER DOT LITERAL DOT)*
     ;
 
 data_division
