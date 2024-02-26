@@ -22,6 +22,7 @@ OF: 'O' SPACE* 'F';
 WITH: 'W' SPACE* 'I' SPACE* 'T' SPACE* 'H';
 NO: 'N' SPACE* 'O';
 ADVANCING: 'A' SPACE* 'D' SPACE* 'V' SPACE* 'A' SPACE* 'N' SPACE* 'C' SPACE* 'I' SPACE* 'N' SPACE* 'G';
+DATA: 'D' SPACE* 'A' SPACE* 'T' SPACE* 'A';
 
 IDENTIFIER
     : LETTER ( LETTER | DIGIT | '-' )* ( '(' DIGIT ')' )?

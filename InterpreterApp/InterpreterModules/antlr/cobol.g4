@@ -11,7 +11,7 @@ identification_division
     ;
 
 data_division
-    : INT IDENTIFIER (picture | like)? (OCCURS INT TIMES)? DOT
+    : DATA DIVISION DOT (INT IDENTIFIER (picture | like)? (OCCURS INT TIMES)? DOT)*
     ;
 
 picture
