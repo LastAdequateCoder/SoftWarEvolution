@@ -37,3 +37,4 @@ C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\re
 C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\ConsoleLaunch.pdb
 C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\ConsoleLaunch.genruntimeconfig.cache
 C:\Users\baran\SoftWarEvolution\InterpreterApp\ConsoleLaunch\obj\Debug\net7.0\ref\ConsoleLaunch.dll
+D:\GitHub Repos\SoftWarEvolution\InterpreterApp\ConsoleLaunch\bin\Debug\net7.0\Antlr3.Runtime.dll

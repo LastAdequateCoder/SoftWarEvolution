@@ -11,7 +11,7 @@ public class CustomVisitor : cobolBaseVisitor<object>
         int len = context.withnoadvancing() == null ? context.ChildCount : context.ChildCount - 1;
         for (int i = 1; i < len; i++)
         {
-            Console.WriteLine(context.GetChild(i).ToString());
+            Console.WriteLine(context.GetChild(i).GetText());
         }
         if (context.withnoadvancing == null){
             Console.WriteLine("\n");

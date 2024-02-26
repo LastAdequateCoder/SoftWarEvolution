@@ -1,13 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "PORf2GdqIj1zwiEqvqivB8PnGPXoE2FTI7eR1jsfRX+C7Q/rNGBbx6NSqj8XRXnZu8HECLafmlb3niWumAQORQ==",
+  "dgSpecHash": "6lj21vdfSjzH6kgWYWloWKTKw1+Hs8feRPlZNSIZnsEY0/A1FisiMEj2Y2yE4aVwxcZDsFz2m03MT73L08+CAg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\baran\\SoftWarEvolution\\InterpreterApp\\InterpreterModules\\InterpreterModules.csproj",
+  "projectFilePath": "D:\\GitHub Repos\\SoftWarEvolution\\InterpreterApp\\InterpreterModules\\InterpreterModules.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\baran\\.nuget\\packages\\antlr4.runtime.standard\\4.13.1\\antlr4.runtime.standard.4.13.1.nupkg.sha512",
-    "C:\\Users\\baran\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.14\\microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
-    "C:\\Users\\baran\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.14\\microsoft.windowsdesktop.app.ref.7.0.14.nupkg.sha512",
-    "C:\\Users\\baran\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.14\\microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512"
+    "C:\\Users\\kiril\\.nuget\\packages\\antlr4.runtime.standard\\4.13.1\\antlr4.runtime.standard.4.13.1.nupkg.sha512"
   ],
   "logs": []
 }
