@@ -36,6 +36,126 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.CLSCompliant(false)]
 public partial class cobolBaseListener : IcobolListener {
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.program"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterProgram([NotNull] cobolParser.ProgramContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.program"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitProgram([NotNull] cobolParser.ProgramContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.identification_division"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterIdentification_division([NotNull] cobolParser.Identification_divisionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.identification_division"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitIdentification_division([NotNull] cobolParser.Identification_divisionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.data_division"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterData_division([NotNull] cobolParser.Data_divisionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.data_division"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitData_division([NotNull] cobolParser.Data_divisionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.picture"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterPicture([NotNull] cobolParser.PictureContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.picture"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitPicture([NotNull] cobolParser.PictureContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.like"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterLike([NotNull] cobolParser.LikeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.like"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitLike([NotNull] cobolParser.LikeContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.procedure_division"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterProcedure_division([NotNull] cobolParser.Procedure_divisionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.procedure_division"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitProcedure_division([NotNull] cobolParser.Procedure_divisionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.using"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterUsing([NotNull] cobolParser.UsingContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.using"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitUsing([NotNull] cobolParser.UsingContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.use"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterUse([NotNull] cobolParser.UseContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.use"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitUse([NotNull] cobolParser.UseContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.sentence"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterSentence([NotNull] cobolParser.SentenceContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.sentence"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitSentence([NotNull] cobolParser.SentenceContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterStatement([NotNull] cobolParser.StatementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitStatement([NotNull] cobolParser.StatementContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="cobolParser.display"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

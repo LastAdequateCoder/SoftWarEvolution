@@ -31,6 +31,106 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IcobolListener : IParseTreeListener {
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.program"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterProgram([NotNull] cobolParser.ProgramContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.program"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitProgram([NotNull] cobolParser.ProgramContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.identification_division"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIdentification_division([NotNull] cobolParser.Identification_divisionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.identification_division"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIdentification_division([NotNull] cobolParser.Identification_divisionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.data_division"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterData_division([NotNull] cobolParser.Data_divisionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.data_division"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitData_division([NotNull] cobolParser.Data_divisionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.picture"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterPicture([NotNull] cobolParser.PictureContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.picture"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitPicture([NotNull] cobolParser.PictureContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.like"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterLike([NotNull] cobolParser.LikeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.like"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitLike([NotNull] cobolParser.LikeContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.procedure_division"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterProcedure_division([NotNull] cobolParser.Procedure_divisionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.procedure_division"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitProcedure_division([NotNull] cobolParser.Procedure_divisionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.using"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterUsing([NotNull] cobolParser.UsingContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.using"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitUsing([NotNull] cobolParser.UsingContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.use"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterUse([NotNull] cobolParser.UseContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.use"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitUse([NotNull] cobolParser.UseContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.sentence"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterSentence([NotNull] cobolParser.SentenceContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.sentence"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitSentence([NotNull] cobolParser.SentenceContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterStatement([NotNull] cobolParser.StatementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitStatement([NotNull] cobolParser.StatementContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="cobolParser.display"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

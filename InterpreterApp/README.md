@@ -1,3 +1,7 @@
+Done by
+Kirill Fedorov
+Grigory Baranov
+Danila Koryugin
 To compile the new antlr rules file:
 
 0. Ensure java is installed on your machine

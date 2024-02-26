@@ -32,6 +32,66 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IcobolVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.program"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitProgram([NotNull] cobolParser.ProgramContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.identification_division"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitIdentification_division([NotNull] cobolParser.Identification_divisionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.data_division"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitData_division([NotNull] cobolParser.Data_divisionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.picture"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitPicture([NotNull] cobolParser.PictureContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.like"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitLike([NotNull] cobolParser.LikeContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.procedure_division"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitProcedure_division([NotNull] cobolParser.Procedure_divisionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.using"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitUsing([NotNull] cobolParser.UsingContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.use"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitUse([NotNull] cobolParser.UseContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.sentence"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSentence([NotNull] cobolParser.SentenceContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitStatement([NotNull] cobolParser.StatementContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="cobolParser.display"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
