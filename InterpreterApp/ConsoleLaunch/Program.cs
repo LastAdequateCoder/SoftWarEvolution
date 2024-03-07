@@ -15,7 +15,9 @@ class ConsoleLaunch
         builtString.AppendLine("DATA DIVISION.");
         builtString.AppendLine("PROCEDURE DIVISION.");
         builtString.AppendLine("DISPLAY 123.");
-        builtString.AppendLine("ADD 1 2 3 TO X.");
+        builtString.AppendLine("ADD 1 2 3 TO 5 GIVING e.");
+        //builtString.AppendLine("ADD 1 2 3 TO X."); Need to implement ACCEPT FIRST
+        builtString.AppendLine("DISPLAY e.");
 
         ICharStream input = CharStreams.fromString(builtString.ToString());
         cobolLexer lexer = new cobolLexer(input);

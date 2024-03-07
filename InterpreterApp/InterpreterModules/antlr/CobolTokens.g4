@@ -24,6 +24,8 @@ NO: 'N' SPACE* 'O';
 ADVANCING: 'A' SPACE* 'D' SPACE* 'V' SPACE* 'A' SPACE* 'N' SPACE* 'C' SPACE* 'I' SPACE* 'N' SPACE* 'G';
 DATA: 'D' SPACE* 'A' SPACE* 'T' SPACE* 'A';
 ADD : 'A' SPACE* 'D' SPACE* 'D' ;
+TO : 'T' SPACE* 'O';
+GIVING : 'G' SPACE* 'I' SPACE* 'V' SPACE* 'I' SPACE* 'N' SPACE* 'G';
 
 IDENTIFIER
     : LETTER ( LETTER | DIGIT | '-' )* ( '(' DIGIT ')' )?

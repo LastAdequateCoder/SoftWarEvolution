@@ -13,7 +13,17 @@ public class CustomVisitor : cobolBaseVisitor<object>
         int len = context.withnoadvancing() == null ? context.ChildCount : context.ChildCount - 1;
         for (int i = 1; i < len; i++)
         {
-            Console.WriteLine(context.GetChild(i).GetText());
+            string text = context.GetChild(i).GetText();
+            if(char.IsLetter(text[0])){
+                Value value;
+                _valueHashMap.TryGetValue(text, out value);
+                if (value == null)
+                    throw new Exception("Incorrect variable name!");
+                System.Console.WriteLine(value.Val + " ");
+            }
+            else{
+                System.Console.WriteLine(text + " ");
+            }
         }
         if (context.withnoadvancing == null){
             Console.WriteLine("\n");
@@ -25,30 +35,25 @@ public class CustomVisitor : cobolBaseVisitor<object>
     public override object VisitAdd([NotNull] cobolParser.AddContext context)
     {
         string key;
-        key = context.giving() is null ?
+        key = context.giving() == null ?
             context.identifiers().GetText() : context.giving().identifiers().GetText();
 
         Value value;
         _valueHashMap.TryGetValue(key, out value);
-        try
-        {
-            if (!value.IsNumerical())
-                throw new Exception("Value is not numerical");
-        }
-        catch(NullReferenceException ex)
-        {
-            throw new Exception("VisitAdd: Value is null");
-        }
-
+        if (value != null && !value.IsNumerical())
+            throw new Exception("Value is not numerical");
+        
         int newValue;
-        if (context.giving() is not null)
+        if (value == null){
+            value = new Value();
+        }
+        if (context.giving() != null)
         {
-            //Potential problem with BASE
-            newValue = int.Parse(context.GetText().Trim());
+            newValue = int.Parse(context.@base.Text.Trim());
         }
         else
         {
-            if (value.Val is null)
+            if (value.Val == null)
                 newValue = 0;
             else
                 newValue = int.Parse(value.Val);

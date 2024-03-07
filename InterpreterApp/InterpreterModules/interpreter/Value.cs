@@ -8,12 +8,18 @@ namespace InterpreterModules.interpreter
 {
     internal class Value
     {
+        //Why private setters, but public assign methods?
         public string Val { get; private set; }
         public string Picture { get; private set; }
         internal Value(string value, string picture)
         {
             Val = value;
             Picture = picture;
+        }
+
+        internal Value(){
+            Val = null;
+            Picture = null;
         }
 
         #region Assign value methods

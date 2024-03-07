@@ -49,9 +49,10 @@ statement
 display
     : DISPLAY atomic+ withnoadvancing?
     ;
+
 add
     : ADD additions+=INT+ TO identifiers
-    | ADD additions+=INT TO base=INT giving
+    | ADD additions+=INT+ TO base=INT giving
     ;
 
 withnoadvancing
@@ -64,7 +65,7 @@ atomic
     | LITERAL
     ;
 giving
-    :   GIVING identifiers
+    : GIVING identifiers
     ;
 
 identifiers
