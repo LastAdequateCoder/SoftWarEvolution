@@ -98,6 +98,12 @@ public interface IcobolVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitDisplay([NotNull] cobolParser.DisplayContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.add"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAdd([NotNull] cobolParser.AddContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="cobolParser.withnoadvancing"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -109,6 +115,12 @@ public interface IcobolVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitAtomic([NotNull] cobolParser.AtomicContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.giving"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitGiving([NotNull] cobolParser.GivingContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="cobolParser.identifiers"/>.
 	/// </summary>
