@@ -42,11 +42,16 @@ sentence
 
 statement
     : display
+    | add
     ;
 
 // Define the parser rules
 display
     : DISPLAY atomic+ withnoadvancing?
+    ;
+add
+    : ADD additions+=INT+ TO identifiers
+    | ADD additions+=INT TO base=INT giving
     ;
 
 withnoadvancing
@@ -57,6 +62,9 @@ atomic
     : identifiers
     | INT
     | LITERAL
+    ;
+giving
+    :   GIVING identifiers
     ;
 
 identifiers

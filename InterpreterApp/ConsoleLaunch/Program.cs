@@ -7,6 +7,7 @@ class ConsoleLaunch
     public static void Main(string[] agrs)
     {
         StringBuilder builtString = new StringBuilder();
+
         builtString.AppendLine("IDENTIFICATION DIVISION.");
         builtString.AppendLine("PROGRAM-ID. \"TESTING\".");
         builtString.AppendLine("AUTHOR. \"KLEAN KODE\".INSTALLATION. \"1\".");
@@ -14,7 +15,8 @@ class ConsoleLaunch
         builtString.AppendLine("DATA DIVISION.");
         builtString.AppendLine("PROCEDURE DIVISION.");
         builtString.AppendLine("DISPLAY 123.");
-        //Console.WriteLine(builtString.ToString());
+        builtString.AppendLine("ADD 1 2 3 TO X.");
+
         ICharStream input = CharStreams.fromString(builtString.ToString());
         cobolLexer lexer = new cobolLexer(input);
         cobolParser parser = new cobolParser(new CommonTokenStream(lexer));

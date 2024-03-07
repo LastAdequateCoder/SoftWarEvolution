@@ -141,6 +141,16 @@ public interface IcobolListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitDisplay([NotNull] cobolParser.DisplayContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.add"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAdd([NotNull] cobolParser.AddContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.add"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAdd([NotNull] cobolParser.AddContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="cobolParser.withnoadvancing"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -160,6 +170,16 @@ public interface IcobolListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitAtomic([NotNull] cobolParser.AtomicContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.giving"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterGiving([NotNull] cobolParser.GivingContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.giving"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitGiving([NotNull] cobolParser.GivingContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="cobolParser.identifiers"/>.
 	/// </summary>
