@@ -19,19 +19,20 @@ public class cobolParser extends Parser {
 		T__0=1, T__1=2, REPRESENTATION=3, IDENTIFICATION=4, DIVISION=5, OCCURS=6, 
 		TIMES=7, PICTURE=8, IS=9, PROCEDURE=10, USING=11, BY=12, REFERENCE=13, 
 		CONTENT=14, VALUE=15, LIKE=16, DISPLAY=17, OF=18, WITH=19, NO=20, ADVANCING=21, 
-		DATA=22, ADD=23, TO=24, GIVING=25, IDENTIFIER=26, INT=27, SPACE=28, DOT=29, 
-		LITERAL=30;
+		DATA=22, ADD=23, TO=24, GIVING=25, ACCEPT=26, IDENTIFIER=27, INT=28, SPACE=29, 
+		DOT=30, LITERAL=31;
 	public static final int
 		RULE_program = 0, RULE_identification_division = 1, RULE_data_division = 2, 
-		RULE_picture = 3, RULE_like = 4, RULE_procedure_division = 5, RULE_using = 6, 
-		RULE_use = 7, RULE_sentence = 8, RULE_statement = 9, RULE_display = 10, 
-		RULE_add = 11, RULE_withnoadvancing = 12, RULE_atomic = 13, RULE_giving = 14, 
-		RULE_identifiers = 15;
+		RULE_variables = 3, RULE_level = 4, RULE_picture = 5, RULE_like = 6, RULE_procedure_division = 7, 
+		RULE_using = 8, RULE_use = 9, RULE_sentence = 10, RULE_statement = 11, 
+		RULE_display = 12, RULE_add = 13, RULE_accept = 14, RULE_withnoadvancing = 15, 
+		RULE_atomic = 16, RULE_giving = 17, RULE_identifiers = 18;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"program", "identification_division", "data_division", "picture", "like", 
-			"procedure_division", "using", "use", "sentence", "statement", "display", 
-			"add", "withnoadvancing", "atomic", "giving", "identifiers"
+			"program", "identification_division", "data_division", "variables", "level", 
+			"picture", "like", "procedure_division", "using", "use", "sentence", 
+			"statement", "display", "add", "accept", "withnoadvancing", "atomic", 
+			"giving", "identifiers"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -40,7 +41,7 @@ public class cobolParser extends Parser {
 		return new String[] {
 			null, "'('", "')'", null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, null, "'.'"
+			null, null, null, null, null, null, "'.'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -49,7 +50,8 @@ public class cobolParser extends Parser {
 			null, null, null, "REPRESENTATION", "IDENTIFICATION", "DIVISION", "OCCURS", 
 			"TIMES", "PICTURE", "IS", "PROCEDURE", "USING", "BY", "REFERENCE", "CONTENT", 
 			"VALUE", "LIKE", "DISPLAY", "OF", "WITH", "NO", "ADVANCING", "DATA", 
-			"ADD", "TO", "GIVING", "IDENTIFIER", "INT", "SPACE", "DOT", "LITERAL"
+			"ADD", "TO", "GIVING", "ACCEPT", "IDENTIFIER", "INT", "SPACE", "DOT", 
+			"LITERAL"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -128,23 +130,23 @@ public class cobolParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(32);
+			setState(38);
 			identification_division();
-			setState(34);
+			setState(40);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==DATA) {
 				{
-				setState(33);
+				setState(39);
 				data_division();
 				}
 			}
 
 			{
-			setState(36);
+			setState(42);
 			procedure_division();
 			}
-			setState(37);
+			setState(43);
 			match(EOF);
 			}
 		}
@@ -188,29 +190,29 @@ public class cobolParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(39);
+			setState(45);
 			match(IDENTIFICATION);
-			setState(40);
+			setState(46);
 			match(DIVISION);
-			setState(41);
+			setState(47);
 			match(DOT);
-			setState(48);
+			setState(54);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==IDENTIFIER) {
 				{
 				{
-				setState(42);
+				setState(48);
 				match(IDENTIFIER);
-				setState(43);
+				setState(49);
 				match(DOT);
-				setState(44);
-				match(LITERAL);
-				setState(45);
-				match(DOT);
-				}
-				}
 				setState(50);
+				match(LITERAL);
+				setState(51);
+				match(DOT);
+				}
+				}
+				setState(56);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -231,37 +233,12 @@ public class cobolParser extends Parser {
 	public static class Data_divisionContext extends ParserRuleContext {
 		public TerminalNode DATA() { return getToken(cobolParser.DATA, 0); }
 		public TerminalNode DIVISION() { return getToken(cobolParser.DIVISION, 0); }
-		public List<TerminalNode> DOT() { return getTokens(cobolParser.DOT); }
-		public TerminalNode DOT(int i) {
-			return getToken(cobolParser.DOT, i);
+		public TerminalNode DOT() { return getToken(cobolParser.DOT, 0); }
+		public List<VariablesContext> variables() {
+			return getRuleContexts(VariablesContext.class);
 		}
-		public List<TerminalNode> INT() { return getTokens(cobolParser.INT); }
-		public TerminalNode INT(int i) {
-			return getToken(cobolParser.INT, i);
-		}
-		public List<TerminalNode> IDENTIFIER() { return getTokens(cobolParser.IDENTIFIER); }
-		public TerminalNode IDENTIFIER(int i) {
-			return getToken(cobolParser.IDENTIFIER, i);
-		}
-		public List<PictureContext> picture() {
-			return getRuleContexts(PictureContext.class);
-		}
-		public PictureContext picture(int i) {
-			return getRuleContext(PictureContext.class,i);
-		}
-		public List<LikeContext> like() {
-			return getRuleContexts(LikeContext.class);
-		}
-		public LikeContext like(int i) {
-			return getRuleContext(LikeContext.class,i);
-		}
-		public List<TerminalNode> OCCURS() { return getTokens(cobolParser.OCCURS); }
-		public TerminalNode OCCURS(int i) {
-			return getToken(cobolParser.OCCURS, i);
-		}
-		public List<TerminalNode> TIMES() { return getTokens(cobolParser.TIMES); }
-		public TerminalNode TIMES(int i) {
-			return getToken(cobolParser.TIMES, i);
+		public VariablesContext variables(int i) {
+			return getRuleContext(VariablesContext.class,i);
 		}
 		public Data_divisionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -276,65 +253,141 @@ public class cobolParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(51);
+			setState(57);
 			match(DATA);
-			setState(52);
+			setState(58);
 			match(DIVISION);
-			setState(53);
+			setState(59);
 			match(DOT);
-			setState(68);
+			setState(63);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==INT) {
 				{
 				{
-				setState(54);
-				match(INT);
-				setState(55);
-				match(IDENTIFIER);
-				setState(58);
-				_errHandler.sync(this);
-				switch (_input.LA(1)) {
-				case PICTURE:
-					{
-					setState(56);
-					picture();
-					}
-					break;
-				case LIKE:
-					{
-					setState(57);
-					like();
-					}
-					break;
-				case OCCURS:
-				case DOT:
-					break;
-				default:
-					break;
+				setState(60);
+				variables();
 				}
-				setState(63);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-				if (_la==OCCURS) {
-					{
-					setState(60);
-					match(OCCURS);
-					setState(61);
-					match(INT);
-					setState(62);
-					match(TIMES);
-					}
 				}
-
 				setState(65);
-				match(DOT);
-				}
-				}
-				setState(70);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class VariablesContext extends ParserRuleContext {
+		public LevelContext level() {
+			return getRuleContext(LevelContext.class,0);
+		}
+		public TerminalNode IDENTIFIER() { return getToken(cobolParser.IDENTIFIER, 0); }
+		public TerminalNode DOT() { return getToken(cobolParser.DOT, 0); }
+		public PictureContext picture() {
+			return getRuleContext(PictureContext.class,0);
+		}
+		public LikeContext like() {
+			return getRuleContext(LikeContext.class,0);
+		}
+		public TerminalNode OCCURS() { return getToken(cobolParser.OCCURS, 0); }
+		public TerminalNode INT() { return getToken(cobolParser.INT, 0); }
+		public TerminalNode TIMES() { return getToken(cobolParser.TIMES, 0); }
+		public VariablesContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_variables; }
+	}
+
+	public final VariablesContext variables() throws RecognitionException {
+		VariablesContext _localctx = new VariablesContext(_ctx, getState());
+		enterRule(_localctx, 6, RULE_variables);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			{
+			setState(66);
+			level();
+			setState(67);
+			match(IDENTIFIER);
+			setState(70);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case PICTURE:
+				{
+				setState(68);
+				picture();
+				}
+				break;
+			case LIKE:
+				{
+				setState(69);
+				like();
+				}
+				break;
+			case OCCURS:
+			case DOT:
+				break;
+			default:
+				break;
+			}
+			setState(75);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if (_la==OCCURS) {
+				{
+				setState(72);
+				match(OCCURS);
+				setState(73);
+				match(INT);
+				setState(74);
+				match(TIMES);
+				}
+			}
+
+			setState(77);
+			match(DOT);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class LevelContext extends ParserRuleContext {
+		public TerminalNode INT() { return getToken(cobolParser.INT, 0); }
+		public LevelContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_level; }
+	}
+
+	public final LevelContext level() throws RecognitionException {
+		LevelContext _localctx = new LevelContext(_ctx, getState());
+		enterRule(_localctx, 8, RULE_level);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(79);
+			match(INT);
 			}
 		}
 		catch (RecognitionException re) {
@@ -361,15 +414,15 @@ public class cobolParser extends Parser {
 
 	public final PictureContext picture() throws RecognitionException {
 		PictureContext _localctx = new PictureContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_picture);
+		enterRule(_localctx, 10, RULE_picture);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(71);
+			setState(81);
 			match(PICTURE);
-			setState(72);
+			setState(82);
 			match(IS);
-			setState(73);
+			setState(83);
 			match(REPRESENTATION);
 			}
 		}
@@ -398,13 +451,13 @@ public class cobolParser extends Parser {
 
 	public final LikeContext like() throws RecognitionException {
 		LikeContext _localctx = new LikeContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_like);
+		enterRule(_localctx, 12, RULE_like);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(75);
+			setState(85);
 			match(LIKE);
-			setState(76);
+			setState(86);
 			identifiers();
 			}
 		}
@@ -441,41 +494,41 @@ public class cobolParser extends Parser {
 
 	public final Procedure_divisionContext procedure_division() throws RecognitionException {
 		Procedure_divisionContext _localctx = new Procedure_divisionContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_procedure_division);
+		enterRule(_localctx, 14, RULE_procedure_division);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(78);
+			setState(88);
 			match(PROCEDURE);
-			setState(79);
+			setState(89);
 			match(DIVISION);
-			setState(81);
+			setState(91);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==USING) {
 				{
-				setState(80);
+				setState(90);
 				using();
 				}
 			}
 
-			setState(83);
+			setState(93);
 			match(DOT);
-			setState(85); 
+			setState(95); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(84);
+				setState(94);
 				sentence();
 				}
 				}
-				setState(87); 
+				setState(97); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 75628544L) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 209846272L) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -506,24 +559,24 @@ public class cobolParser extends Parser {
 
 	public final UsingContext using() throws RecognitionException {
 		UsingContext _localctx = new UsingContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_using);
+		enterRule(_localctx, 16, RULE_using);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(89);
+			setState(99);
 			match(USING);
-			setState(91); 
+			setState(101); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(90);
+				setState(100);
 				use();
 				}
 				}
-				setState(93); 
+				setState(103); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==BY );
@@ -560,41 +613,41 @@ public class cobolParser extends Parser {
 
 	public final UseContext use() throws RecognitionException {
 		UseContext _localctx = new UseContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_use);
+		enterRule(_localctx, 18, RULE_use);
 		try {
-			setState(104);
+			setState(114);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(95);
+				setState(105);
 				match(BY);
-				setState(96);
+				setState(106);
 				match(REFERENCE);
-				setState(97);
+				setState(107);
 				identifiers();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(98);
+				setState(108);
 				match(BY);
-				setState(99);
+				setState(109);
 				match(CONTENT);
-				setState(100);
+				setState(110);
 				atomic();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(101);
+				setState(111);
 				match(BY);
-				setState(102);
+				setState(112);
 				match(VALUE);
-				setState(103);
+				setState(113);
 				atomic();
 				}
 				break;
@@ -632,38 +685,38 @@ public class cobolParser extends Parser {
 
 	public final SentenceContext sentence() throws RecognitionException {
 		SentenceContext _localctx = new SentenceContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_sentence);
+		enterRule(_localctx, 20, RULE_sentence);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(108);
+			setState(118);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==IDENTIFIER) {
 				{
-				setState(106);
+				setState(116);
 				match(IDENTIFIER);
-				setState(107);
+				setState(117);
 				match(DOT);
 				}
 			}
 
-			setState(111); 
+			setState(121); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(110);
+				setState(120);
 				statement();
 				}
 				}
-				setState(113); 
+				setState(123); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( _la==DISPLAY || _la==ADD );
-			setState(115);
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 75628544L) != 0) );
+			setState(125);
 			match(DOT);
 			}
 		}
@@ -686,6 +739,9 @@ public class cobolParser extends Parser {
 		public AddContext add() {
 			return getRuleContext(AddContext.class,0);
 		}
+		public AcceptContext accept() {
+			return getRuleContext(AcceptContext.class,0);
+		}
 		public StatementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -694,23 +750,30 @@ public class cobolParser extends Parser {
 
 	public final StatementContext statement() throws RecognitionException {
 		StatementContext _localctx = new StatementContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_statement);
+		enterRule(_localctx, 22, RULE_statement);
 		try {
-			setState(119);
+			setState(130);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case DISPLAY:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(117);
+				setState(127);
 				display();
 				}
 				break;
 			case ADD:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(118);
+				setState(128);
 				add();
+				}
+				break;
+			case ACCEPT:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(129);
+				accept();
 				}
 				break;
 			default:
@@ -748,33 +811,33 @@ public class cobolParser extends Parser {
 
 	public final DisplayContext display() throws RecognitionException {
 		DisplayContext _localctx = new DisplayContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_display);
+		enterRule(_localctx, 24, RULE_display);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(121);
+			setState(132);
 			match(DISPLAY);
-			setState(123); 
+			setState(134); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(122);
+				setState(133);
 				atomic();
 				}
 				}
-				setState(125); 
+				setState(136); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 1275068416L) != 0) );
-			setState(128);
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 2550136832L) != 0) );
+			setState(139);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==WITH) {
 				{
-				setState(127);
+				setState(138);
 				withnoadvancing();
 				}
 			}
@@ -817,66 +880,117 @@ public class cobolParser extends Parser {
 
 	public final AddContext add() throws RecognitionException {
 		AddContext _localctx = new AddContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_add);
+		enterRule(_localctx, 26, RULE_add);
 		int _la;
 		try {
-			setState(147);
+			setState(158);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,16,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(130);
+				setState(141);
 				match(ADD);
-				setState(132); 
+				setState(143); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				do {
 					{
 					{
-					setState(131);
+					setState(142);
 					((AddContext)_localctx).INT = match(INT);
 					((AddContext)_localctx).additions.add(((AddContext)_localctx).INT);
 					}
 					}
-					setState(134); 
+					setState(145); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				} while ( _la==INT );
-				setState(136);
+				setState(147);
 				match(TO);
-				setState(137);
+				setState(148);
 				identifiers();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(138);
+				setState(149);
 				match(ADD);
-				setState(140); 
+				setState(151); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				do {
 					{
 					{
-					setState(139);
+					setState(150);
 					((AddContext)_localctx).INT = match(INT);
 					((AddContext)_localctx).additions.add(((AddContext)_localctx).INT);
 					}
 					}
-					setState(142); 
+					setState(153); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				} while ( _la==INT );
-				setState(144);
+				setState(155);
 				match(TO);
-				setState(145);
+				setState(156);
 				((AddContext)_localctx).base = match(INT);
-				setState(146);
+				setState(157);
 				giving();
 				}
 				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class AcceptContext extends ParserRuleContext {
+		public TerminalNode ACCEPT() { return getToken(cobolParser.ACCEPT, 0); }
+		public List<IdentifiersContext> identifiers() {
+			return getRuleContexts(IdentifiersContext.class);
+		}
+		public IdentifiersContext identifiers(int i) {
+			return getRuleContext(IdentifiersContext.class,i);
+		}
+		public AcceptContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_accept; }
+	}
+
+	public final AcceptContext accept() throws RecognitionException {
+		AcceptContext _localctx = new AcceptContext(_ctx, getState());
+		enterRule(_localctx, 28, RULE_accept);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(160);
+			match(ACCEPT);
+			setState(162); 
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			do {
+				{
+				{
+				setState(161);
+				identifiers();
+				}
+				}
+				setState(164); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			} while ( _la==IDENTIFIER );
 			}
 		}
 		catch (RecognitionException re) {
@@ -903,15 +1017,15 @@ public class cobolParser extends Parser {
 
 	public final WithnoadvancingContext withnoadvancing() throws RecognitionException {
 		WithnoadvancingContext _localctx = new WithnoadvancingContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_withnoadvancing);
+		enterRule(_localctx, 30, RULE_withnoadvancing);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(149);
+			setState(166);
 			match(WITH);
-			setState(150);
+			setState(167);
 			match(NO);
-			setState(151);
+			setState(168);
 			match(ADVANCING);
 			}
 		}
@@ -941,29 +1055,29 @@ public class cobolParser extends Parser {
 
 	public final AtomicContext atomic() throws RecognitionException {
 		AtomicContext _localctx = new AtomicContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_atomic);
+		enterRule(_localctx, 32, RULE_atomic);
 		try {
-			setState(156);
+			setState(173);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case IDENTIFIER:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(153);
+				setState(170);
 				identifiers();
 				}
 				break;
 			case INT:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(154);
+				setState(171);
 				match(INT);
 				}
 				break;
 			case LITERAL:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(155);
+				setState(172);
 				match(LITERAL);
 				}
 				break;
@@ -996,13 +1110,13 @@ public class cobolParser extends Parser {
 
 	public final GivingContext giving() throws RecognitionException {
 		GivingContext _localctx = new GivingContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_giving);
+		enterRule(_localctx, 34, RULE_giving);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(158);
+			setState(175);
 			match(GIVING);
-			setState(159);
+			setState(176);
 			identifiers();
 			}
 		}
@@ -1036,39 +1150,39 @@ public class cobolParser extends Parser {
 
 	public final IdentifiersContext identifiers() throws RecognitionException {
 		IdentifiersContext _localctx = new IdentifiersContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_identifiers);
+		enterRule(_localctx, 36, RULE_identifiers);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(161);
+			setState(178);
 			match(IDENTIFIER);
-			setState(166);
+			setState(183);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==OF) {
 				{
 				{
-				setState(162);
+				setState(179);
 				match(OF);
-				setState(163);
+				setState(180);
 				match(IDENTIFIER);
 				}
 				}
-				setState(168);
+				setState(185);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(172);
+			setState(189);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==T__0) {
 				{
-				setState(169);
+				setState(186);
 				match(T__0);
-				setState(170);
+				setState(187);
 				match(INT);
-				setState(171);
+				setState(188);
 				match(T__1);
 				}
 			}
@@ -1087,110 +1201,120 @@ public class cobolParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u001e\u00af\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001"+
+		"\u0004\u0001\u001f\u00c0\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001"+
 		"\u0002\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004"+
 		"\u0002\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007"+
 		"\u0002\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b"+
 		"\u0002\f\u0007\f\u0002\r\u0007\r\u0002\u000e\u0007\u000e\u0002\u000f\u0007"+
-		"\u000f\u0001\u0000\u0001\u0000\u0003\u0000#\b\u0000\u0001\u0000\u0001"+
+		"\u000f\u0002\u0010\u0007\u0010\u0002\u0011\u0007\u0011\u0002\u0012\u0007"+
+		"\u0012\u0001\u0000\u0001\u0000\u0003\u0000)\b\u0000\u0001\u0000\u0001"+
 		"\u0000\u0001\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
-		"\u0001\u0001\u0001\u0001\u0001\u0005\u0001/\b\u0001\n\u0001\f\u00012\t"+
-		"\u0001\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001"+
-		"\u0002\u0001\u0002\u0003\u0002;\b\u0002\u0001\u0002\u0001\u0002\u0001"+
-		"\u0002\u0003\u0002@\b\u0002\u0001\u0002\u0005\u0002C\b\u0002\n\u0002\f"+
-		"\u0002F\t\u0002\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001"+
-		"\u0004\u0001\u0004\u0001\u0004\u0001\u0005\u0001\u0005\u0001\u0005\u0003"+
-		"\u0005R\b\u0005\u0001\u0005\u0001\u0005\u0004\u0005V\b\u0005\u000b\u0005"+
-		"\f\u0005W\u0001\u0006\u0001\u0006\u0004\u0006\\\b\u0006\u000b\u0006\f"+
-		"\u0006]\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0001"+
-		"\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0003\u0007i\b\u0007\u0001"+
-		"\b\u0001\b\u0003\bm\b\b\u0001\b\u0004\bp\b\b\u000b\b\f\bq\u0001\b\u0001"+
-		"\b\u0001\t\u0001\t\u0003\tx\b\t\u0001\n\u0001\n\u0004\n|\b\n\u000b\n\f"+
-		"\n}\u0001\n\u0003\n\u0081\b\n\u0001\u000b\u0001\u000b\u0004\u000b\u0085"+
-		"\b\u000b\u000b\u000b\f\u000b\u0086\u0001\u000b\u0001\u000b\u0001\u000b"+
-		"\u0001\u000b\u0004\u000b\u008d\b\u000b\u000b\u000b\f\u000b\u008e\u0001"+
-		"\u000b\u0001\u000b\u0001\u000b\u0003\u000b\u0094\b\u000b\u0001\f\u0001"+
-		"\f\u0001\f\u0001\f\u0001\r\u0001\r\u0001\r\u0003\r\u009d\b\r\u0001\u000e"+
-		"\u0001\u000e\u0001\u000e\u0001\u000f\u0001\u000f\u0001\u000f\u0005\u000f"+
-		"\u00a5\b\u000f\n\u000f\f\u000f\u00a8\t\u000f\u0001\u000f\u0001\u000f\u0001"+
-		"\u000f\u0003\u000f\u00ad\b\u000f\u0001\u000f\u0000\u0000\u0010\u0000\u0002"+
-		"\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018\u001a\u001c\u001e"+
-		"\u0000\u0000\u00b5\u0000 \u0001\u0000\u0000\u0000\u0002\'\u0001\u0000"+
-		"\u0000\u0000\u00043\u0001\u0000\u0000\u0000\u0006G\u0001\u0000\u0000\u0000"+
-		"\bK\u0001\u0000\u0000\u0000\nN\u0001\u0000\u0000\u0000\fY\u0001\u0000"+
-		"\u0000\u0000\u000eh\u0001\u0000\u0000\u0000\u0010l\u0001\u0000\u0000\u0000"+
-		"\u0012w\u0001\u0000\u0000\u0000\u0014y\u0001\u0000\u0000\u0000\u0016\u0093"+
-		"\u0001\u0000\u0000\u0000\u0018\u0095\u0001\u0000\u0000\u0000\u001a\u009c"+
-		"\u0001\u0000\u0000\u0000\u001c\u009e\u0001\u0000\u0000\u0000\u001e\u00a1"+
-		"\u0001\u0000\u0000\u0000 \"\u0003\u0002\u0001\u0000!#\u0003\u0004\u0002"+
-		"\u0000\"!\u0001\u0000\u0000\u0000\"#\u0001\u0000\u0000\u0000#$\u0001\u0000"+
-		"\u0000\u0000$%\u0003\n\u0005\u0000%&\u0005\u0000\u0000\u0001&\u0001\u0001"+
-		"\u0000\u0000\u0000\'(\u0005\u0004\u0000\u0000()\u0005\u0005\u0000\u0000"+
-		")0\u0005\u001d\u0000\u0000*+\u0005\u001a\u0000\u0000+,\u0005\u001d\u0000"+
-		"\u0000,-\u0005\u001e\u0000\u0000-/\u0005\u001d\u0000\u0000.*\u0001\u0000"+
-		"\u0000\u0000/2\u0001\u0000\u0000\u00000.\u0001\u0000\u0000\u000001\u0001"+
-		"\u0000\u0000\u00001\u0003\u0001\u0000\u0000\u000020\u0001\u0000\u0000"+
-		"\u000034\u0005\u0016\u0000\u000045\u0005\u0005\u0000\u00005D\u0005\u001d"+
-		"\u0000\u000067\u0005\u001b\u0000\u00007:\u0005\u001a\u0000\u00008;\u0003"+
-		"\u0006\u0003\u00009;\u0003\b\u0004\u0000:8\u0001\u0000\u0000\u0000:9\u0001"+
-		"\u0000\u0000\u0000:;\u0001\u0000\u0000\u0000;?\u0001\u0000\u0000\u0000"+
-		"<=\u0005\u0006\u0000\u0000=>\u0005\u001b\u0000\u0000>@\u0005\u0007\u0000"+
-		"\u0000?<\u0001\u0000\u0000\u0000?@\u0001\u0000\u0000\u0000@A\u0001\u0000"+
-		"\u0000\u0000AC\u0005\u001d\u0000\u0000B6\u0001\u0000\u0000\u0000CF\u0001"+
-		"\u0000\u0000\u0000DB\u0001\u0000\u0000\u0000DE\u0001\u0000\u0000\u0000"+
-		"E\u0005\u0001\u0000\u0000\u0000FD\u0001\u0000\u0000\u0000GH\u0005\b\u0000"+
-		"\u0000HI\u0005\t\u0000\u0000IJ\u0005\u0003\u0000\u0000J\u0007\u0001\u0000"+
-		"\u0000\u0000KL\u0005\u0010\u0000\u0000LM\u0003\u001e\u000f\u0000M\t\u0001"+
-		"\u0000\u0000\u0000NO\u0005\n\u0000\u0000OQ\u0005\u0005\u0000\u0000PR\u0003"+
-		"\f\u0006\u0000QP\u0001\u0000\u0000\u0000QR\u0001\u0000\u0000\u0000RS\u0001"+
-		"\u0000\u0000\u0000SU\u0005\u001d\u0000\u0000TV\u0003\u0010\b\u0000UT\u0001"+
-		"\u0000\u0000\u0000VW\u0001\u0000\u0000\u0000WU\u0001\u0000\u0000\u0000"+
-		"WX\u0001\u0000\u0000\u0000X\u000b\u0001\u0000\u0000\u0000Y[\u0005\u000b"+
-		"\u0000\u0000Z\\\u0003\u000e\u0007\u0000[Z\u0001\u0000\u0000\u0000\\]\u0001"+
-		"\u0000\u0000\u0000][\u0001\u0000\u0000\u0000]^\u0001\u0000\u0000\u0000"+
-		"^\r\u0001\u0000\u0000\u0000_`\u0005\f\u0000\u0000`a\u0005\r\u0000\u0000"+
-		"ai\u0003\u001e\u000f\u0000bc\u0005\f\u0000\u0000cd\u0005\u000e\u0000\u0000"+
-		"di\u0003\u001a\r\u0000ef\u0005\f\u0000\u0000fg\u0005\u000f\u0000\u0000"+
-		"gi\u0003\u001a\r\u0000h_\u0001\u0000\u0000\u0000hb\u0001\u0000\u0000\u0000"+
-		"he\u0001\u0000\u0000\u0000i\u000f\u0001\u0000\u0000\u0000jk\u0005\u001a"+
-		"\u0000\u0000km\u0005\u001d\u0000\u0000lj\u0001\u0000\u0000\u0000lm\u0001"+
-		"\u0000\u0000\u0000mo\u0001\u0000\u0000\u0000np\u0003\u0012\t\u0000on\u0001"+
-		"\u0000\u0000\u0000pq\u0001\u0000\u0000\u0000qo\u0001\u0000\u0000\u0000"+
-		"qr\u0001\u0000\u0000\u0000rs\u0001\u0000\u0000\u0000st\u0005\u001d\u0000"+
-		"\u0000t\u0011\u0001\u0000\u0000\u0000ux\u0003\u0014\n\u0000vx\u0003\u0016"+
-		"\u000b\u0000wu\u0001\u0000\u0000\u0000wv\u0001\u0000\u0000\u0000x\u0013"+
-		"\u0001\u0000\u0000\u0000y{\u0005\u0011\u0000\u0000z|\u0003\u001a\r\u0000"+
-		"{z\u0001\u0000\u0000\u0000|}\u0001\u0000\u0000\u0000}{\u0001\u0000\u0000"+
-		"\u0000}~\u0001\u0000\u0000\u0000~\u0080\u0001\u0000\u0000\u0000\u007f"+
-		"\u0081\u0003\u0018\f\u0000\u0080\u007f\u0001\u0000\u0000\u0000\u0080\u0081"+
-		"\u0001\u0000\u0000\u0000\u0081\u0015\u0001\u0000\u0000\u0000\u0082\u0084"+
-		"\u0005\u0017\u0000\u0000\u0083\u0085\u0005\u001b\u0000\u0000\u0084\u0083"+
-		"\u0001\u0000\u0000\u0000\u0085\u0086\u0001\u0000\u0000\u0000\u0086\u0084"+
-		"\u0001\u0000\u0000\u0000\u0086\u0087\u0001\u0000\u0000\u0000\u0087\u0088"+
-		"\u0001\u0000\u0000\u0000\u0088\u0089\u0005\u0018\u0000\u0000\u0089\u0094"+
-		"\u0003\u001e\u000f\u0000\u008a\u008c\u0005\u0017\u0000\u0000\u008b\u008d"+
-		"\u0005\u001b\u0000\u0000\u008c\u008b\u0001\u0000\u0000\u0000\u008d\u008e"+
-		"\u0001\u0000\u0000\u0000\u008e\u008c\u0001\u0000\u0000\u0000\u008e\u008f"+
-		"\u0001\u0000\u0000\u0000\u008f\u0090\u0001\u0000\u0000\u0000\u0090\u0091"+
-		"\u0005\u0018\u0000\u0000\u0091\u0092\u0005\u001b\u0000\u0000\u0092\u0094"+
-		"\u0003\u001c\u000e\u0000\u0093\u0082\u0001\u0000\u0000\u0000\u0093\u008a"+
-		"\u0001\u0000\u0000\u0000\u0094\u0017\u0001\u0000\u0000\u0000\u0095\u0096"+
-		"\u0005\u0013\u0000\u0000\u0096\u0097\u0005\u0014\u0000\u0000\u0097\u0098"+
-		"\u0005\u0015\u0000\u0000\u0098\u0019\u0001\u0000\u0000\u0000\u0099\u009d"+
-		"\u0003\u001e\u000f\u0000\u009a\u009d\u0005\u001b\u0000\u0000\u009b\u009d"+
-		"\u0005\u001e\u0000\u0000\u009c\u0099\u0001\u0000\u0000\u0000\u009c\u009a"+
-		"\u0001\u0000\u0000\u0000\u009c\u009b\u0001\u0000\u0000\u0000\u009d\u001b"+
-		"\u0001\u0000\u0000\u0000\u009e\u009f\u0005\u0019\u0000\u0000\u009f\u00a0"+
-		"\u0003\u001e\u000f\u0000\u00a0\u001d\u0001\u0000\u0000\u0000\u00a1\u00a6"+
-		"\u0005\u001a\u0000\u0000\u00a2\u00a3\u0005\u0012\u0000\u0000\u00a3\u00a5"+
-		"\u0005\u001a\u0000\u0000\u00a4\u00a2\u0001\u0000\u0000\u0000\u00a5\u00a8"+
-		"\u0001\u0000\u0000\u0000\u00a6\u00a4\u0001\u0000\u0000\u0000\u00a6\u00a7"+
-		"\u0001\u0000\u0000\u0000\u00a7\u00ac\u0001\u0000\u0000\u0000\u00a8\u00a6"+
-		"\u0001\u0000\u0000\u0000\u00a9\u00aa\u0005\u0001\u0000\u0000\u00aa\u00ab"+
-		"\u0005\u001b\u0000\u0000\u00ab\u00ad\u0005\u0002\u0000\u0000\u00ac\u00a9"+
-		"\u0001\u0000\u0000\u0000\u00ac\u00ad\u0001\u0000\u0000\u0000\u00ad\u001f"+
-		"\u0001\u0000\u0000\u0000\u0014\"0:?DQW]hlqw}\u0080\u0086\u008e\u0093\u009c"+
-		"\u00a6\u00ac";
+		"\u0001\u0001\u0001\u0001\u0001\u0005\u00015\b\u0001\n\u0001\f\u00018\t"+
+		"\u0001\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0005\u0002>\b"+
+		"\u0002\n\u0002\f\u0002A\t\u0002\u0001\u0003\u0001\u0003\u0001\u0003\u0001"+
+		"\u0003\u0003\u0003G\b\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0003"+
+		"\u0003L\b\u0003\u0001\u0003\u0001\u0003\u0001\u0004\u0001\u0004\u0001"+
+		"\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0006\u0001\u0006\u0001"+
+		"\u0006\u0001\u0007\u0001\u0007\u0001\u0007\u0003\u0007\\\b\u0007\u0001"+
+		"\u0007\u0001\u0007\u0004\u0007`\b\u0007\u000b\u0007\f\u0007a\u0001\b\u0001"+
+		"\b\u0004\bf\b\b\u000b\b\f\bg\u0001\t\u0001\t\u0001\t\u0001\t\u0001\t\u0001"+
+		"\t\u0001\t\u0001\t\u0001\t\u0003\ts\b\t\u0001\n\u0001\n\u0003\nw\b\n\u0001"+
+		"\n\u0004\nz\b\n\u000b\n\f\n{\u0001\n\u0001\n\u0001\u000b\u0001\u000b\u0001"+
+		"\u000b\u0003\u000b\u0083\b\u000b\u0001\f\u0001\f\u0004\f\u0087\b\f\u000b"+
+		"\f\f\f\u0088\u0001\f\u0003\f\u008c\b\f\u0001\r\u0001\r\u0004\r\u0090\b"+
+		"\r\u000b\r\f\r\u0091\u0001\r\u0001\r\u0001\r\u0001\r\u0004\r\u0098\b\r"+
+		"\u000b\r\f\r\u0099\u0001\r\u0001\r\u0001\r\u0003\r\u009f\b\r\u0001\u000e"+
+		"\u0001\u000e\u0004\u000e\u00a3\b\u000e\u000b\u000e\f\u000e\u00a4\u0001"+
+		"\u000f\u0001\u000f\u0001\u000f\u0001\u000f\u0001\u0010\u0001\u0010\u0001"+
+		"\u0010\u0003\u0010\u00ae\b\u0010\u0001\u0011\u0001\u0011\u0001\u0011\u0001"+
+		"\u0012\u0001\u0012\u0001\u0012\u0005\u0012\u00b6\b\u0012\n\u0012\f\u0012"+
+		"\u00b9\t\u0012\u0001\u0012\u0001\u0012\u0001\u0012\u0003\u0012\u00be\b"+
+		"\u0012\u0001\u0012\u0000\u0000\u0013\u0000\u0002\u0004\u0006\b\n\f\u000e"+
+		"\u0010\u0012\u0014\u0016\u0018\u001a\u001c\u001e \"$\u0000\u0000\u00c5"+
+		"\u0000&\u0001\u0000\u0000\u0000\u0002-\u0001\u0000\u0000\u0000\u00049"+
+		"\u0001\u0000\u0000\u0000\u0006B\u0001\u0000\u0000\u0000\bO\u0001\u0000"+
+		"\u0000\u0000\nQ\u0001\u0000\u0000\u0000\fU\u0001\u0000\u0000\u0000\u000e"+
+		"X\u0001\u0000\u0000\u0000\u0010c\u0001\u0000\u0000\u0000\u0012r\u0001"+
+		"\u0000\u0000\u0000\u0014v\u0001\u0000\u0000\u0000\u0016\u0082\u0001\u0000"+
+		"\u0000\u0000\u0018\u0084\u0001\u0000\u0000\u0000\u001a\u009e\u0001\u0000"+
+		"\u0000\u0000\u001c\u00a0\u0001\u0000\u0000\u0000\u001e\u00a6\u0001\u0000"+
+		"\u0000\u0000 \u00ad\u0001\u0000\u0000\u0000\"\u00af\u0001\u0000\u0000"+
+		"\u0000$\u00b2\u0001\u0000\u0000\u0000&(\u0003\u0002\u0001\u0000\')\u0003"+
+		"\u0004\u0002\u0000(\'\u0001\u0000\u0000\u0000()\u0001\u0000\u0000\u0000"+
+		")*\u0001\u0000\u0000\u0000*+\u0003\u000e\u0007\u0000+,\u0005\u0000\u0000"+
+		"\u0001,\u0001\u0001\u0000\u0000\u0000-.\u0005\u0004\u0000\u0000./\u0005"+
+		"\u0005\u0000\u0000/6\u0005\u001e\u0000\u000001\u0005\u001b\u0000\u0000"+
+		"12\u0005\u001e\u0000\u000023\u0005\u001f\u0000\u000035\u0005\u001e\u0000"+
+		"\u000040\u0001\u0000\u0000\u000058\u0001\u0000\u0000\u000064\u0001\u0000"+
+		"\u0000\u000067\u0001\u0000\u0000\u00007\u0003\u0001\u0000\u0000\u0000"+
+		"86\u0001\u0000\u0000\u00009:\u0005\u0016\u0000\u0000:;\u0005\u0005\u0000"+
+		"\u0000;?\u0005\u001e\u0000\u0000<>\u0003\u0006\u0003\u0000=<\u0001\u0000"+
+		"\u0000\u0000>A\u0001\u0000\u0000\u0000?=\u0001\u0000\u0000\u0000?@\u0001"+
+		"\u0000\u0000\u0000@\u0005\u0001\u0000\u0000\u0000A?\u0001\u0000\u0000"+
+		"\u0000BC\u0003\b\u0004\u0000CF\u0005\u001b\u0000\u0000DG\u0003\n\u0005"+
+		"\u0000EG\u0003\f\u0006\u0000FD\u0001\u0000\u0000\u0000FE\u0001\u0000\u0000"+
+		"\u0000FG\u0001\u0000\u0000\u0000GK\u0001\u0000\u0000\u0000HI\u0005\u0006"+
+		"\u0000\u0000IJ\u0005\u001c\u0000\u0000JL\u0005\u0007\u0000\u0000KH\u0001"+
+		"\u0000\u0000\u0000KL\u0001\u0000\u0000\u0000LM\u0001\u0000\u0000\u0000"+
+		"MN\u0005\u001e\u0000\u0000N\u0007\u0001\u0000\u0000\u0000OP\u0005\u001c"+
+		"\u0000\u0000P\t\u0001\u0000\u0000\u0000QR\u0005\b\u0000\u0000RS\u0005"+
+		"\t\u0000\u0000ST\u0005\u0003\u0000\u0000T\u000b\u0001\u0000\u0000\u0000"+
+		"UV\u0005\u0010\u0000\u0000VW\u0003$\u0012\u0000W\r\u0001\u0000\u0000\u0000"+
+		"XY\u0005\n\u0000\u0000Y[\u0005\u0005\u0000\u0000Z\\\u0003\u0010\b\u0000"+
+		"[Z\u0001\u0000\u0000\u0000[\\\u0001\u0000\u0000\u0000\\]\u0001\u0000\u0000"+
+		"\u0000]_\u0005\u001e\u0000\u0000^`\u0003\u0014\n\u0000_^\u0001\u0000\u0000"+
+		"\u0000`a\u0001\u0000\u0000\u0000a_\u0001\u0000\u0000\u0000ab\u0001\u0000"+
+		"\u0000\u0000b\u000f\u0001\u0000\u0000\u0000ce\u0005\u000b\u0000\u0000"+
+		"df\u0003\u0012\t\u0000ed\u0001\u0000\u0000\u0000fg\u0001\u0000\u0000\u0000"+
+		"ge\u0001\u0000\u0000\u0000gh\u0001\u0000\u0000\u0000h\u0011\u0001\u0000"+
+		"\u0000\u0000ij\u0005\f\u0000\u0000jk\u0005\r\u0000\u0000ks\u0003$\u0012"+
+		"\u0000lm\u0005\f\u0000\u0000mn\u0005\u000e\u0000\u0000ns\u0003 \u0010"+
+		"\u0000op\u0005\f\u0000\u0000pq\u0005\u000f\u0000\u0000qs\u0003 \u0010"+
+		"\u0000ri\u0001\u0000\u0000\u0000rl\u0001\u0000\u0000\u0000ro\u0001\u0000"+
+		"\u0000\u0000s\u0013\u0001\u0000\u0000\u0000tu\u0005\u001b\u0000\u0000"+
+		"uw\u0005\u001e\u0000\u0000vt\u0001\u0000\u0000\u0000vw\u0001\u0000\u0000"+
+		"\u0000wy\u0001\u0000\u0000\u0000xz\u0003\u0016\u000b\u0000yx\u0001\u0000"+
+		"\u0000\u0000z{\u0001\u0000\u0000\u0000{y\u0001\u0000\u0000\u0000{|\u0001"+
+		"\u0000\u0000\u0000|}\u0001\u0000\u0000\u0000}~\u0005\u001e\u0000\u0000"+
+		"~\u0015\u0001\u0000\u0000\u0000\u007f\u0083\u0003\u0018\f\u0000\u0080"+
+		"\u0083\u0003\u001a\r\u0000\u0081\u0083\u0003\u001c\u000e\u0000\u0082\u007f"+
+		"\u0001\u0000\u0000\u0000\u0082\u0080\u0001\u0000\u0000\u0000\u0082\u0081"+
+		"\u0001\u0000\u0000\u0000\u0083\u0017\u0001\u0000\u0000\u0000\u0084\u0086"+
+		"\u0005\u0011\u0000\u0000\u0085\u0087\u0003 \u0010\u0000\u0086\u0085\u0001"+
+		"\u0000\u0000\u0000\u0087\u0088\u0001\u0000\u0000\u0000\u0088\u0086\u0001"+
+		"\u0000\u0000\u0000\u0088\u0089\u0001\u0000\u0000\u0000\u0089\u008b\u0001"+
+		"\u0000\u0000\u0000\u008a\u008c\u0003\u001e\u000f\u0000\u008b\u008a\u0001"+
+		"\u0000\u0000\u0000\u008b\u008c\u0001\u0000\u0000\u0000\u008c\u0019\u0001"+
+		"\u0000\u0000\u0000\u008d\u008f\u0005\u0017\u0000\u0000\u008e\u0090\u0005"+
+		"\u001c\u0000\u0000\u008f\u008e\u0001\u0000\u0000\u0000\u0090\u0091\u0001"+
+		"\u0000\u0000\u0000\u0091\u008f\u0001\u0000\u0000\u0000\u0091\u0092\u0001"+
+		"\u0000\u0000\u0000\u0092\u0093\u0001\u0000\u0000\u0000\u0093\u0094\u0005"+
+		"\u0018\u0000\u0000\u0094\u009f\u0003$\u0012\u0000\u0095\u0097\u0005\u0017"+
+		"\u0000\u0000\u0096\u0098\u0005\u001c\u0000\u0000\u0097\u0096\u0001\u0000"+
+		"\u0000\u0000\u0098\u0099\u0001\u0000\u0000\u0000\u0099\u0097\u0001\u0000"+
+		"\u0000\u0000\u0099\u009a\u0001\u0000\u0000\u0000\u009a\u009b\u0001\u0000"+
+		"\u0000\u0000\u009b\u009c\u0005\u0018\u0000\u0000\u009c\u009d\u0005\u001c"+
+		"\u0000\u0000\u009d\u009f\u0003\"\u0011\u0000\u009e\u008d\u0001\u0000\u0000"+
+		"\u0000\u009e\u0095\u0001\u0000\u0000\u0000\u009f\u001b\u0001\u0000\u0000"+
+		"\u0000\u00a0\u00a2\u0005\u001a\u0000\u0000\u00a1\u00a3\u0003$\u0012\u0000"+
+		"\u00a2\u00a1\u0001\u0000\u0000\u0000\u00a3\u00a4\u0001\u0000\u0000\u0000"+
+		"\u00a4\u00a2\u0001\u0000\u0000\u0000\u00a4\u00a5\u0001\u0000\u0000\u0000"+
+		"\u00a5\u001d\u0001\u0000\u0000\u0000\u00a6\u00a7\u0005\u0013\u0000\u0000"+
+		"\u00a7\u00a8\u0005\u0014\u0000\u0000\u00a8\u00a9\u0005\u0015\u0000\u0000"+
+		"\u00a9\u001f\u0001\u0000\u0000\u0000\u00aa\u00ae\u0003$\u0012\u0000\u00ab"+
+		"\u00ae\u0005\u001c\u0000\u0000\u00ac\u00ae\u0005\u001f\u0000\u0000\u00ad"+
+		"\u00aa\u0001\u0000\u0000\u0000\u00ad\u00ab\u0001\u0000\u0000\u0000\u00ad"+
+		"\u00ac\u0001\u0000\u0000\u0000\u00ae!\u0001\u0000\u0000\u0000\u00af\u00b0"+
+		"\u0005\u0019\u0000\u0000\u00b0\u00b1\u0003$\u0012\u0000\u00b1#\u0001\u0000"+
+		"\u0000\u0000\u00b2\u00b7\u0005\u001b\u0000\u0000\u00b3\u00b4\u0005\u0012"+
+		"\u0000\u0000\u00b4\u00b6\u0005\u001b\u0000\u0000\u00b5\u00b3\u0001\u0000"+
+		"\u0000\u0000\u00b6\u00b9\u0001\u0000\u0000\u0000\u00b7\u00b5\u0001\u0000"+
+		"\u0000\u0000\u00b7\u00b8\u0001\u0000\u0000\u0000\u00b8\u00bd\u0001\u0000"+
+		"\u0000\u0000\u00b9\u00b7\u0001\u0000\u0000\u0000\u00ba\u00bb\u0005\u0001"+
+		"\u0000\u0000\u00bb\u00bc\u0005\u001c\u0000\u0000\u00bc\u00be\u0005\u0002"+
+		"\u0000\u0000\u00bd\u00ba\u0001\u0000\u0000\u0000\u00bd\u00be\u0001\u0000"+
+		"\u0000\u0000\u00be%\u0001\u0000\u0000\u0000\u0015(6?FK[agrv{\u0082\u0088"+
+		"\u008b\u0091\u0099\u009e\u00a4\u00ad\u00b7\u00bd";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

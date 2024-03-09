@@ -50,6 +50,18 @@ public interface IcobolVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitData_division([NotNull] cobolParser.Data_divisionContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.variables"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitVariables([NotNull] cobolParser.VariablesContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.level"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitLevel([NotNull] cobolParser.LevelContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="cobolParser.picture"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -103,6 +115,12 @@ public interface IcobolVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitAdd([NotNull] cobolParser.AddContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.accept"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAccept([NotNull] cobolParser.AcceptContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="cobolParser.withnoadvancing"/>.
 	/// </summary>

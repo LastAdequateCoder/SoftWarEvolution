@@ -11,7 +11,15 @@ identification_division
     ;
 
 data_division
-    : DATA DIVISION DOT (INT IDENTIFIER (picture | like)? (OCCURS INT TIMES)? DOT)*
+    : DATA DIVISION DOT variables*
+    ;
+
+variables
+    : (level IDENTIFIER (picture | like)? (OCCURS INT TIMES)? DOT)
+    ;
+
+level
+    : INT
     ;
 
 picture
@@ -43,6 +51,7 @@ sentence
 statement
     : display
     | add
+    | accept
     ;
 
 // Define the parser rules
@@ -53,6 +62,10 @@ display
 add
     : ADD additions+=INT+ TO identifiers
     | ADD additions+=INT+ TO base=INT giving
+    ;
+
+accept
+    : ACCEPT identifiers+
     ;
 
 withnoadvancing

@@ -26,6 +26,7 @@ DATA: 'D' SPACE* 'A' SPACE* 'T' SPACE* 'A';
 ADD : 'A' SPACE* 'D' SPACE* 'D' ;
 TO : 'T' SPACE* 'O';
 GIVING : 'G' SPACE* 'I' SPACE* 'V' SPACE* 'I' SPACE* 'N' SPACE* 'G';
+ACCEPT : 'A' SPACE* 'C' SPACE* 'C' SPACE* 'E' SPACE* 'P' SPACE* 'T';
 
 IDENTIFIER
     : LETTER ( LETTER | DIGIT | '-' )* ( '(' DIGIT ')' )?

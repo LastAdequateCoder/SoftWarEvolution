@@ -42,5 +42,19 @@ namespace InterpreterModules.interpreter
             }
             return true;
         }
+
+        public static String makeValueByPicture(String picture){
+            String val = "";
+            for (int i = 0; i < picture.Count(); i++)
+            {
+                if (picture[i] == '9')
+                    val+="0";
+                else if (picture[i] == 'A' || picture[i] == 'Z' || picture[i] == 'X' || picture[i] == 'S')
+                    val+=" ";
+                else if (picture[i] == 'V')
+                    val+=".";
+            }
+            return val;
+        }
     }
 }

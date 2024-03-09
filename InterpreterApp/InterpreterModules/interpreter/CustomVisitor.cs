@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using InterpreterModules.interpreter;
@@ -68,8 +69,80 @@ public class CustomVisitor : cobolBaseVisitor<object>
         }
 
         value.AssignValue(newValue.ToString());
-        _valueHashMap.Add(key, value);
+        _valueHashMap[key] = value;
 
         return DefaultResult;
+    }
+
+    //TODO: Add accept for getting input into variables
+    public override object VisitAccept([NotNull] cobolParser.AcceptContext context){
+        
+
+
+        return DefaultResult;
+    }
+
+    public override object VisitData_division([NotNull] cobolParser.Data_divisionContext context)
+    {
+        // No variables
+        if (context.variables().Count() == 0){
+            return base.VisitData_division(context);
+        }
+
+        String parent = "";
+        int highestLevel = int.Parse(context.variables(0).level().GetText());
+        var variablesContexts = context.variables();
+        for (int i = 0; i < variablesContexts.Count(); i++)
+        {
+             if (int.Parse(variablesContexts[i].level().GetText()) == highestLevel)
+                {
+                    parent = variablesContexts[i].IDENTIFIER().GetText();
+                }
+            String picture = "";
+            if (variablesContexts[i].picture() != null){
+                picture = variablesContexts[i].picture().REPRESENTATION().GetText();
+            }
+            else if (variablesContexts[i].like() != null){
+                Value likeValue;
+                _valueHashMap.TryGetValue(variablesContexts[i].like().identifiers().GetText(), out likeValue);
+                if (likeValue != null){
+                    picture = likeValue.Picture;
+                }
+                else{
+                    throw new Exception("Can not assign picture from a given variable");
+                }
+
+            }
+            else if (i+1 < variablesContexts.Count() && int.Parse(variablesContexts[i+1].level().GetText()) == highestLevel){
+                throw new Exception("Picture was expected but not given!");
+            }
+            else if (i+1 > variablesContexts.Count()){
+                throw new Exception("The variable was not properly defined. Use picture or like for definying!");
+            }
+
+            if (picture != ""){
+                String value = Value.makeValueByPicture(picture);
+                if (variablesContexts[i].OCCURS() != null){
+                    for (int j = 0; j < int.Parse(variablesContexts[i].OCCURS().GetText()); j++)
+                    {
+                        String variable = variablesContexts[i].IDENTIFIER().GetText();
+                        variable += "[" + j + "]";
+                        if (int.Parse(variablesContexts[i].level().GetText()) > highestLevel)
+                            variable+="OF"+parent;
+                        _valueHashMap.Add(variable, new Value(value, picture));
+                    }
+                }
+                else{
+                    String variable = variablesContexts[i].IDENTIFIER().GetText();
+                    if (int.Parse(variablesContexts[i].level().GetText()) > highestLevel)
+                            variable+="OF"+parent;
+                    _valueHashMap.Add(variable, new Value(value, picture));
+                }
+            }
+        }
+
+
+
+        return base.VisitData_division(context);
     }
 }

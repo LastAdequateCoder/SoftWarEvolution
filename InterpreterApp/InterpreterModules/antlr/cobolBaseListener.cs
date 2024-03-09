@@ -72,6 +72,30 @@ public partial class cobolBaseListener : IcobolListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitData_division([NotNull] cobolParser.Data_divisionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.variables"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterVariables([NotNull] cobolParser.VariablesContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.variables"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitVariables([NotNull] cobolParser.VariablesContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.level"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterLevel([NotNull] cobolParser.LevelContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.level"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitLevel([NotNull] cobolParser.LevelContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="cobolParser.picture"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -179,6 +203,18 @@ public partial class cobolBaseListener : IcobolListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAdd([NotNull] cobolParser.AddContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.accept"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAccept([NotNull] cobolParser.AcceptContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.accept"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAccept([NotNull] cobolParser.AcceptContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="cobolParser.withnoadvancing"/>.
 	/// <para>The default implementation does nothing.</para>
