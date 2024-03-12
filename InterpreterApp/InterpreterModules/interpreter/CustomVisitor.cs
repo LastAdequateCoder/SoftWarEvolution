@@ -74,10 +74,30 @@ public class CustomVisitor : cobolBaseVisitor<object>
         return DefaultResult;
     }
 
-    //TODO: Add accept for getting input into variables
     public override object VisitAccept([NotNull] cobolParser.AcceptContext context){
-        
-
+        for (int i = 0; i < context.identifiers().Count(); i++)
+        {
+            if (context.identifiers()[i] != null){
+                Value oldValue;
+                _valueHashMap.TryGetValue(context.identifiers()[i].GetText(), out oldValue);
+                if (oldValue != null){
+                    //TODO: Console.ReadLine is probably not the best solution
+                    Value newValue = new Value(Console.ReadLine(), oldValue.Picture);
+                    if (Value.CheckValueWithPicture(newValue.Val, oldValue.Picture)){
+                        _valueHashMap[context.identifiers()[i].GetText()] = newValue;
+                    }
+                    else{
+                        throw new Exception("Value does not correspond to the picture!");
+                    }
+                }
+                else{
+                    throw new Exception("The value of given variable was null!");
+                }
+            }
+            else{
+                throw new Exception("No variables provided!");
+            }
+        }
 
         return DefaultResult;
     }
@@ -121,7 +141,7 @@ public class CustomVisitor : cobolBaseVisitor<object>
             }
 
             if (picture != ""){
-                String value = Value.makeValueByPicture(picture);
+                String value = Value.MakeValueByPicture(picture);
                 if (variablesContexts[i].OCCURS() != null){
                     for (int j = 0; j < int.Parse(variablesContexts[i].OCCURS().GetText()); j++)
                     {

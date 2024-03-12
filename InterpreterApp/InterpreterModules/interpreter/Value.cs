@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -43,7 +45,7 @@ namespace InterpreterModules.interpreter
             return true;
         }
 
-        public static String makeValueByPicture(String picture){
+        public static String MakeValueByPicture(String picture){
             String val = "";
             for (int i = 0; i < picture.Count(); i++)
             {
@@ -55,6 +57,41 @@ namespace InterpreterModules.interpreter
                     val+=".";
             }
             return val;
+        }
+
+        public static bool CheckValueWithPicture([NotNull]string val, string picture)
+        {
+            if (val.Count() != picture.Count()){
+                return false;
+            }
+
+            for (int i = 0; i < val.Count(); i++)
+            {
+                if (picture[i] == 'Z' || picture[i] == '9'){
+                    try{
+                        ReadOnlySpan<char> c = val[i].ToString();
+                        int.Parse(c);
+                    }
+                    catch(Exception ex){
+                        return false;
+                    }
+                }
+                else if (picture[i] == 'A'){
+                    if (!char.IsLetter(val[i]))
+                        return false;
+                }
+                else if (picture[i] == 'S'){
+                    if (val[i] != '+' && val[i] != '-' && val[i] != '+'){
+                        return false;
+                    }
+                }
+                else if (picture[i] == 'V'){
+                    if (val[i] != '.' && val[i] != ','){
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }
