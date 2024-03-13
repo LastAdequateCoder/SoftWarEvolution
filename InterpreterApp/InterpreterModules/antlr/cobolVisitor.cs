@@ -122,6 +122,12 @@ public interface IcobolVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitMultiply([NotNull] cobolParser.MultiplyContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.subtract"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSubtract([NotNull] cobolParser.SubtractContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="cobolParser.accept"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

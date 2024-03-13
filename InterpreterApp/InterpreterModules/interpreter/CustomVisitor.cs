@@ -46,19 +46,15 @@ public class CustomVisitor : cobolBaseVisitor<object>
             throw new ValueIsNotNumericalException();
 
         int newValue;
-        if (value == null){
-            value = new Value();
-        }
+        value ??= new Value();
+        
         if (context.giving() != null)
         {
             newValue = int.Parse(context.@base.Text.Trim());
         }
         else
         {
-            if (value.Val == null)
-                newValue = 0;
-            else
-                newValue = int.Parse(value.Val);
+            newValue = value.Val == null ? 0 : int.Parse(value.Val);
         }
 
         for(int i = 0; i < context._additions.Count; i++)
@@ -179,30 +175,65 @@ public class CustomVisitor : cobolBaseVisitor<object>
                 if (!valueObj.IsNumerical())
                     return new ValueIsNotNumericalException();
 
-                if(valueObj.Val == null)
-                    newValue = 0;
-                else
-                    newValue = Convert.ToInt32(valueObj.Val);
+                newValue = Convert.ToInt32(valueObj.Val);
 
                 newValue *= Convert.ToInt32(context.multiplier.Text.Trim());
                 valueObj.AssignValue(newValue.ToString());
-                _valueHashMap.Add(key, valueObj);
+                _valueHashMap[key] = valueObj;
             }
         }
         else
         {
             key = context.giving().identifiers().GetText();
-            valueObj = _valueHashMap[key];
-
-            if (!valueObj.IsNumerical())
+            //valueObj = _valueHashMap[key];
+            _valueHashMap.TryGetValue(key, out valueObj);
+            if (valueObj != null && !valueObj.IsNumerical())
                 throw new ValueIsNotNumericalException();
-
+            valueObj ??= new Value();
             newValue = Convert.ToInt32(context.@base.Text.Trim());
             newValue *= Convert.ToInt32(context.multiplier.Text.Trim());
 
             valueObj.AssignValue(newValue.ToString());
-            _valueHashMap.Add(key, valueObj);
+            _valueHashMap[key] = valueObj;
         }
         return DefaultResult;
+    }
+
+    public override object VisitSubtract(cobolParser.SubtractContext context)
+    {
+        String key;
+        Value valueObj;
+        int newValue;
+
+        key = context.giving() != null ? 
+            context.giving().identifiers().GetText() : context.identifiers().GetText();
+
+        //valueObj = _valueHashMap[key];
+        _valueHashMap.TryGetValue(key, out valueObj);
+        if (valueObj!=null && !valueObj.IsNumerical())
+            throw new ValueIsNotNumericalException();
+
+        valueObj ??= new Value();
+
+        if (context.giving() != null)
+        {
+            newValue = Convert.ToInt32(context.@base.Text.Trim());
+        }
+        else
+        {
+            newValue = valueObj.Val == null ? 0 : Convert.ToInt32(valueObj.Val);
+        }
+
+        // if (!valueObj.IsNumerical())
+        //     throw new ValueIsNotNumericalException();
+
+        for (int i = 0; i < context._subtractors.Count; i++)
+        {
+            newValue -= Convert.ToInt32(context._subtractors[i].Text.Trim());
+        }
+        valueObj.AssignValue(newValue.ToString());
+        _valueHashMap[key] = valueObj;
+        
+        return base.VisitSubtract(context);
     }
 }

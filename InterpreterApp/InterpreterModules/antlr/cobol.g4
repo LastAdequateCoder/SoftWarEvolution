@@ -53,6 +53,7 @@ statement
     | add
     | accept
     | multiply
+    | subtract
     ;
 
 // Define the parser rules
@@ -67,6 +68,10 @@ add
 multiply
     : MULTIPLY multiplier=INT BY identifiers+
     | MULTIPLY multiplier=INT BY base=INT giving
+    ;
+subtract
+    : SUBTRACT subtractors+=INT+ FROM identifiers
+    | SUBTRACT subtractors+=INT+ FROM base=INT giving
     ;
 
 accept

@@ -216,6 +216,18 @@ public partial class cobolBaseListener : IcobolListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMultiply([NotNull] cobolParser.MultiplyContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.subtract"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterSubtract([NotNull] cobolParser.SubtractContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.subtract"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitSubtract([NotNull] cobolParser.SubtractContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="cobolParser.accept"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
