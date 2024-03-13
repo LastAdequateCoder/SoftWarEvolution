@@ -1,6 +1,7 @@
 using System.Collections.Immutable;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
+using InterpreterModules;
 using InterpreterModules.interpreter;
 
 /// <summary>
@@ -42,8 +43,8 @@ public class CustomVisitor : cobolBaseVisitor<object>
         Value value;
         _valueHashMap.TryGetValue(key, out value);
         if (value != null && !value.IsNumerical())
-            throw new Exception("Value is not numerical");
-        
+            throw new ValueIsNotNumericalException();
+
         int newValue;
         if (value == null){
             value = new Value();
@@ -160,9 +161,48 @@ public class CustomVisitor : cobolBaseVisitor<object>
                 }
             }
         }
-
-
-
         return base.VisitData_division(context);
+    }
+
+    public override object VisitMultiply([NotNull] cobolParser.MultiplyContext context)
+    {
+        string key;
+        Value valueObj;
+        int newValue;
+
+        if (context.giving() == null)
+        {
+            for(int i = 0; i < context.identifiers().Length; i++)
+            {
+                key = context.identifiers()[i].GetText();
+                valueObj = _valueHashMap[key];
+                if (!valueObj.IsNumerical())
+                    return new ValueIsNotNumericalException();
+
+                if(valueObj.Val == null)
+                    newValue = 0;
+                else
+                    newValue = Convert.ToInt32(valueObj.Val);
+
+                newValue *= Convert.ToInt32(context.multiplier.Text.Trim());
+                valueObj.AssignValue(newValue.ToString());
+                _valueHashMap.Add(key, valueObj);
+            }
+        }
+        else
+        {
+            key = context.giving().identifiers().GetText();
+            valueObj = _valueHashMap[key];
+
+            if (!valueObj.IsNumerical())
+                throw new ValueIsNotNumericalException();
+
+            newValue = Convert.ToInt32(context.@base.Text.Trim());
+            newValue *= Convert.ToInt32(context.multiplier.Text.Trim());
+
+            valueObj.AssignValue(newValue.ToString());
+            _valueHashMap.Add(key, valueObj);
+        }
+        return DefaultResult;
     }
 }

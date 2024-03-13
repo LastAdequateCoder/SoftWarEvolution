@@ -52,6 +52,7 @@ statement
     : display
     | add
     | accept
+    | multiply
     ;
 
 // Define the parser rules
@@ -62,6 +63,10 @@ display
 add
     : ADD additions+=INT+ TO identifiers
     | ADD additions+=INT+ TO base=INT giving
+    ;
+multiply
+    : MULTIPLY multiplier=INT BY identifiers+
+    | MULTIPLY multiplier=INT BY base=INT giving
     ;
 
 accept

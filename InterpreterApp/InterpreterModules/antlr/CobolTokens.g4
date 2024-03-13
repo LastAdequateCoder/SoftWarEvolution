@@ -27,6 +27,7 @@ ADD : 'A' SPACE* 'D' SPACE* 'D' ;
 TO : 'T' SPACE* 'O';
 GIVING : 'G' SPACE* 'I' SPACE* 'V' SPACE* 'I' SPACE* 'N' SPACE* 'G';
 ACCEPT : 'A' SPACE* 'C' SPACE* 'C' SPACE* 'E' SPACE* 'P' SPACE* 'T';
+MULTIPLY : 'M' SPACE* 'U' SPACE* 'L' SPACE* 'T' SPACE* 'I' SPACE* 'P' SPACE* 'L' SPACE* 'Y';
 
 IDENTIFIER
     : LETTER ( LETTER | DIGIT | '-' )* ( '(' DIGIT ')' )?

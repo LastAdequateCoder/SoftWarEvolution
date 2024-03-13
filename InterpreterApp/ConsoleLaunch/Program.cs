@@ -21,7 +21,9 @@ class ConsoleLaunch
         builtString.AppendLine("ADD 1 2 3 TO CR.");
         builtString.AppendLine("DISPLAY e.");
         builtString.AppendLine("DISPLAY CR.");
-        builtString.AppendLine("ACCEPT MS OF CR.");
+        //builtString.AppendLine("ACCEPT MS OF CR.");
+        builtString.AppendLine("MULTIPLY 2 BY CR.");
+
 
         ICharStream input = CharStreams.fromString(builtString.ToString());
         cobolLexer lexer = new cobolLexer(input);

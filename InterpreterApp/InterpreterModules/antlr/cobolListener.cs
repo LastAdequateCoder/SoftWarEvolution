@@ -171,6 +171,16 @@ public interface IcobolListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitAdd([NotNull] cobolParser.AddContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.multiply"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMultiply([NotNull] cobolParser.MultiplyContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.multiply"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMultiply([NotNull] cobolParser.MultiplyContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="cobolParser.accept"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
