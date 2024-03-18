@@ -46,7 +46,7 @@ public class CustomVisitor : cobolBaseVisitor<object>
             throw new ValueIsNotNumericalException();
 
         int newValue;
-        value ??= new Value();
+
         
         if (context.giving() != null)
         {
@@ -65,7 +65,12 @@ public class CustomVisitor : cobolBaseVisitor<object>
                 );
         }
 
-        value.AssignValue(newValue.ToString());
+        if (value == null){
+            value = new Value(newValue.ToString());
+        }
+        else{
+            value.AssignValue(newValue.ToString());
+        }
         _valueHashMap[key] = value;
 
         return DefaultResult;
@@ -189,11 +194,15 @@ public class CustomVisitor : cobolBaseVisitor<object>
             _valueHashMap.TryGetValue(key, out valueObj);
             if (valueObj != null && !valueObj.IsNumerical())
                 throw new ValueIsNotNumericalException();
-            valueObj ??= new Value();
             newValue = Convert.ToInt32(context.@base.Text.Trim());
             newValue *= Convert.ToInt32(context.multiplier.Text.Trim());
 
-            valueObj.AssignValue(newValue.ToString());
+            if (valueObj == null){
+                valueObj = new Value(newValue.ToString());
+            }
+            else{
+                valueObj.AssignValue(newValue.ToString());
+            }
             _valueHashMap[key] = valueObj;
         }
         return DefaultResult;
@@ -213,8 +222,6 @@ public class CustomVisitor : cobolBaseVisitor<object>
         if (valueObj!=null && !valueObj.IsNumerical())
             throw new ValueIsNotNumericalException();
 
-        valueObj ??= new Value();
-
         if (context.giving() != null)
         {
             newValue = Convert.ToInt32(context.@base.Text.Trim());
@@ -224,14 +231,20 @@ public class CustomVisitor : cobolBaseVisitor<object>
             newValue = valueObj.Val == null ? 0 : Convert.ToInt32(valueObj.Val);
         }
 
-        // if (!valueObj.IsNumerical())
-        //     throw new ValueIsNotNumericalException();
+        if (!valueObj.IsNumerical())
+            throw new ValueIsNotNumericalException();
 
         for (int i = 0; i < context._subtractors.Count; i++)
         {
             newValue -= Convert.ToInt32(context._subtractors[i].Text.Trim());
         }
-        valueObj.AssignValue(newValue.ToString());
+        
+        if (valueObj == null){
+            valueObj = new Value(newValue.ToString());
+        }
+        else{
+            valueObj.AssignValue(newValue.ToString());
+        }
         _valueHashMap[key] = valueObj;
         
         return base.VisitSubtract(context);

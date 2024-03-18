@@ -24,6 +24,16 @@ namespace InterpreterModules.interpreter
             Picture = null;
         }
 
+        internal Value(string value){
+            Val = value;
+            string p = "";
+            for (int i = 0; i < value.Length; i++)
+            {
+                p += 'X';
+            }
+            Picture = p;
+        }
+
         #region Assign value methods
         public void AssignValue(string value) => Val = value;
         public void AssignPicture(string picture) => Picture = picture;
@@ -38,9 +48,8 @@ namespace InterpreterModules.interpreter
             for(int i = 0; i < Picture.Length; i++)
             {
                 char c = Picture[i];
-                if (char.IsDigit(c))
-                    continue;
-                return false;
+                if (c != '9' && c != 'Z')
+                    return false;
             }
             return true;
         }
