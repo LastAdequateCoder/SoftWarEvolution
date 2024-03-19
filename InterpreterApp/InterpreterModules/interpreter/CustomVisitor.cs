@@ -231,8 +231,8 @@ public class CustomVisitor : cobolBaseVisitor<object>
             newValue = valueObj.Val == null ? 0 : Convert.ToInt32(valueObj.Val);
         }
 
-        if (!valueObj.IsNumerical())
-            throw new ValueIsNotNumericalException();
+        // if (!valueObj.IsNumerical())
+        //     throw new ValueIsNotNumericalException();
 
         for (int i = 0; i < context._subtractors.Count; i++)
         {
