@@ -254,6 +254,69 @@ public class CustomVisitor : cobolBaseVisitor<object>
         Value valueObj;
         int newValue;
         int remainder;
+
+        if (context.giving() == null)
+        {
+            for (int i = 0; i < context.identifiers().Length; i++)
+            {
+                key = context.identifiers()[i].GetText();
+                valueObj = _valueHashMap[key];
+                
+                if (!valueObj.IsNumerical())
+                    return new ValueIsNotNumericalException();
+
+                if (valueObj.Val == null)
+                {
+                    throw new Exception("Value is empty. Can not divide.");
+                }
+                else
+                {
+                    newValue = Convert.ToInt32(valueObj.Val);
+                }
+
+                newValue /= Convert.ToInt32(context.divisor.Text.Trim());
+                valueObj.AssignValue(newValue.ToString());
+                _valueHashMap[key] = valueObj;
+            }
+        }
+        else
+        {
+            key = context.giving().identifiers().GetText();
+            
+            _valueHashMap.TryGetValue(key, out valueObj);
+            if (valueObj != null && !valueObj.IsNumerical())
+                throw new ValueIsNotNumericalException();
+
+            newValue = Convert.ToInt32(context.@base.Text.Trim());
+            newValue /= Convert.ToInt32(context.divisor.Text.Trim());
+            
+            if (valueObj == null){
+                valueObj = new Value(newValue.ToString());
+            }
+            
+            valueObj.AssignValue(newValue.ToString());
+            
+            _valueHashMap[key] = valueObj;
+
+            if (context.remainder() != null)
+            {
+                remainderKey = context.remainder().identifiers().GetText();
+
+                _valueHashMap.TryGetValue(key, out valueObj);
+                if (valueObj != null && !valueObj.IsNumerical())
+                    throw new ValueIsNotNumericalException();
+
+                remainder = Convert.ToInt32(context.@base.Text.Trim()) % Convert.ToInt32(context.divisor.Text.Trim());
+                
+                if (valueObj == null){
+                    valueObj = new Value(newValue.ToString());
+                }
+                valueObj.AssignValue(remainder.ToString());
+                _valueHashMap[remainderKey] = valueObj;
+
+            }
+            
+        }
         
         
         return base.VisitDivide(context);
