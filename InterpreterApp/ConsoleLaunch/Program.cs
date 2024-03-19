@@ -5,7 +5,7 @@ namespace ConsoleLaunch;
 
 static class ConsoleApplication
 {
-    private static readonly string ProgramPath = "CobolProgram.txt";
+    private static readonly string ProgramPath = "..\\..\\..\\CobolProgram.txt";
     public static void Main()
     {
         StringBuilder builtString = FileReader.LineByLineRead(ProgramPath);
