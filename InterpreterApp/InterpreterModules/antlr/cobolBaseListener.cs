@@ -216,6 +216,18 @@ public partial class cobolBaseListener : IcobolListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMultiply([NotNull] cobolParser.MultiplyContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.divide"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDivide([NotNull] cobolParser.DivideContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.divide"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDivide([NotNull] cobolParser.DivideContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="cobolParser.subtract"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -287,6 +299,18 @@ public partial class cobolBaseListener : IcobolListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitIdentifiers([NotNull] cobolParser.IdentifiersContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.remainder"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterRemainder([NotNull] cobolParser.RemainderContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.remainder"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitRemainder([NotNull] cobolParser.RemainderContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

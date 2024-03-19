@@ -25,8 +25,6 @@ public class FileReader
 
         return stringBuilder;
     }
-    
-    
     /// <summary>
     /// Reads file and writes in StringBuilder object
     /// </summary>

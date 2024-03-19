@@ -122,6 +122,12 @@ public interface IcobolVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitMultiply([NotNull] cobolParser.MultiplyContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.divide"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDivide([NotNull] cobolParser.DivideContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="cobolParser.subtract"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -157,4 +163,10 @@ public interface IcobolVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitIdentifiers([NotNull] cobolParser.IdentifiersContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.remainder"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitRemainder([NotNull] cobolParser.RemainderContext context);
 }

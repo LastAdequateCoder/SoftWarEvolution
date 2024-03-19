@@ -54,6 +54,7 @@ statement
     | accept
     | multiply
     | subtract
+    | divide
     ;
 
 // Define the parser rules
@@ -69,6 +70,12 @@ multiply
     : MULTIPLY multiplier=INT BY identifiers+
     | MULTIPLY multiplier=INT BY base=INT giving
     ;
+divide
+    : DIVIDE divisor=INT INTO identifiers+
+    | DIVIDE divisor=INT INTO base=INT giving
+    | DIVIDE divisor=INT INTO base=INT giving remainder
+    ;
+    
 subtract
     : SUBTRACT subtractors+=INT+ FROM identifiers
     | SUBTRACT subtractors+=INT+ FROM base=INT giving
@@ -93,4 +100,7 @@ giving
 
 identifiers
     : IDENTIFIER (OF IDENTIFIER)* ('(' INT ')')?
+    ;
+remainder
+    :   REMAINDER identifiers
     ;

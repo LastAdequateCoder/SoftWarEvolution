@@ -181,6 +181,16 @@ public interface IcobolListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitMultiply([NotNull] cobolParser.MultiplyContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.divide"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDivide([NotNull] cobolParser.DivideContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.divide"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDivide([NotNull] cobolParser.DivideContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="cobolParser.subtract"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -240,4 +250,14 @@ public interface IcobolListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitIdentifiers([NotNull] cobolParser.IdentifiersContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.remainder"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterRemainder([NotNull] cobolParser.RemainderContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.remainder"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitRemainder([NotNull] cobolParser.RemainderContext context);
 }

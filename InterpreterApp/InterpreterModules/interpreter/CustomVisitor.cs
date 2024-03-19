@@ -117,50 +117,50 @@ public class CustomVisitor : cobolBaseVisitor<object>
         for (int i = 0; i < variablesContexts.Count(); i++)
         {
              if (int.Parse(variablesContexts[i].level().GetText()) == highestLevel)
-                {
-                    parent = variablesContexts[i].IDENTIFIER().GetText();
-                }
-            String picture = "";
-            if (variablesContexts[i].picture() != null){
-                picture = variablesContexts[i].picture().REPRESENTATION().GetText();
-            }
-            else if (variablesContexts[i].like() != null){
-                Value likeValue;
-                _valueHashMap.TryGetValue(variablesContexts[i].like().identifiers().GetText(), out likeValue);
-                if (likeValue != null){
-                    picture = likeValue.Picture;
-                }
-                else{
-                    throw new Exception("Can not assign picture from a given variable");
-                }
+             {
+                 parent = variablesContexts[i].IDENTIFIER().GetText();
+             }
+             String picture = "";
+             if (variablesContexts[i].picture() != null){
+                 picture = variablesContexts[i].picture().REPRESENTATION().GetText();
+             }
+             else if (variablesContexts[i].like() != null){
+                 Value likeValue;
+                 _valueHashMap.TryGetValue(variablesContexts[i].like().identifiers().GetText(), out likeValue);
+                 if (likeValue != null){
+                     picture = likeValue.Picture;
+                 }
+                 else{
+                     throw new Exception("Can not assign picture from a given variable");
+                 }
 
-            }
-            else if (i+1 < variablesContexts.Count() && int.Parse(variablesContexts[i+1].level().GetText()) == highestLevel){
-                throw new Exception("Picture was expected but not given!");
-            }
-            else if (i+1 > variablesContexts.Count()){
-                throw new Exception("The variable was not properly defined. Use picture or like for definying!");
-            }
+             }
+             else if (i+1 < variablesContexts.Count() && int.Parse(variablesContexts[i+1].level().GetText()) == highestLevel){
+                 throw new Exception("Picture was expected but not given!");
+             }
+             else if (i+1 > variablesContexts.Count()){
+                 throw new Exception("The variable was not properly defined. Use picture or like for definying!");
+             }
 
-            if (picture != ""){
-                String value = Value.MakeValueByPicture(picture);
-                if (variablesContexts[i].OCCURS() != null){
-                    for (int j = 0; j < int.Parse(variablesContexts[i].OCCURS().GetText()); j++)
-                    {
-                        String variable = variablesContexts[i].IDENTIFIER().GetText();
-                        variable += "[" + j + "]";
-                        if (int.Parse(variablesContexts[i].level().GetText()) > highestLevel)
-                            variable+="OF"+parent;
-                        _valueHashMap.Add(variable, new Value(value, picture));
-                    }
-                }
-                else{
-                    String variable = variablesContexts[i].IDENTIFIER().GetText();
-                    if (int.Parse(variablesContexts[i].level().GetText()) > highestLevel)
-                            variable+="OF"+parent;
-                    _valueHashMap.Add(variable, new Value(value, picture));
-                }
-            }
+             if (picture != ""){
+                 String value = Value.MakeValueByPicture(picture);
+                 if (variablesContexts[i].OCCURS() != null){
+                     for (int j = 0; j < int.Parse(variablesContexts[i].OCCURS().GetText()); j++)
+                     {
+                         String variable = variablesContexts[i].IDENTIFIER().GetText();
+                         variable += "[" + j + "]";
+                         if (int.Parse(variablesContexts[i].level().GetText()) > highestLevel)
+                             variable+="OF"+parent;
+                         _valueHashMap.Add(variable, new Value(value, picture));
+                     }
+                 }
+                 else{
+                     String variable = variablesContexts[i].IDENTIFIER().GetText();
+                     if (int.Parse(variablesContexts[i].level().GetText()) > highestLevel)
+                         variable+="OF"+parent;
+                     _valueHashMap.Add(variable, new Value(value, picture));
+                 }
+             }
         }
         return base.VisitData_division(context);
     }
@@ -230,10 +230,7 @@ public class CustomVisitor : cobolBaseVisitor<object>
         {
             newValue = valueObj.Val == null ? 0 : Convert.ToInt32(valueObj.Val);
         }
-
-        // if (!valueObj.IsNumerical())
-        //     throw new ValueIsNotNumericalException();
-
+        
         for (int i = 0; i < context._subtractors.Count; i++)
         {
             newValue -= Convert.ToInt32(context._subtractors[i].Text.Trim());
@@ -248,5 +245,17 @@ public class CustomVisitor : cobolBaseVisitor<object>
         _valueHashMap[key] = valueObj;
         
         return base.VisitSubtract(context);
+    }
+
+    public override object VisitDivide(cobolParser.DivideContext context)
+    {
+        String key;
+        String remainderKey;
+        Value valueObj;
+        int newValue;
+        int remainder;
+        
+        
+        return base.VisitDivide(context);
     }
 }
