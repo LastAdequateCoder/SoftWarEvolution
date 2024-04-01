@@ -169,4 +169,22 @@ public interface IcobolVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitRemainder([NotNull] cobolParser.RemainderContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.if"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitIf([NotNull] cobolParser.IfContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.arithmetic_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitArithmetic_expression([NotNull] cobolParser.Arithmetic_expressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.boolean"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBoolean([NotNull] cobolParser.BooleanContext context);
 }

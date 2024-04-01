@@ -260,4 +260,34 @@ public interface IcobolListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitRemainder([NotNull] cobolParser.RemainderContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.if"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIf([NotNull] cobolParser.IfContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.if"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIf([NotNull] cobolParser.IfContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.arithmetic_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterArithmetic_expression([NotNull] cobolParser.Arithmetic_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.arithmetic_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitArithmetic_expression([NotNull] cobolParser.Arithmetic_expressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.boolean"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterBoolean([NotNull] cobolParser.BooleanContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.boolean"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitBoolean([NotNull] cobolParser.BooleanContext context);
 }

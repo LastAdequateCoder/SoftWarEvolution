@@ -55,6 +55,7 @@ statement
     | multiply
     | subtract
     | divide
+    | if
     ;
 
 // Define the parser rules
@@ -70,6 +71,7 @@ multiply
     : MULTIPLY multiplier=INT BY identifiers+
     | MULTIPLY multiplier=INT BY base=INT giving
     ;
+
 divide
     : DIVIDE divisor=INT INTO identifiers+
     | DIVIDE divisor=INT INTO base=INT giving
@@ -103,4 +105,21 @@ identifiers
     ;
 remainder
     :   REMAINDER identifiers
+    ;
+
+if
+    : IF boolean THEN i+=statement+ (ELSE e+=statement+)? END
+    ;
+
+arithmetic_expression
+    :   atomic
+    |   arithmetic_expression ARITHMETIC_OPERATOR arithmetic_expression
+    ;
+
+boolean
+    :   TRUE
+    |   FALSE
+    |   arithmetic_expression COMPARISON_OPERATOR arithmetic_expression
+    |   NOT boolean
+    |   boolean BOOLEAN_OPERATOR boolean
     ;

@@ -311,6 +311,42 @@ public partial class cobolBaseListener : IcobolListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitRemainder([NotNull] cobolParser.RemainderContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.if"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterIf([NotNull] cobolParser.IfContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.if"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitIf([NotNull] cobolParser.IfContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.arithmetic_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterArithmetic_expression([NotNull] cobolParser.Arithmetic_expressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.arithmetic_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitArithmetic_expression([NotNull] cobolParser.Arithmetic_expressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.boolean"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterBoolean([NotNull] cobolParser.BooleanContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.boolean"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitBoolean([NotNull] cobolParser.BooleanContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

@@ -4,6 +4,28 @@ REPRESENTATION
     : REPR+
     ;
 
+ARITHMETIC_OPERATOR
+    : '+'
+    | '-'
+    | '*'
+    | '/'
+    | '**'
+    ;
+
+COMPARISON_OPERATOR
+    : '='
+    | '<='
+    | '<'
+    | '>'
+    | '>='
+    ;
+
+BOOLEAN_OPERATOR
+    : 'OR'
+    | 'AND'
+    | 'XOR'
+    ;
+
 IDENTIFICATION : 'I' SPACE* 'D' SPACE* 'E' SPACE* 'N' SPACE* 'T' SPACE* 'I' SPACE* 'F' SPACE* 'I' SPACE* 'C' SPACE* 'A' SPACE* 'T' SPACE* 'I' SPACE* 'O' SPACE* 'N';
 DIVISION : 'D' SPACE* 'I' SPACE* 'V' SPACE* 'I' SPACE* 'S' SPACE* 'I' SPACE* 'O' SPACE* 'N';
 OCCURS: 'O' SPACE* 'C' SPACE* 'C' SPACE* 'U' SPACE* 'R' SPACE* 'S';
@@ -33,6 +55,13 @@ ACCEPT : 'A' SPACE* 'C' SPACE* 'C' SPACE* 'E' SPACE* 'P' SPACE* 'T';
 MULTIPLY : 'M' SPACE* 'U' SPACE* 'L' SPACE* 'T' SPACE* 'I' SPACE* 'P' SPACE* 'L' SPACE* 'Y';
 SUBTRACT : 'S' SPACE* 'U' SPACE* 'B' SPACE* 'T' SPACE* 'R' SPACE* 'A' SPACE* 'C' SPACE* 'T';
 DIVIDE : 'D' SPACE* 'I' SPACE* 'V' SPACE* 'I' SPACE* 'D' SPACE* 'E';
+IF : 'I' SPACE* 'F';
+ELSE: 'E' SPACE* 'L' SPACE* 'S' SPACE* 'E';
+THEN: 'T' SPACE* 'H' SPACE* 'E' SPACE* 'N';
+END: 'E' SPACE* 'N' SPACE* 'D';
+TRUE: 'T' SPACE* 'R' SPACE* 'U' SPACE* 'E';
+FALSE: 'F' SPACE* 'A' SPACE* 'L' SPACE* 'S' SPACE* 'E';
+NOT: 'N' SPACE* 'O' SPACE* 'T';
 
 
 IDENTIFIER

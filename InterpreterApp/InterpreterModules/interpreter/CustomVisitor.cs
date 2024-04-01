@@ -15,7 +15,7 @@ public class CustomVisitor : cobolBaseVisitor<object>
         int len = context.withnoadvancing() == null ? context.ChildCount : context.ChildCount - 1;
         for (int i = 1; i < len; i++)
         {
-            string text = context.GetChild(i).GetText();
+            string text = context.GetChild(i).GetText().ToUpper();
             if(char.IsLetter(text[0])){
                 Value value;
                 _valueHashMap.TryGetValue(text, out value);
@@ -38,7 +38,7 @@ public class CustomVisitor : cobolBaseVisitor<object>
     {
         string key;
         key = context.giving() == null ?
-            context.identifiers().GetText() : context.giving().identifiers().GetText();
+            context.identifiers().GetText().ToUpper() : context.giving().identifiers().GetText().ToUpper();
 
         Value value;
         _valueHashMap.TryGetValue(key, out value);
@@ -81,12 +81,12 @@ public class CustomVisitor : cobolBaseVisitor<object>
         {
             if (context.identifiers()[i] != null){
                 Value oldValue;
-                _valueHashMap.TryGetValue(context.identifiers()[i].GetText(), out oldValue);
+                _valueHashMap.TryGetValue(context.identifiers()[i].GetText().ToUpper(), out oldValue);
                 if (oldValue != null){
                     //TODO: Console.ReadLine is probably not the best solution
                     Value newValue = new Value(Console.ReadLine(), oldValue.Picture);
                     if (Value.CheckValueWithPicture(newValue.Val, oldValue.Picture)){
-                        _valueHashMap[context.identifiers()[i].GetText()] = newValue;
+                        _valueHashMap[context.identifiers()[i].GetText().ToUpper()] = newValue;
                     }
                     else{
                         throw new Exception("Value does not correspond to the picture!");
@@ -151,14 +151,14 @@ public class CustomVisitor : cobolBaseVisitor<object>
                          variable += "[" + j + "]";
                          if (int.Parse(variablesContexts[i].level().GetText()) > highestLevel)
                              variable+="OF"+parent;
-                         _valueHashMap.Add(variable, new Value(value, picture));
+                         _valueHashMap.Add(variable.ToUpper(), new Value(value, picture));
                      }
                  }
                  else{
                      String variable = variablesContexts[i].IDENTIFIER().GetText();
                      if (int.Parse(variablesContexts[i].level().GetText()) > highestLevel)
                          variable+="OF"+parent;
-                     _valueHashMap.Add(variable, new Value(value, picture));
+                     _valueHashMap.Add(variable.ToUpper(), new Value(value, picture));
                  }
              }
         }
@@ -175,7 +175,7 @@ public class CustomVisitor : cobolBaseVisitor<object>
         {
             for(int i = 0; i < context.identifiers().Length; i++)
             {
-                key = context.identifiers()[i].GetText();
+                key = context.identifiers()[i].GetText().ToUpper();
                 valueObj = _valueHashMap[key];
                 if (!valueObj.IsNumerical())
                     return new ValueIsNotNumericalException();
@@ -189,7 +189,7 @@ public class CustomVisitor : cobolBaseVisitor<object>
         }
         else
         {
-            key = context.giving().identifiers().GetText();
+            key = context.giving().identifiers().GetText().ToUpper();
             //valueObj = _valueHashMap[key];
             _valueHashMap.TryGetValue(key, out valueObj);
             if (valueObj != null && !valueObj.IsNumerical())
@@ -215,7 +215,7 @@ public class CustomVisitor : cobolBaseVisitor<object>
         int newValue;
 
         key = context.giving() != null ? 
-            context.giving().identifiers().GetText() : context.identifiers().GetText();
+            context.giving().identifiers().GetText().ToUpper() : context.identifiers().GetText().ToUpper();
 
         //valueObj = _valueHashMap[key];
         _valueHashMap.TryGetValue(key, out valueObj);
@@ -259,7 +259,7 @@ public class CustomVisitor : cobolBaseVisitor<object>
         {
             for (int i = 0; i < context.identifiers().Length; i++)
             {
-                key = context.identifiers()[i].GetText();
+                key = context.identifiers()[i].GetText().ToUpper();
                 valueObj = _valueHashMap[key];
                 
                 if (!valueObj.IsNumerical())
@@ -281,7 +281,7 @@ public class CustomVisitor : cobolBaseVisitor<object>
         }
         else
         {
-            key = context.giving().identifiers().GetText();
+            key = context.giving().identifiers().GetText().ToUpper();
             
             _valueHashMap.TryGetValue(key, out valueObj);
             if (valueObj != null && !valueObj.IsNumerical())
@@ -320,5 +320,98 @@ public class CustomVisitor : cobolBaseVisitor<object>
         
         
         return base.VisitDivide(context);
+    }
+
+    public override object VisitArithmetic_expression([NotNull] cobolParser.Arithmetic_expressionContext context)
+    {
+        if (context.atomic() != null){
+            if (context.atomic().INT() != null){
+                return int.Parse(context.atomic().INT().GetText());
+            }
+            return int.Parse(_valueHashMap[context.atomic().identifiers().GetText().ToUpper()].Val);
+        }
+        int left = (int)Visit(context.arithmetic_expression(0));
+        int right = (int)Visit(context.arithmetic_expression(1));
+        if (context.ARITHMETIC_OPERATOR().GetText() == "+"){
+            return left + right;
+        }
+        else if (context.ARITHMETIC_OPERATOR().GetText() == "-"){
+            return left - right;
+        }
+        else if (context.ARITHMETIC_OPERATOR().GetText() == "*"){
+            return left*right;
+        }
+        else if (context.ARITHMETIC_OPERATOR().GetText() == "/"){
+            return left/right;
+        }
+        else if (context.ARITHMETIC_OPERATOR().GetText() == "**"){
+            return Math.Pow(left, right);
+        }
+        return DefaultResult;
+    }
+
+    public override object VisitBoolean([NotNull] cobolParser.BooleanContext context)
+    {
+        if (context.GetText().ToUpper() == "TRUE")
+            return true;
+        if (context.GetText().ToUpper() == "FALSE")
+            return false;
+        if (context.arithmetic_expression() != null){
+            int left = (int)Visit(context.arithmetic_expression(0));
+            int right = (int)Visit(context.arithmetic_expression(1));
+
+            if (context.COMPARISON_OPERATOR().GetText() == "="){
+                return left == right;
+            }
+            else if (context.COMPARISON_OPERATOR().GetText() == "<="){
+                return left <= right;
+            }
+            else if (context.COMPARISON_OPERATOR().GetText() == "<"){
+                return left < right;
+            }
+            else if (context.COMPARISON_OPERATOR().GetText() == ">"){
+                return left > right;
+            }
+            else if (context.COMPARISON_OPERATOR().GetText() == ">="){
+                return left >= right;
+            }
+        }
+        if (context.GetText().ToUpper().StartsWith("NOT"))
+            return !(bool)Visit(context.boolean(0));
+        if (context.boolean() != null){
+            bool left = (bool)Visit(context.boolean(0));
+            bool right = (bool)Visit(context.boolean(1));
+            if (context.BOOLEAN_OPERATOR().GetText() == "OR"){
+                return left || right;
+            }
+            else if (context.BOOLEAN_OPERATOR().GetText() == "XOR"){
+                return left ^ right;
+            }
+            else if (context.BOOLEAN_OPERATOR().GetText() == "AND"){
+                return left&&right;
+            }
+        }
+        return DefaultResult;
+    }
+
+    public override object VisitIf([NotNull] cobolParser.IfContext context)
+    {
+        bool condition = (bool)Visit(context.boolean());
+        if (condition){
+            if (context._i != null){
+                foreach (cobolParser.StatementContext statementContext in context._i){
+                    Visit(statementContext);
+                }
+            }
+        }
+        else{
+            if (context._e != null){
+                foreach (cobolParser.StatementContext statementContext in context._e)
+                {
+                    Visit(statementContext);
+                }
+            }
+        }
+        return DefaultResult;
     }
 }
