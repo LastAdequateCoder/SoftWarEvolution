@@ -82,7 +82,7 @@ public class CustomVisitor : cobolBaseVisitor<object>
             if (context.identifiers()[i] != null){
                 Value oldValue;
                 _valueHashMap.TryGetValue(context.identifiers()[i].GetText().ToUpper(), out oldValue);
-                if (oldValue != null){
+                if (_valueHashMap.ContainsKey(context.identifiers()[i].GetText().ToUpper())){
                     //TODO: Console.ReadLine is probably not the best solution
                     Value newValue = new Value(Console.ReadLine(), oldValue.Picture);
                     if (Value.CheckValueWithPicture(newValue.Val, oldValue.Picture)){
@@ -93,7 +93,7 @@ public class CustomVisitor : cobolBaseVisitor<object>
                     }
                 }
                 else{
-                    throw new Exception("The value of given variable was null!");
+                    throw new Exception("The variable was not found!");
                 }
             }
             else{
