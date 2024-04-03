@@ -182,9 +182,33 @@ public interface IcobolVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitArithmetic_expression([NotNull] cobolParser.Arithmetic_expressionContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.string_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitString_expression([NotNull] cobolParser.String_expressionContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="cobolParser.boolean"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitBoolean([NotNull] cobolParser.BooleanContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.expressions"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitExpressions([NotNull] cobolParser.ExpressionsContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.evaluate"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitEvaluate([NotNull] cobolParser.EvaluateContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.when_block"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitWhen_block([NotNull] cobolParser.When_blockContext context);
 }

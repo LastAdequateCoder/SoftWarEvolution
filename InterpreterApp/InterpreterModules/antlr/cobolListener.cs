@@ -281,6 +281,16 @@ public interface IcobolListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitArithmetic_expression([NotNull] cobolParser.Arithmetic_expressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.string_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterString_expression([NotNull] cobolParser.String_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.string_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitString_expression([NotNull] cobolParser.String_expressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="cobolParser.boolean"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -290,4 +300,34 @@ public interface IcobolListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitBoolean([NotNull] cobolParser.BooleanContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.expressions"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterExpressions([NotNull] cobolParser.ExpressionsContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.expressions"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitExpressions([NotNull] cobolParser.ExpressionsContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.evaluate"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterEvaluate([NotNull] cobolParser.EvaluateContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.evaluate"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitEvaluate([NotNull] cobolParser.EvaluateContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.when_block"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterWhen_block([NotNull] cobolParser.When_blockContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.when_block"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitWhen_block([NotNull] cobolParser.When_blockContext context);
 }

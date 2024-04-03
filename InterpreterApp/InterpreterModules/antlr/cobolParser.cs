@@ -36,13 +36,14 @@ public partial class cobolParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
-		T__0=1, T__1=2, REPRESENTATION=3, ARITHMETIC_OPERATOR=4, COMPARISON_OPERATOR=5, 
-		BOOLEAN_OPERATOR=6, IDENTIFICATION=7, DIVISION=8, OCCURS=9, TIMES=10, 
-		PICTURE=11, IS=12, PROCEDURE=13, USING=14, BY=15, FROM=16, REFERENCE=17, 
-		CONTENT=18, VALUE=19, LIKE=20, DISPLAY=21, OF=22, WITH=23, NO=24, ADVANCING=25, 
-		DATA=26, ADD=27, TO=28, INTO=29, GIVING=30, REMAINDER=31, ACCEPT=32, MULTIPLY=33, 
-		SUBTRACT=34, DIVIDE=35, IF=36, ELSE=37, THEN=38, END=39, TRUE=40, FALSE=41, 
-		NOT=42, IDENTIFIER=43, INT=44, SPACE=45, DOT=46, LITERAL=47;
+		T__0=1, T__1=2, T__2=3, REPRESENTATION=4, ARITHMETIC_OPERATOR=5, COMPARISON_OPERATOR=6, 
+		BOOLEAN_OPERATOR=7, IDENTIFICATION=8, DIVISION=9, OCCURS=10, TIMES=11, 
+		PICTURE=12, IS=13, PROCEDURE=14, USING=15, BY=16, FROM=17, REFERENCE=18, 
+		CONTENT=19, VALUE=20, LIKE=21, DISPLAY=22, OF=23, WITH=24, NO=25, ADVANCING=26, 
+		DATA=27, ADD=28, TO=29, INTO=30, GIVING=31, REMAINDER=32, ACCEPT=33, MULTIPLY=34, 
+		SUBTRACT=35, DIVIDE=36, IF=37, ELSE=38, THEN=39, END=40, TRUE=41, FALSE=42, 
+		NOT=43, WHEN=44, ALSO=45, OTHER=46, EVALUATE=47, IDENTIFIER=48, INT=49, 
+		SPACE=50, DOT=51, LITERAL=52;
 	public const int
 		RULE_program = 0, RULE_identification_division = 1, RULE_data_division = 2, 
 		RULE_variables = 3, RULE_level = 4, RULE_picture = 5, RULE_like = 6, RULE_procedure_division = 7, 
@@ -50,29 +51,31 @@ public partial class cobolParser : Parser {
 		RULE_display = 12, RULE_add = 13, RULE_multiply = 14, RULE_divide = 15, 
 		RULE_subtract = 16, RULE_accept = 17, RULE_withnoadvancing = 18, RULE_atomic = 19, 
 		RULE_giving = 20, RULE_identifiers = 21, RULE_remainder = 22, RULE_if = 23, 
-		RULE_arithmetic_expression = 24, RULE_boolean = 25;
+		RULE_arithmetic_expression = 24, RULE_string_expression = 25, RULE_boolean = 26, 
+		RULE_expressions = 27, RULE_evaluate = 28, RULE_when_block = 29;
 	public static readonly string[] ruleNames = {
 		"program", "identification_division", "data_division", "variables", "level", 
 		"picture", "like", "procedure_division", "using", "use", "sentence", "statement", 
 		"display", "add", "multiply", "divide", "subtract", "accept", "withnoadvancing", 
 		"atomic", "giving", "identifiers", "remainder", "if", "arithmetic_expression", 
-		"boolean"
+		"string_expression", "boolean", "expressions", "evaluate", "when_block"
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, "'('", "')'", null, null, null, null, null, null, null, null, null, 
+		null, "'('", "')'", "'+'", null, null, null, null, null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, null, null, null, null, null, null, null, null, "'.'"
+		null, null, null, null, null, null, null, null, null, null, null, null, 
+		null, null, null, "'.'"
 	};
 	private static readonly string[] _SymbolicNames = {
-		null, null, null, "REPRESENTATION", "ARITHMETIC_OPERATOR", "COMPARISON_OPERATOR", 
+		null, null, null, null, "REPRESENTATION", "ARITHMETIC_OPERATOR", "COMPARISON_OPERATOR", 
 		"BOOLEAN_OPERATOR", "IDENTIFICATION", "DIVISION", "OCCURS", "TIMES", "PICTURE", 
 		"IS", "PROCEDURE", "USING", "BY", "FROM", "REFERENCE", "CONTENT", "VALUE", 
 		"LIKE", "DISPLAY", "OF", "WITH", "NO", "ADVANCING", "DATA", "ADD", "TO", 
 		"INTO", "GIVING", "REMAINDER", "ACCEPT", "MULTIPLY", "SUBTRACT", "DIVIDE", 
-		"IF", "ELSE", "THEN", "END", "TRUE", "FALSE", "NOT", "IDENTIFIER", "INT", 
-		"SPACE", "DOT", "LITERAL"
+		"IF", "ELSE", "THEN", "END", "TRUE", "FALSE", "NOT", "WHEN", "ALSO", "OTHER", 
+		"EVALUATE", "IDENTIFIER", "INT", "SPACE", "DOT", "LITERAL"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -148,23 +151,23 @@ public partial class cobolParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 52;
+			State = 60;
 			identification_division();
-			State = 54;
+			State = 62;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==DATA) {
 				{
-				State = 53;
+				State = 61;
 				data_division();
 				}
 			}
 
 			{
-			State = 56;
+			State = 64;
 			procedure_division();
 			}
-			State = 57;
+			State = 65;
 			Match(Eof);
 			}
 		}
@@ -225,29 +228,29 @@ public partial class cobolParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 59;
+			State = 67;
 			Match(IDENTIFICATION);
-			State = 60;
-			Match(DIVISION);
-			State = 61;
-			Match(DOT);
 			State = 68;
+			Match(DIVISION);
+			State = 69;
+			Match(DOT);
+			State = 76;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==IDENTIFIER) {
 				{
 				{
-				State = 62;
-				Match(IDENTIFIER);
-				State = 63;
-				Match(DOT);
-				State = 64;
-				Match(LITERAL);
-				State = 65;
-				Match(DOT);
-				}
-				}
 				State = 70;
+				Match(IDENTIFIER);
+				State = 71;
+				Match(DOT);
+				State = 72;
+				Match(LITERAL);
+				State = 73;
+				Match(DOT);
+				}
+				}
+				State = 78;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
@@ -305,23 +308,23 @@ public partial class cobolParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 71;
+			State = 79;
 			Match(DATA);
-			State = 72;
+			State = 80;
 			Match(DIVISION);
-			State = 73;
+			State = 81;
 			Match(DOT);
-			State = 77;
+			State = 85;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==INT) {
 				{
 				{
-				State = 74;
+				State = 82;
 				variables();
 				}
 				}
-				State = 79;
+				State = 87;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
@@ -385,22 +388,22 @@ public partial class cobolParser : Parser {
 			EnterOuterAlt(_localctx, 1);
 			{
 			{
-			State = 80;
+			State = 88;
 			level();
-			State = 81;
+			State = 89;
 			Match(IDENTIFIER);
-			State = 84;
+			State = 92;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case PICTURE:
 				{
-				State = 82;
+				State = 90;
 				picture();
 				}
 				break;
 			case LIKE:
 				{
-				State = 83;
+				State = 91;
 				like();
 				}
 				break;
@@ -410,21 +413,21 @@ public partial class cobolParser : Parser {
 			default:
 				break;
 			}
-			State = 89;
+			State = 97;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==OCCURS) {
 				{
-				State = 86;
+				State = 94;
 				Match(OCCURS);
-				State = 87;
+				State = 95;
 				Match(INT);
-				State = 88;
+				State = 96;
 				Match(TIMES);
 				}
 			}
 
-			State = 91;
+			State = 99;
 			Match(DOT);
 			}
 			}
@@ -472,7 +475,7 @@ public partial class cobolParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 93;
+			State = 101;
 			Match(INT);
 			}
 		}
@@ -521,11 +524,11 @@ public partial class cobolParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 95;
+			State = 103;
 			Match(PICTURE);
-			State = 96;
+			State = 104;
 			Match(IS);
-			State = 97;
+			State = 105;
 			Match(REPRESENTATION);
 			}
 		}
@@ -575,9 +578,9 @@ public partial class cobolParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 99;
+			State = 107;
 			Match(LIKE);
-			State = 100;
+			State = 108;
 			identifiers();
 			}
 		}
@@ -636,36 +639,36 @@ public partial class cobolParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 102;
+			State = 110;
 			Match(PROCEDURE);
-			State = 103;
+			State = 111;
 			Match(DIVISION);
-			State = 105;
+			State = 113;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==USING) {
 				{
-				State = 104;
+				State = 112;
 				@using();
 				}
 			}
 
-			State = 107;
+			State = 115;
 			Match(DOT);
-			State = 109;
+			State = 117;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			do {
 				{
 				{
-				State = 108;
+				State = 116;
 				sentence();
 				}
 				}
-				State = 111;
+				State = 119;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 8929373323264L) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 422479025668096L) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -718,19 +721,19 @@ public partial class cobolParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 113;
+			State = 121;
 			Match(USING);
-			State = 115;
+			State = 123;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			do {
 				{
 				{
-				State = 114;
+				State = 122;
 				use();
 				}
 				}
-				State = 117;
+				State = 125;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			} while ( _la==BY );
@@ -786,39 +789,39 @@ public partial class cobolParser : Parser {
 		UseContext _localctx = new UseContext(Context, State);
 		EnterRule(_localctx, 18, RULE_use);
 		try {
-			State = 128;
+			State = 136;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,8,Context) ) {
 			case 1:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 119;
+				State = 127;
 				Match(BY);
-				State = 120;
+				State = 128;
 				Match(REFERENCE);
-				State = 121;
+				State = 129;
 				identifiers();
 				}
 				break;
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 122;
+				State = 130;
 				Match(BY);
-				State = 123;
+				State = 131;
 				Match(CONTENT);
-				State = 124;
+				State = 132;
 				atomic();
 				}
 				break;
 			case 3:
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 125;
+				State = 133;
 				Match(BY);
-				State = 126;
+				State = 134;
 				Match(VALUE);
-				State = 127;
+				State = 135;
 				atomic();
 				}
 				break;
@@ -878,33 +881,33 @@ public partial class cobolParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 132;
+			State = 140;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==IDENTIFIER) {
 				{
-				State = 130;
+				State = 138;
 				Match(IDENTIFIER);
-				State = 131;
+				State = 139;
 				Match(DOT);
 				}
 			}
 
-			State = 135;
+			State = 143;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			do {
 				{
 				{
-				State = 134;
+				State = 142;
 				statement();
 				}
 				}
-				State = 137;
+				State = 145;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 133280301056L) != 0) );
-			State = 139;
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 141004048957440L) != 0) );
+			State = 147;
 			Match(DOT);
 			}
 		}
@@ -941,6 +944,9 @@ public partial class cobolParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public IfContext @if() {
 			return GetRuleContext<IfContext>(0);
 		}
+		[System.Diagnostics.DebuggerNonUserCode] public EvaluateContext evaluate() {
+			return GetRuleContext<EvaluateContext>(0);
+		}
 		public StatementContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -969,56 +975,63 @@ public partial class cobolParser : Parser {
 		StatementContext _localctx = new StatementContext(Context, State);
 		EnterRule(_localctx, 22, RULE_statement);
 		try {
-			State = 148;
+			State = 157;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case DISPLAY:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 141;
+				State = 149;
 				display();
 				}
 				break;
 			case ADD:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 142;
+				State = 150;
 				add();
 				}
 				break;
 			case ACCEPT:
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 143;
+				State = 151;
 				accept();
 				}
 				break;
 			case MULTIPLY:
 				EnterOuterAlt(_localctx, 4);
 				{
-				State = 144;
+				State = 152;
 				multiply();
 				}
 				break;
 			case SUBTRACT:
 				EnterOuterAlt(_localctx, 5);
 				{
-				State = 145;
+				State = 153;
 				subtract();
 				}
 				break;
 			case DIVIDE:
 				EnterOuterAlt(_localctx, 6);
 				{
-				State = 146;
+				State = 154;
 				divide();
 				}
 				break;
 			case IF:
 				EnterOuterAlt(_localctx, 7);
 				{
-				State = 147;
+				State = 155;
 				@if();
+				}
+				break;
+			case EVALUATE:
+				EnterOuterAlt(_localctx, 8);
+				{
+				State = 156;
+				evaluate();
 				}
 				break;
 			default:
@@ -1078,28 +1091,28 @@ public partial class cobolParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 150;
+			State = 159;
 			Match(DISPLAY);
-			State = 152;
+			State = 161;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			do {
 				{
 				{
-				State = 151;
+				State = 160;
 				atomic();
 				}
 				}
-				State = 154;
+				State = 163;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 167125767421952L) != 0) );
-			State = 157;
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 5348024557502464L) != 0) );
+			State = 166;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==WITH) {
 				{
-				State = 156;
+				State = 165;
 				withnoadvancing();
 				}
 			}
@@ -1162,60 +1175,60 @@ public partial class cobolParser : Parser {
 		EnterRule(_localctx, 26, RULE_add);
 		int _la;
 		try {
-			State = 176;
+			State = 185;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,16,Context) ) {
 			case 1:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 159;
+				State = 168;
 				Match(ADD);
-				State = 161;
+				State = 170;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 160;
+					State = 169;
 					_localctx._INT = Match(INT);
 					_localctx._additions.Add(_localctx._INT);
 					}
 					}
-					State = 163;
+					State = 172;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				} while ( _la==INT );
-				State = 165;
+				State = 174;
 				Match(TO);
-				State = 166;
+				State = 175;
 				identifiers();
 				}
 				break;
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 167;
+				State = 176;
 				Match(ADD);
-				State = 169;
+				State = 178;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 168;
+					State = 177;
 					_localctx._INT = Match(INT);
 					_localctx._additions.Add(_localctx._INT);
 					}
 					}
-					State = 171;
+					State = 180;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				} while ( _la==INT );
-				State = 173;
+				State = 182;
 				Match(TO);
-				State = 174;
+				State = 183;
 				_localctx.@base = Match(INT);
-				State = 175;
+				State = 184;
 				giving();
 				}
 				break;
@@ -1279,29 +1292,29 @@ public partial class cobolParser : Parser {
 		EnterRule(_localctx, 28, RULE_multiply);
 		int _la;
 		try {
-			State = 191;
+			State = 200;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,18,Context) ) {
 			case 1:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 178;
+				State = 187;
 				Match(MULTIPLY);
-				State = 179;
+				State = 188;
 				_localctx.multiplier = Match(INT);
-				State = 180;
+				State = 189;
 				Match(BY);
-				State = 182;
+				State = 191;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 181;
+					State = 190;
 					identifiers();
 					}
 					}
-					State = 184;
+					State = 193;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				} while ( _la==IDENTIFIER );
@@ -1310,15 +1323,15 @@ public partial class cobolParser : Parser {
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 186;
+				State = 195;
 				Match(MULTIPLY);
-				State = 187;
+				State = 196;
 				_localctx.multiplier = Match(INT);
-				State = 188;
+				State = 197;
 				Match(BY);
-				State = 189;
+				State = 198;
 				_localctx.@base = Match(INT);
-				State = 190;
+				State = 199;
 				giving();
 				}
 				break;
@@ -1385,29 +1398,29 @@ public partial class cobolParser : Parser {
 		EnterRule(_localctx, 30, RULE_divide);
 		int _la;
 		try {
-			State = 213;
+			State = 222;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,20,Context) ) {
 			case 1:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 193;
+				State = 202;
 				Match(DIVIDE);
-				State = 194;
+				State = 203;
 				_localctx.divisor = Match(INT);
-				State = 195;
+				State = 204;
 				Match(INTO);
-				State = 197;
+				State = 206;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 196;
+					State = 205;
 					identifiers();
 					}
 					}
-					State = 199;
+					State = 208;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				} while ( _la==IDENTIFIER );
@@ -1416,32 +1429,32 @@ public partial class cobolParser : Parser {
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 201;
+				State = 210;
 				Match(DIVIDE);
-				State = 202;
+				State = 211;
 				_localctx.divisor = Match(INT);
-				State = 203;
+				State = 212;
 				Match(INTO);
-				State = 204;
+				State = 213;
 				_localctx.@base = Match(INT);
-				State = 205;
+				State = 214;
 				giving();
 				}
 				break;
 			case 3:
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 206;
+				State = 215;
 				Match(DIVIDE);
-				State = 207;
+				State = 216;
 				_localctx.divisor = Match(INT);
-				State = 208;
+				State = 217;
 				Match(INTO);
-				State = 209;
+				State = 218;
 				_localctx.@base = Match(INT);
-				State = 210;
+				State = 219;
 				giving();
-				State = 211;
+				State = 220;
 				remainder();
 				}
 				break;
@@ -1503,60 +1516,60 @@ public partial class cobolParser : Parser {
 		EnterRule(_localctx, 32, RULE_subtract);
 		int _la;
 		try {
-			State = 232;
+			State = 241;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,23,Context) ) {
 			case 1:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 215;
+				State = 224;
 				Match(SUBTRACT);
-				State = 217;
+				State = 226;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 216;
+					State = 225;
 					_localctx._INT = Match(INT);
 					_localctx._subtractors.Add(_localctx._INT);
 					}
 					}
-					State = 219;
+					State = 228;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				} while ( _la==INT );
-				State = 221;
+				State = 230;
 				Match(FROM);
-				State = 222;
+				State = 231;
 				identifiers();
 				}
 				break;
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 223;
+				State = 232;
 				Match(SUBTRACT);
-				State = 225;
+				State = 234;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 224;
+					State = 233;
 					_localctx._INT = Match(INT);
 					_localctx._subtractors.Add(_localctx._INT);
 					}
 					}
-					State = 227;
+					State = 236;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				} while ( _la==INT );
-				State = 229;
+				State = 238;
 				Match(FROM);
-				State = 230;
+				State = 239;
 				_localctx.@base = Match(INT);
-				State = 231;
+				State = 240;
 				giving();
 				}
 				break;
@@ -1612,19 +1625,19 @@ public partial class cobolParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 234;
+			State = 243;
 			Match(ACCEPT);
-			State = 236;
+			State = 245;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			do {
 				{
 				{
-				State = 235;
+				State = 244;
 				identifiers();
 				}
 				}
-				State = 238;
+				State = 247;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			} while ( _la==IDENTIFIER );
@@ -1675,11 +1688,11 @@ public partial class cobolParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 240;
+			State = 249;
 			Match(WITH);
-			State = 241;
+			State = 250;
 			Match(NO);
-			State = 242;
+			State = 251;
 			Match(ADVANCING);
 			}
 		}
@@ -1728,27 +1741,27 @@ public partial class cobolParser : Parser {
 		AtomicContext _localctx = new AtomicContext(Context, State);
 		EnterRule(_localctx, 38, RULE_atomic);
 		try {
-			State = 247;
+			State = 256;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case IDENTIFIER:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 244;
+				State = 253;
 				identifiers();
 				}
 				break;
 			case INT:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 245;
+				State = 254;
 				Match(INT);
 				}
 				break;
 			case LITERAL:
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 246;
+				State = 255;
 				Match(LITERAL);
 				}
 				break;
@@ -1802,9 +1815,9 @@ public partial class cobolParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 249;
+			State = 258;
 			Match(GIVING);
-			State = 250;
+			State = 259;
 			identifiers();
 			}
 		}
@@ -1860,36 +1873,36 @@ public partial class cobolParser : Parser {
 			int _alt;
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 252;
+			State = 261;
 			Match(IDENTIFIER);
-			State = 257;
+			State = 266;
 			ErrorHandler.Sync(this);
 			_alt = Interpreter.AdaptivePredict(TokenStream,26,Context);
 			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					State = 253;
+					State = 262;
 					Match(OF);
-					State = 254;
+					State = 263;
 					Match(IDENTIFIER);
 					}
 					} 
 				}
-				State = 259;
+				State = 268;
 				ErrorHandler.Sync(this);
 				_alt = Interpreter.AdaptivePredict(TokenStream,26,Context);
 			}
-			State = 263;
+			State = 272;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,27,Context) ) {
 			case 1:
 				{
-				State = 260;
+				State = 269;
 				Match(T__0);
-				State = 261;
+				State = 270;
 				Match(INT);
-				State = 262;
+				State = 271;
 				Match(T__1);
 				}
 				break;
@@ -1942,9 +1955,9 @@ public partial class cobolParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 265;
+			State = 274;
 			Match(REMAINDER);
-			State = 266;
+			State = 275;
 			identifiers();
 			}
 		}
@@ -2007,53 +2020,53 @@ public partial class cobolParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 268;
+			State = 277;
 			Match(IF);
-			State = 269;
+			State = 278;
 			boolean(0);
-			State = 270;
+			State = 279;
 			Match(THEN);
-			State = 272;
+			State = 281;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			do {
 				{
 				{
-				State = 271;
+				State = 280;
 				_localctx._statement = statement();
 				_localctx._i.Add(_localctx._statement);
 				}
 				}
-				State = 274;
+				State = 283;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 133280301056L) != 0) );
-			State = 282;
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 141004048957440L) != 0) );
+			State = 291;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==ELSE) {
 				{
-				State = 276;
+				State = 285;
 				Match(ELSE);
-				State = 278;
+				State = 287;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 277;
+					State = 286;
 					_localctx._statement = statement();
 					_localctx._e.Add(_localctx._statement);
 					}
 					}
-					State = 280;
+					State = 289;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 133280301056L) != 0) );
+				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 141004048957440L) != 0) );
 				}
 			}
 
-			State = 284;
+			State = 293;
 			Match(END);
 			}
 		}
@@ -2119,11 +2132,11 @@ public partial class cobolParser : Parser {
 			EnterOuterAlt(_localctx, 1);
 			{
 			{
-			State = 287;
+			State = 296;
 			atomic();
 			}
 			Context.Stop = TokenStream.LT(-1);
-			State = 294;
+			State = 303;
 			ErrorHandler.Sync(this);
 			_alt = Interpreter.AdaptivePredict(TokenStream,31,Context);
 			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
@@ -2135,18 +2148,110 @@ public partial class cobolParser : Parser {
 					{
 					_localctx = new Arithmetic_expressionContext(_parentctx, _parentState);
 					PushNewRecursionContext(_localctx, _startState, RULE_arithmetic_expression);
-					State = 289;
+					State = 298;
 					if (!(Precpred(Context, 1))) throw new FailedPredicateException(this, "Precpred(Context, 1)");
-					State = 290;
+					State = 299;
 					Match(ARITHMETIC_OPERATOR);
-					State = 291;
+					State = 300;
 					arithmetic_expression(2);
 					}
 					} 
 				}
-				State = 296;
+				State = 305;
 				ErrorHandler.Sync(this);
 				_alt = Interpreter.AdaptivePredict(TokenStream,31,Context);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			UnrollRecursionContexts(_parentctx);
+		}
+		return _localctx;
+	}
+
+	public partial class String_expressionContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public AtomicContext atomic() {
+			return GetRuleContext<AtomicContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public String_expressionContext[] string_expression() {
+			return GetRuleContexts<String_expressionContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public String_expressionContext string_expression(int i) {
+			return GetRuleContext<String_expressionContext>(i);
+		}
+		public String_expressionContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_string_expression; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterString_expression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitString_expression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitString_expression(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public String_expressionContext string_expression() {
+		return string_expression(0);
+	}
+
+	private String_expressionContext string_expression(int _p) {
+		ParserRuleContext _parentctx = Context;
+		int _parentState = State;
+		String_expressionContext _localctx = new String_expressionContext(Context, _parentState);
+		String_expressionContext _prevctx = _localctx;
+		int _startState = 50;
+		EnterRecursionRule(_localctx, 50, RULE_string_expression, _p);
+		try {
+			int _alt;
+			EnterOuterAlt(_localctx, 1);
+			{
+			{
+			State = 307;
+			atomic();
+			}
+			Context.Stop = TokenStream.LT(-1);
+			State = 314;
+			ErrorHandler.Sync(this);
+			_alt = Interpreter.AdaptivePredict(TokenStream,32,Context);
+			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					if ( ParseListeners!=null )
+						TriggerExitRuleEvent();
+					_prevctx = _localctx;
+					{
+					{
+					_localctx = new String_expressionContext(_parentctx, _parentState);
+					PushNewRecursionContext(_localctx, _startState, RULE_string_expression);
+					State = 309;
+					if (!(Precpred(Context, 1))) throw new FailedPredicateException(this, "Precpred(Context, 1)");
+					State = 310;
+					Match(T__2);
+					State = 311;
+					string_expression(2);
+					}
+					} 
+				}
+				State = 316;
+				ErrorHandler.Sync(this);
+				_alt = Interpreter.AdaptivePredict(TokenStream,32,Context);
 			}
 			}
 		}
@@ -2212,24 +2317,24 @@ public partial class cobolParser : Parser {
 		int _parentState = State;
 		BooleanContext _localctx = new BooleanContext(Context, _parentState);
 		BooleanContext _prevctx = _localctx;
-		int _startState = 50;
-		EnterRecursionRule(_localctx, 50, RULE_boolean, _p);
+		int _startState = 52;
+		EnterRecursionRule(_localctx, 52, RULE_boolean, _p);
 		try {
 			int _alt;
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 306;
+			State = 326;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case TRUE:
 				{
-				State = 298;
+				State = 318;
 				Match(TRUE);
 				}
 				break;
 			case FALSE:
 				{
-				State = 299;
+				State = 319;
 				Match(FALSE);
 				}
 				break;
@@ -2237,19 +2342,19 @@ public partial class cobolParser : Parser {
 			case INT:
 			case LITERAL:
 				{
-				State = 300;
+				State = 320;
 				arithmetic_expression(0);
-				State = 301;
+				State = 321;
 				Match(COMPARISON_OPERATOR);
-				State = 302;
+				State = 322;
 				arithmetic_expression(0);
 				}
 				break;
 			case NOT:
 				{
-				State = 304;
+				State = 324;
 				Match(NOT);
-				State = 305;
+				State = 325;
 				boolean(2);
 				}
 				break;
@@ -2257,9 +2362,9 @@ public partial class cobolParser : Parser {
 				throw new NoViableAltException(this);
 			}
 			Context.Stop = TokenStream.LT(-1);
-			State = 313;
+			State = 333;
 			ErrorHandler.Sync(this);
-			_alt = Interpreter.AdaptivePredict(TokenStream,33,Context);
+			_alt = Interpreter.AdaptivePredict(TokenStream,34,Context);
 			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( ParseListeners!=null )
@@ -2269,18 +2374,18 @@ public partial class cobolParser : Parser {
 					{
 					_localctx = new BooleanContext(_parentctx, _parentState);
 					PushNewRecursionContext(_localctx, _startState, RULE_boolean);
-					State = 308;
+					State = 328;
 					if (!(Precpred(Context, 1))) throw new FailedPredicateException(this, "Precpred(Context, 1)");
-					State = 309;
+					State = 329;
 					Match(BOOLEAN_OPERATOR);
-					State = 310;
+					State = 330;
 					boolean(2);
 					}
 					} 
 				}
-				State = 315;
+				State = 335;
 				ErrorHandler.Sync(this);
-				_alt = Interpreter.AdaptivePredict(TokenStream,33,Context);
+				_alt = Interpreter.AdaptivePredict(TokenStream,34,Context);
 			}
 			}
 		}
@@ -2295,10 +2400,311 @@ public partial class cobolParser : Parser {
 		return _localctx;
 	}
 
+	public partial class ExpressionsContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public BooleanContext boolean() {
+			return GetRuleContext<BooleanContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public Arithmetic_expressionContext arithmetic_expression() {
+			return GetRuleContext<Arithmetic_expressionContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public String_expressionContext string_expression() {
+			return GetRuleContext<String_expressionContext>(0);
+		}
+		public ExpressionsContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_expressions; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterExpressions(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitExpressions(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitExpressions(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public ExpressionsContext expressions() {
+		ExpressionsContext _localctx = new ExpressionsContext(Context, State);
+		EnterRule(_localctx, 54, RULE_expressions);
+		try {
+			State = 339;
+			ErrorHandler.Sync(this);
+			switch ( Interpreter.AdaptivePredict(TokenStream,35,Context) ) {
+			case 1:
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 336;
+				boolean(0);
+				}
+				break;
+			case 2:
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 337;
+				arithmetic_expression(0);
+				}
+				break;
+			case 3:
+				EnterOuterAlt(_localctx, 3);
+				{
+				State = 338;
+				string_expression(0);
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class EvaluateContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EVALUATE() { return GetToken(cobolParser.EVALUATE, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionsContext[] expressions() {
+			return GetRuleContexts<ExpressionsContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionsContext expressions(int i) {
+			return GetRuleContext<ExpressionsContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode END() { return GetToken(cobolParser.END, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] ALSO() { return GetTokens(cobolParser.ALSO); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ALSO(int i) {
+			return GetToken(cobolParser.ALSO, i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public When_blockContext[] when_block() {
+			return GetRuleContexts<When_blockContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public When_blockContext when_block(int i) {
+			return GetRuleContext<When_blockContext>(i);
+		}
+		public EvaluateContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_evaluate; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterEvaluate(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitEvaluate(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitEvaluate(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public EvaluateContext evaluate() {
+		EvaluateContext _localctx = new EvaluateContext(Context, State);
+		EnterRule(_localctx, 56, RULE_evaluate);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 341;
+			Match(EVALUATE);
+			State = 342;
+			expressions();
+			State = 347;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			while (_la==ALSO) {
+				{
+				{
+				State = 343;
+				Match(ALSO);
+				State = 344;
+				expressions();
+				}
+				}
+				State = 349;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+			}
+			State = 353;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			while (_la==WHEN) {
+				{
+				{
+				State = 350;
+				when_block();
+				}
+				}
+				State = 355;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+			}
+			State = 356;
+			Match(END);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class When_blockContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WHEN() { return GetToken(cobolParser.WHEN, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public AtomicContext[] atomic() {
+			return GetRuleContexts<AtomicContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public AtomicContext atomic(int i) {
+			return GetRuleContext<AtomicContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] ALSO() { return GetTokens(cobolParser.ALSO); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ALSO(int i) {
+			return GetToken(cobolParser.ALSO, i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public StatementContext[] statement() {
+			return GetRuleContexts<StatementContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public StatementContext statement(int i) {
+			return GetRuleContext<StatementContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OTHER() { return GetToken(cobolParser.OTHER, 0); }
+		public When_blockContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_when_block; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterWhen_block(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitWhen_block(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitWhen_block(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public When_blockContext when_block() {
+		When_blockContext _localctx = new When_blockContext(Context, State);
+		EnterRule(_localctx, 58, RULE_when_block);
+		int _la;
+		try {
+			State = 379;
+			ErrorHandler.Sync(this);
+			switch ( Interpreter.AdaptivePredict(TokenStream,41,Context) ) {
+			case 1:
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 358;
+				Match(WHEN);
+				State = 359;
+				atomic();
+				State = 364;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				while (_la==ALSO) {
+					{
+					{
+					State = 360;
+					Match(ALSO);
+					State = 361;
+					atomic();
+					}
+					}
+					State = 366;
+					ErrorHandler.Sync(this);
+					_la = TokenStream.LA(1);
+				}
+				State = 368;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				do {
+					{
+					{
+					State = 367;
+					statement();
+					}
+					}
+					State = 370;
+					ErrorHandler.Sync(this);
+					_la = TokenStream.LA(1);
+				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 141004048957440L) != 0) );
+				}
+				break;
+			case 2:
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 372;
+				Match(WHEN);
+				State = 373;
+				Match(OTHER);
+				State = 375;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				do {
+					{
+					{
+					State = 374;
+					statement();
+					}
+					}
+					State = 377;
+					ErrorHandler.Sync(this);
+					_la = TokenStream.LA(1);
+				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 141004048957440L) != 0) );
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
 	public override bool Sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
 		case 24: return arithmetic_expression_sempred((Arithmetic_expressionContext)_localctx, predIndex);
-		case 25: return boolean_sempred((BooleanContext)_localctx, predIndex);
+		case 25: return string_expression_sempred((String_expressionContext)_localctx, predIndex);
+		case 26: return boolean_sempred((BooleanContext)_localctx, predIndex);
 		}
 		return true;
 	}
@@ -2308,118 +2714,146 @@ public partial class cobolParser : Parser {
 		}
 		return true;
 	}
-	private bool boolean_sempred(BooleanContext _localctx, int predIndex) {
+	private bool string_expression_sempred(String_expressionContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 1: return Precpred(Context, 1);
 		}
 		return true;
 	}
+	private bool boolean_sempred(BooleanContext _localctx, int predIndex) {
+		switch (predIndex) {
+		case 2: return Precpred(Context, 1);
+		}
+		return true;
+	}
 
 	private static int[] _serializedATN = {
-		4,1,47,317,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
+		4,1,52,382,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
 		7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,2,14,7,14,
 		2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,7,20,2,21,7,21,
-		2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,1,0,1,0,3,0,55,8,0,1,0,1,0,1,0,
-		1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,67,8,1,10,1,12,1,70,9,1,1,2,1,2,1,2,1,
-		2,5,2,76,8,2,10,2,12,2,79,9,2,1,3,1,3,1,3,1,3,3,3,85,8,3,1,3,1,3,1,3,3,
-		3,90,8,3,1,3,1,3,1,4,1,4,1,5,1,5,1,5,1,5,1,6,1,6,1,6,1,7,1,7,1,7,3,7,106,
-		8,7,1,7,1,7,4,7,110,8,7,11,7,12,7,111,1,8,1,8,4,8,116,8,8,11,8,12,8,117,
-		1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,3,9,129,8,9,1,10,1,10,3,10,133,8,10,
-		1,10,4,10,136,8,10,11,10,12,10,137,1,10,1,10,1,11,1,11,1,11,1,11,1,11,
-		1,11,1,11,3,11,149,8,11,1,12,1,12,4,12,153,8,12,11,12,12,12,154,1,12,3,
-		12,158,8,12,1,13,1,13,4,13,162,8,13,11,13,12,13,163,1,13,1,13,1,13,1,13,
-		4,13,170,8,13,11,13,12,13,171,1,13,1,13,1,13,3,13,177,8,13,1,14,1,14,1,
-		14,1,14,4,14,183,8,14,11,14,12,14,184,1,14,1,14,1,14,1,14,1,14,3,14,192,
-		8,14,1,15,1,15,1,15,1,15,4,15,198,8,15,11,15,12,15,199,1,15,1,15,1,15,
-		1,15,1,15,1,15,1,15,1,15,1,15,1,15,1,15,1,15,3,15,214,8,15,1,16,1,16,4,
-		16,218,8,16,11,16,12,16,219,1,16,1,16,1,16,1,16,4,16,226,8,16,11,16,12,
-		16,227,1,16,1,16,1,16,3,16,233,8,16,1,17,1,17,4,17,237,8,17,11,17,12,17,
-		238,1,18,1,18,1,18,1,18,1,19,1,19,1,19,3,19,248,8,19,1,20,1,20,1,20,1,
-		21,1,21,1,21,5,21,256,8,21,10,21,12,21,259,9,21,1,21,1,21,1,21,3,21,264,
-		8,21,1,22,1,22,1,22,1,23,1,23,1,23,1,23,4,23,273,8,23,11,23,12,23,274,
-		1,23,1,23,4,23,279,8,23,11,23,12,23,280,3,23,283,8,23,1,23,1,23,1,24,1,
-		24,1,24,1,24,1,24,1,24,5,24,293,8,24,10,24,12,24,296,9,24,1,25,1,25,1,
-		25,1,25,1,25,1,25,1,25,1,25,1,25,3,25,307,8,25,1,25,1,25,1,25,5,25,312,
-		8,25,10,25,12,25,315,9,25,1,25,0,2,48,50,26,0,2,4,6,8,10,12,14,16,18,20,
-		22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,0,0,335,0,52,1,0,0,0,2,59,
-		1,0,0,0,4,71,1,0,0,0,6,80,1,0,0,0,8,93,1,0,0,0,10,95,1,0,0,0,12,99,1,0,
-		0,0,14,102,1,0,0,0,16,113,1,0,0,0,18,128,1,0,0,0,20,132,1,0,0,0,22,148,
-		1,0,0,0,24,150,1,0,0,0,26,176,1,0,0,0,28,191,1,0,0,0,30,213,1,0,0,0,32,
-		232,1,0,0,0,34,234,1,0,0,0,36,240,1,0,0,0,38,247,1,0,0,0,40,249,1,0,0,
-		0,42,252,1,0,0,0,44,265,1,0,0,0,46,268,1,0,0,0,48,286,1,0,0,0,50,306,1,
-		0,0,0,52,54,3,2,1,0,53,55,3,4,2,0,54,53,1,0,0,0,54,55,1,0,0,0,55,56,1,
-		0,0,0,56,57,3,14,7,0,57,58,5,0,0,1,58,1,1,0,0,0,59,60,5,7,0,0,60,61,5,
-		8,0,0,61,68,5,46,0,0,62,63,5,43,0,0,63,64,5,46,0,0,64,65,5,47,0,0,65,67,
-		5,46,0,0,66,62,1,0,0,0,67,70,1,0,0,0,68,66,1,0,0,0,68,69,1,0,0,0,69,3,
-		1,0,0,0,70,68,1,0,0,0,71,72,5,26,0,0,72,73,5,8,0,0,73,77,5,46,0,0,74,76,
-		3,6,3,0,75,74,1,0,0,0,76,79,1,0,0,0,77,75,1,0,0,0,77,78,1,0,0,0,78,5,1,
-		0,0,0,79,77,1,0,0,0,80,81,3,8,4,0,81,84,5,43,0,0,82,85,3,10,5,0,83,85,
-		3,12,6,0,84,82,1,0,0,0,84,83,1,0,0,0,84,85,1,0,0,0,85,89,1,0,0,0,86,87,
-		5,9,0,0,87,88,5,44,0,0,88,90,5,10,0,0,89,86,1,0,0,0,89,90,1,0,0,0,90,91,
-		1,0,0,0,91,92,5,46,0,0,92,7,1,0,0,0,93,94,5,44,0,0,94,9,1,0,0,0,95,96,
-		5,11,0,0,96,97,5,12,0,0,97,98,5,3,0,0,98,11,1,0,0,0,99,100,5,20,0,0,100,
-		101,3,42,21,0,101,13,1,0,0,0,102,103,5,13,0,0,103,105,5,8,0,0,104,106,
-		3,16,8,0,105,104,1,0,0,0,105,106,1,0,0,0,106,107,1,0,0,0,107,109,5,46,
-		0,0,108,110,3,20,10,0,109,108,1,0,0,0,110,111,1,0,0,0,111,109,1,0,0,0,
-		111,112,1,0,0,0,112,15,1,0,0,0,113,115,5,14,0,0,114,116,3,18,9,0,115,114,
-		1,0,0,0,116,117,1,0,0,0,117,115,1,0,0,0,117,118,1,0,0,0,118,17,1,0,0,0,
-		119,120,5,15,0,0,120,121,5,17,0,0,121,129,3,42,21,0,122,123,5,15,0,0,123,
-		124,5,18,0,0,124,129,3,38,19,0,125,126,5,15,0,0,126,127,5,19,0,0,127,129,
-		3,38,19,0,128,119,1,0,0,0,128,122,1,0,0,0,128,125,1,0,0,0,129,19,1,0,0,
-		0,130,131,5,43,0,0,131,133,5,46,0,0,132,130,1,0,0,0,132,133,1,0,0,0,133,
-		135,1,0,0,0,134,136,3,22,11,0,135,134,1,0,0,0,136,137,1,0,0,0,137,135,
-		1,0,0,0,137,138,1,0,0,0,138,139,1,0,0,0,139,140,5,46,0,0,140,21,1,0,0,
-		0,141,149,3,24,12,0,142,149,3,26,13,0,143,149,3,34,17,0,144,149,3,28,14,
-		0,145,149,3,32,16,0,146,149,3,30,15,0,147,149,3,46,23,0,148,141,1,0,0,
-		0,148,142,1,0,0,0,148,143,1,0,0,0,148,144,1,0,0,0,148,145,1,0,0,0,148,
-		146,1,0,0,0,148,147,1,0,0,0,149,23,1,0,0,0,150,152,5,21,0,0,151,153,3,
-		38,19,0,152,151,1,0,0,0,153,154,1,0,0,0,154,152,1,0,0,0,154,155,1,0,0,
-		0,155,157,1,0,0,0,156,158,3,36,18,0,157,156,1,0,0,0,157,158,1,0,0,0,158,
-		25,1,0,0,0,159,161,5,27,0,0,160,162,5,44,0,0,161,160,1,0,0,0,162,163,1,
-		0,0,0,163,161,1,0,0,0,163,164,1,0,0,0,164,165,1,0,0,0,165,166,5,28,0,0,
-		166,177,3,42,21,0,167,169,5,27,0,0,168,170,5,44,0,0,169,168,1,0,0,0,170,
-		171,1,0,0,0,171,169,1,0,0,0,171,172,1,0,0,0,172,173,1,0,0,0,173,174,5,
-		28,0,0,174,175,5,44,0,0,175,177,3,40,20,0,176,159,1,0,0,0,176,167,1,0,
-		0,0,177,27,1,0,0,0,178,179,5,33,0,0,179,180,5,44,0,0,180,182,5,15,0,0,
-		181,183,3,42,21,0,182,181,1,0,0,0,183,184,1,0,0,0,184,182,1,0,0,0,184,
-		185,1,0,0,0,185,192,1,0,0,0,186,187,5,33,0,0,187,188,5,44,0,0,188,189,
-		5,15,0,0,189,190,5,44,0,0,190,192,3,40,20,0,191,178,1,0,0,0,191,186,1,
-		0,0,0,192,29,1,0,0,0,193,194,5,35,0,0,194,195,5,44,0,0,195,197,5,29,0,
-		0,196,198,3,42,21,0,197,196,1,0,0,0,198,199,1,0,0,0,199,197,1,0,0,0,199,
-		200,1,0,0,0,200,214,1,0,0,0,201,202,5,35,0,0,202,203,5,44,0,0,203,204,
-		5,29,0,0,204,205,5,44,0,0,205,214,3,40,20,0,206,207,5,35,0,0,207,208,5,
-		44,0,0,208,209,5,29,0,0,209,210,5,44,0,0,210,211,3,40,20,0,211,212,3,44,
-		22,0,212,214,1,0,0,0,213,193,1,0,0,0,213,201,1,0,0,0,213,206,1,0,0,0,214,
-		31,1,0,0,0,215,217,5,34,0,0,216,218,5,44,0,0,217,216,1,0,0,0,218,219,1,
-		0,0,0,219,217,1,0,0,0,219,220,1,0,0,0,220,221,1,0,0,0,221,222,5,16,0,0,
-		222,233,3,42,21,0,223,225,5,34,0,0,224,226,5,44,0,0,225,224,1,0,0,0,226,
-		227,1,0,0,0,227,225,1,0,0,0,227,228,1,0,0,0,228,229,1,0,0,0,229,230,5,
-		16,0,0,230,231,5,44,0,0,231,233,3,40,20,0,232,215,1,0,0,0,232,223,1,0,
-		0,0,233,33,1,0,0,0,234,236,5,32,0,0,235,237,3,42,21,0,236,235,1,0,0,0,
-		237,238,1,0,0,0,238,236,1,0,0,0,238,239,1,0,0,0,239,35,1,0,0,0,240,241,
-		5,23,0,0,241,242,5,24,0,0,242,243,5,25,0,0,243,37,1,0,0,0,244,248,3,42,
-		21,0,245,248,5,44,0,0,246,248,5,47,0,0,247,244,1,0,0,0,247,245,1,0,0,0,
-		247,246,1,0,0,0,248,39,1,0,0,0,249,250,5,30,0,0,250,251,3,42,21,0,251,
-		41,1,0,0,0,252,257,5,43,0,0,253,254,5,22,0,0,254,256,5,43,0,0,255,253,
-		1,0,0,0,256,259,1,0,0,0,257,255,1,0,0,0,257,258,1,0,0,0,258,263,1,0,0,
-		0,259,257,1,0,0,0,260,261,5,1,0,0,261,262,5,44,0,0,262,264,5,2,0,0,263,
-		260,1,0,0,0,263,264,1,0,0,0,264,43,1,0,0,0,265,266,5,31,0,0,266,267,3,
-		42,21,0,267,45,1,0,0,0,268,269,5,36,0,0,269,270,3,50,25,0,270,272,5,38,
-		0,0,271,273,3,22,11,0,272,271,1,0,0,0,273,274,1,0,0,0,274,272,1,0,0,0,
-		274,275,1,0,0,0,275,282,1,0,0,0,276,278,5,37,0,0,277,279,3,22,11,0,278,
-		277,1,0,0,0,279,280,1,0,0,0,280,278,1,0,0,0,280,281,1,0,0,0,281,283,1,
-		0,0,0,282,276,1,0,0,0,282,283,1,0,0,0,283,284,1,0,0,0,284,285,5,39,0,0,
-		285,47,1,0,0,0,286,287,6,24,-1,0,287,288,3,38,19,0,288,294,1,0,0,0,289,
-		290,10,1,0,0,290,291,5,4,0,0,291,293,3,48,24,2,292,289,1,0,0,0,293,296,
-		1,0,0,0,294,292,1,0,0,0,294,295,1,0,0,0,295,49,1,0,0,0,296,294,1,0,0,0,
-		297,298,6,25,-1,0,298,307,5,40,0,0,299,307,5,41,0,0,300,301,3,48,24,0,
-		301,302,5,5,0,0,302,303,3,48,24,0,303,307,1,0,0,0,304,305,5,42,0,0,305,
-		307,3,50,25,2,306,297,1,0,0,0,306,299,1,0,0,0,306,300,1,0,0,0,306,304,
-		1,0,0,0,307,313,1,0,0,0,308,309,10,1,0,0,309,310,5,6,0,0,310,312,3,50,
-		25,2,311,308,1,0,0,0,312,315,1,0,0,0,313,311,1,0,0,0,313,314,1,0,0,0,314,
-		51,1,0,0,0,315,313,1,0,0,0,34,54,68,77,84,89,105,111,117,128,132,137,148,
-		154,157,163,171,176,184,191,199,213,219,227,232,238,247,257,263,274,280,
-		282,294,306,313
+		2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,2,27,7,27,2,28,7,28,
+		2,29,7,29,1,0,1,0,3,0,63,8,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,
+		1,75,8,1,10,1,12,1,78,9,1,1,2,1,2,1,2,1,2,5,2,84,8,2,10,2,12,2,87,9,2,
+		1,3,1,3,1,3,1,3,3,3,93,8,3,1,3,1,3,1,3,3,3,98,8,3,1,3,1,3,1,4,1,4,1,5,
+		1,5,1,5,1,5,1,6,1,6,1,6,1,7,1,7,1,7,3,7,114,8,7,1,7,1,7,4,7,118,8,7,11,
+		7,12,7,119,1,8,1,8,4,8,124,8,8,11,8,12,8,125,1,9,1,9,1,9,1,9,1,9,1,9,1,
+		9,1,9,1,9,3,9,137,8,9,1,10,1,10,3,10,141,8,10,1,10,4,10,144,8,10,11,10,
+		12,10,145,1,10,1,10,1,11,1,11,1,11,1,11,1,11,1,11,1,11,1,11,3,11,158,8,
+		11,1,12,1,12,4,12,162,8,12,11,12,12,12,163,1,12,3,12,167,8,12,1,13,1,13,
+		4,13,171,8,13,11,13,12,13,172,1,13,1,13,1,13,1,13,4,13,179,8,13,11,13,
+		12,13,180,1,13,1,13,1,13,3,13,186,8,13,1,14,1,14,1,14,1,14,4,14,192,8,
+		14,11,14,12,14,193,1,14,1,14,1,14,1,14,1,14,3,14,201,8,14,1,15,1,15,1,
+		15,1,15,4,15,207,8,15,11,15,12,15,208,1,15,1,15,1,15,1,15,1,15,1,15,1,
+		15,1,15,1,15,1,15,1,15,1,15,3,15,223,8,15,1,16,1,16,4,16,227,8,16,11,16,
+		12,16,228,1,16,1,16,1,16,1,16,4,16,235,8,16,11,16,12,16,236,1,16,1,16,
+		1,16,3,16,242,8,16,1,17,1,17,4,17,246,8,17,11,17,12,17,247,1,18,1,18,1,
+		18,1,18,1,19,1,19,1,19,3,19,257,8,19,1,20,1,20,1,20,1,21,1,21,1,21,5,21,
+		265,8,21,10,21,12,21,268,9,21,1,21,1,21,1,21,3,21,273,8,21,1,22,1,22,1,
+		22,1,23,1,23,1,23,1,23,4,23,282,8,23,11,23,12,23,283,1,23,1,23,4,23,288,
+		8,23,11,23,12,23,289,3,23,292,8,23,1,23,1,23,1,24,1,24,1,24,1,24,1,24,
+		1,24,5,24,302,8,24,10,24,12,24,305,9,24,1,25,1,25,1,25,1,25,1,25,1,25,
+		5,25,313,8,25,10,25,12,25,316,9,25,1,26,1,26,1,26,1,26,1,26,1,26,1,26,
+		1,26,1,26,3,26,327,8,26,1,26,1,26,1,26,5,26,332,8,26,10,26,12,26,335,9,
+		26,1,27,1,27,1,27,3,27,340,8,27,1,28,1,28,1,28,1,28,5,28,346,8,28,10,28,
+		12,28,349,9,28,1,28,5,28,352,8,28,10,28,12,28,355,9,28,1,28,1,28,1,29,
+		1,29,1,29,1,29,5,29,363,8,29,10,29,12,29,366,9,29,1,29,4,29,369,8,29,11,
+		29,12,29,370,1,29,1,29,1,29,4,29,376,8,29,11,29,12,29,377,3,29,380,8,29,
+		1,29,0,3,48,50,52,30,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,
+		36,38,40,42,44,46,48,50,52,54,56,58,0,0,406,0,60,1,0,0,0,2,67,1,0,0,0,
+		4,79,1,0,0,0,6,88,1,0,0,0,8,101,1,0,0,0,10,103,1,0,0,0,12,107,1,0,0,0,
+		14,110,1,0,0,0,16,121,1,0,0,0,18,136,1,0,0,0,20,140,1,0,0,0,22,157,1,0,
+		0,0,24,159,1,0,0,0,26,185,1,0,0,0,28,200,1,0,0,0,30,222,1,0,0,0,32,241,
+		1,0,0,0,34,243,1,0,0,0,36,249,1,0,0,0,38,256,1,0,0,0,40,258,1,0,0,0,42,
+		261,1,0,0,0,44,274,1,0,0,0,46,277,1,0,0,0,48,295,1,0,0,0,50,306,1,0,0,
+		0,52,326,1,0,0,0,54,339,1,0,0,0,56,341,1,0,0,0,58,379,1,0,0,0,60,62,3,
+		2,1,0,61,63,3,4,2,0,62,61,1,0,0,0,62,63,1,0,0,0,63,64,1,0,0,0,64,65,3,
+		14,7,0,65,66,5,0,0,1,66,1,1,0,0,0,67,68,5,8,0,0,68,69,5,9,0,0,69,76,5,
+		51,0,0,70,71,5,48,0,0,71,72,5,51,0,0,72,73,5,52,0,0,73,75,5,51,0,0,74,
+		70,1,0,0,0,75,78,1,0,0,0,76,74,1,0,0,0,76,77,1,0,0,0,77,3,1,0,0,0,78,76,
+		1,0,0,0,79,80,5,27,0,0,80,81,5,9,0,0,81,85,5,51,0,0,82,84,3,6,3,0,83,82,
+		1,0,0,0,84,87,1,0,0,0,85,83,1,0,0,0,85,86,1,0,0,0,86,5,1,0,0,0,87,85,1,
+		0,0,0,88,89,3,8,4,0,89,92,5,48,0,0,90,93,3,10,5,0,91,93,3,12,6,0,92,90,
+		1,0,0,0,92,91,1,0,0,0,92,93,1,0,0,0,93,97,1,0,0,0,94,95,5,10,0,0,95,96,
+		5,49,0,0,96,98,5,11,0,0,97,94,1,0,0,0,97,98,1,0,0,0,98,99,1,0,0,0,99,100,
+		5,51,0,0,100,7,1,0,0,0,101,102,5,49,0,0,102,9,1,0,0,0,103,104,5,12,0,0,
+		104,105,5,13,0,0,105,106,5,4,0,0,106,11,1,0,0,0,107,108,5,21,0,0,108,109,
+		3,42,21,0,109,13,1,0,0,0,110,111,5,14,0,0,111,113,5,9,0,0,112,114,3,16,
+		8,0,113,112,1,0,0,0,113,114,1,0,0,0,114,115,1,0,0,0,115,117,5,51,0,0,116,
+		118,3,20,10,0,117,116,1,0,0,0,118,119,1,0,0,0,119,117,1,0,0,0,119,120,
+		1,0,0,0,120,15,1,0,0,0,121,123,5,15,0,0,122,124,3,18,9,0,123,122,1,0,0,
+		0,124,125,1,0,0,0,125,123,1,0,0,0,125,126,1,0,0,0,126,17,1,0,0,0,127,128,
+		5,16,0,0,128,129,5,18,0,0,129,137,3,42,21,0,130,131,5,16,0,0,131,132,5,
+		19,0,0,132,137,3,38,19,0,133,134,5,16,0,0,134,135,5,20,0,0,135,137,3,38,
+		19,0,136,127,1,0,0,0,136,130,1,0,0,0,136,133,1,0,0,0,137,19,1,0,0,0,138,
+		139,5,48,0,0,139,141,5,51,0,0,140,138,1,0,0,0,140,141,1,0,0,0,141,143,
+		1,0,0,0,142,144,3,22,11,0,143,142,1,0,0,0,144,145,1,0,0,0,145,143,1,0,
+		0,0,145,146,1,0,0,0,146,147,1,0,0,0,147,148,5,51,0,0,148,21,1,0,0,0,149,
+		158,3,24,12,0,150,158,3,26,13,0,151,158,3,34,17,0,152,158,3,28,14,0,153,
+		158,3,32,16,0,154,158,3,30,15,0,155,158,3,46,23,0,156,158,3,56,28,0,157,
+		149,1,0,0,0,157,150,1,0,0,0,157,151,1,0,0,0,157,152,1,0,0,0,157,153,1,
+		0,0,0,157,154,1,0,0,0,157,155,1,0,0,0,157,156,1,0,0,0,158,23,1,0,0,0,159,
+		161,5,22,0,0,160,162,3,38,19,0,161,160,1,0,0,0,162,163,1,0,0,0,163,161,
+		1,0,0,0,163,164,1,0,0,0,164,166,1,0,0,0,165,167,3,36,18,0,166,165,1,0,
+		0,0,166,167,1,0,0,0,167,25,1,0,0,0,168,170,5,28,0,0,169,171,5,49,0,0,170,
+		169,1,0,0,0,171,172,1,0,0,0,172,170,1,0,0,0,172,173,1,0,0,0,173,174,1,
+		0,0,0,174,175,5,29,0,0,175,186,3,42,21,0,176,178,5,28,0,0,177,179,5,49,
+		0,0,178,177,1,0,0,0,179,180,1,0,0,0,180,178,1,0,0,0,180,181,1,0,0,0,181,
+		182,1,0,0,0,182,183,5,29,0,0,183,184,5,49,0,0,184,186,3,40,20,0,185,168,
+		1,0,0,0,185,176,1,0,0,0,186,27,1,0,0,0,187,188,5,34,0,0,188,189,5,49,0,
+		0,189,191,5,16,0,0,190,192,3,42,21,0,191,190,1,0,0,0,192,193,1,0,0,0,193,
+		191,1,0,0,0,193,194,1,0,0,0,194,201,1,0,0,0,195,196,5,34,0,0,196,197,5,
+		49,0,0,197,198,5,16,0,0,198,199,5,49,0,0,199,201,3,40,20,0,200,187,1,0,
+		0,0,200,195,1,0,0,0,201,29,1,0,0,0,202,203,5,36,0,0,203,204,5,49,0,0,204,
+		206,5,30,0,0,205,207,3,42,21,0,206,205,1,0,0,0,207,208,1,0,0,0,208,206,
+		1,0,0,0,208,209,1,0,0,0,209,223,1,0,0,0,210,211,5,36,0,0,211,212,5,49,
+		0,0,212,213,5,30,0,0,213,214,5,49,0,0,214,223,3,40,20,0,215,216,5,36,0,
+		0,216,217,5,49,0,0,217,218,5,30,0,0,218,219,5,49,0,0,219,220,3,40,20,0,
+		220,221,3,44,22,0,221,223,1,0,0,0,222,202,1,0,0,0,222,210,1,0,0,0,222,
+		215,1,0,0,0,223,31,1,0,0,0,224,226,5,35,0,0,225,227,5,49,0,0,226,225,1,
+		0,0,0,227,228,1,0,0,0,228,226,1,0,0,0,228,229,1,0,0,0,229,230,1,0,0,0,
+		230,231,5,17,0,0,231,242,3,42,21,0,232,234,5,35,0,0,233,235,5,49,0,0,234,
+		233,1,0,0,0,235,236,1,0,0,0,236,234,1,0,0,0,236,237,1,0,0,0,237,238,1,
+		0,0,0,238,239,5,17,0,0,239,240,5,49,0,0,240,242,3,40,20,0,241,224,1,0,
+		0,0,241,232,1,0,0,0,242,33,1,0,0,0,243,245,5,33,0,0,244,246,3,42,21,0,
+		245,244,1,0,0,0,246,247,1,0,0,0,247,245,1,0,0,0,247,248,1,0,0,0,248,35,
+		1,0,0,0,249,250,5,24,0,0,250,251,5,25,0,0,251,252,5,26,0,0,252,37,1,0,
+		0,0,253,257,3,42,21,0,254,257,5,49,0,0,255,257,5,52,0,0,256,253,1,0,0,
+		0,256,254,1,0,0,0,256,255,1,0,0,0,257,39,1,0,0,0,258,259,5,31,0,0,259,
+		260,3,42,21,0,260,41,1,0,0,0,261,266,5,48,0,0,262,263,5,23,0,0,263,265,
+		5,48,0,0,264,262,1,0,0,0,265,268,1,0,0,0,266,264,1,0,0,0,266,267,1,0,0,
+		0,267,272,1,0,0,0,268,266,1,0,0,0,269,270,5,1,0,0,270,271,5,49,0,0,271,
+		273,5,2,0,0,272,269,1,0,0,0,272,273,1,0,0,0,273,43,1,0,0,0,274,275,5,32,
+		0,0,275,276,3,42,21,0,276,45,1,0,0,0,277,278,5,37,0,0,278,279,3,52,26,
+		0,279,281,5,39,0,0,280,282,3,22,11,0,281,280,1,0,0,0,282,283,1,0,0,0,283,
+		281,1,0,0,0,283,284,1,0,0,0,284,291,1,0,0,0,285,287,5,38,0,0,286,288,3,
+		22,11,0,287,286,1,0,0,0,288,289,1,0,0,0,289,287,1,0,0,0,289,290,1,0,0,
+		0,290,292,1,0,0,0,291,285,1,0,0,0,291,292,1,0,0,0,292,293,1,0,0,0,293,
+		294,5,40,0,0,294,47,1,0,0,0,295,296,6,24,-1,0,296,297,3,38,19,0,297,303,
+		1,0,0,0,298,299,10,1,0,0,299,300,5,5,0,0,300,302,3,48,24,2,301,298,1,0,
+		0,0,302,305,1,0,0,0,303,301,1,0,0,0,303,304,1,0,0,0,304,49,1,0,0,0,305,
+		303,1,0,0,0,306,307,6,25,-1,0,307,308,3,38,19,0,308,314,1,0,0,0,309,310,
+		10,1,0,0,310,311,5,3,0,0,311,313,3,50,25,2,312,309,1,0,0,0,313,316,1,0,
+		0,0,314,312,1,0,0,0,314,315,1,0,0,0,315,51,1,0,0,0,316,314,1,0,0,0,317,
+		318,6,26,-1,0,318,327,5,41,0,0,319,327,5,42,0,0,320,321,3,48,24,0,321,
+		322,5,6,0,0,322,323,3,48,24,0,323,327,1,0,0,0,324,325,5,43,0,0,325,327,
+		3,52,26,2,326,317,1,0,0,0,326,319,1,0,0,0,326,320,1,0,0,0,326,324,1,0,
+		0,0,327,333,1,0,0,0,328,329,10,1,0,0,329,330,5,7,0,0,330,332,3,52,26,2,
+		331,328,1,0,0,0,332,335,1,0,0,0,333,331,1,0,0,0,333,334,1,0,0,0,334,53,
+		1,0,0,0,335,333,1,0,0,0,336,340,3,52,26,0,337,340,3,48,24,0,338,340,3,
+		50,25,0,339,336,1,0,0,0,339,337,1,0,0,0,339,338,1,0,0,0,340,55,1,0,0,0,
+		341,342,5,47,0,0,342,347,3,54,27,0,343,344,5,45,0,0,344,346,3,54,27,0,
+		345,343,1,0,0,0,346,349,1,0,0,0,347,345,1,0,0,0,347,348,1,0,0,0,348,353,
+		1,0,0,0,349,347,1,0,0,0,350,352,3,58,29,0,351,350,1,0,0,0,352,355,1,0,
+		0,0,353,351,1,0,0,0,353,354,1,0,0,0,354,356,1,0,0,0,355,353,1,0,0,0,356,
+		357,5,40,0,0,357,57,1,0,0,0,358,359,5,44,0,0,359,364,3,38,19,0,360,361,
+		5,45,0,0,361,363,3,38,19,0,362,360,1,0,0,0,363,366,1,0,0,0,364,362,1,0,
+		0,0,364,365,1,0,0,0,365,368,1,0,0,0,366,364,1,0,0,0,367,369,3,22,11,0,
+		368,367,1,0,0,0,369,370,1,0,0,0,370,368,1,0,0,0,370,371,1,0,0,0,371,380,
+		1,0,0,0,372,373,5,44,0,0,373,375,5,46,0,0,374,376,3,22,11,0,375,374,1,
+		0,0,0,376,377,1,0,0,0,377,375,1,0,0,0,377,378,1,0,0,0,378,380,1,0,0,0,
+		379,358,1,0,0,0,379,372,1,0,0,0,380,59,1,0,0,0,42,62,76,85,92,97,113,119,
+		125,136,140,145,157,163,166,172,180,185,193,200,208,222,228,236,241,247,
+		256,266,272,283,289,291,303,314,326,333,339,347,353,364,370,377,379
 	};
 
 	public static readonly ATN _ATN =

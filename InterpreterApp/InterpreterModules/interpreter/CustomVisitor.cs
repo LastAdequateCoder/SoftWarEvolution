@@ -414,4 +414,68 @@ public class CustomVisitor : cobolBaseVisitor<object>
         }
         return DefaultResult;
     }
+
+    public override object VisitEvaluate([NotNull] cobolParser.EvaluateContext context)
+    {
+        if(context.ALSO().Length == 0){
+            Object condition = Visit(context.expressions(0));
+            foreach (cobolParser.When_blockContext w in context.when_block())
+            {
+                if (w.atomic() != null){
+                    if (condition.ToString().Equals(w.atomic(0).GetText())){
+                        foreach (cobolParser.StatementContext s in w.statement())
+                        {
+                            Visit(s);
+                        }
+                        return DefaultResult;
+                    }
+                }
+                else
+                {
+                    foreach (cobolParser.StatementContext s in w.statement())
+                        {
+                            Visit(s);
+                        }
+                        return DefaultResult;
+                }
+            }
+        }
+        else{
+            int also = context.ALSO().Length;
+            List<Object> conditions = new List<object>();
+            foreach (cobolParser.ExpressionsContext e in context.expressions())
+            {
+                conditions.Add(Visit(e));
+            }
+            foreach (cobolParser.When_blockContext w in context.when_block()){
+                int wAlso = w.ALSO().Length;
+                if (also != wAlso)
+                    throw new Exception("Incorrect amount of ALSO in when block!");
+                if (w.atomic() != null){
+                    bool conditionFlag = true;
+                    for (int i = 0; i < conditions.Count; i++)
+                    {
+                        if(!conditions[i].ToString().Equals(w.atomic(i).GetText())){
+                            conditionFlag = false;
+                        }
+                    }
+                    if (conditionFlag){
+                        foreach (cobolParser.StatementContext s in w.statement())
+                        {
+                            Visit(s);
+                        }
+                        return DefaultResult;
+                    }
+                }
+                else{
+                    foreach (cobolParser.StatementContext s in w.statement())
+                    {
+                        Visit(s);
+                    }
+                    return DefaultResult;
+                }
+            }
+        }
+        return DefaultResult;
+    }
 }

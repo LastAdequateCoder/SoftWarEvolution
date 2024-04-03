@@ -336,6 +336,18 @@ public partial class cobolBaseListener : IcobolListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitArithmetic_expression([NotNull] cobolParser.Arithmetic_expressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.string_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterString_expression([NotNull] cobolParser.String_expressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.string_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitString_expression([NotNull] cobolParser.String_expressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="cobolParser.boolean"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -347,6 +359,42 @@ public partial class cobolBaseListener : IcobolListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitBoolean([NotNull] cobolParser.BooleanContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.expressions"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterExpressions([NotNull] cobolParser.ExpressionsContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.expressions"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitExpressions([NotNull] cobolParser.ExpressionsContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.evaluate"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterEvaluate([NotNull] cobolParser.EvaluateContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.evaluate"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitEvaluate([NotNull] cobolParser.EvaluateContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.when_block"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterWhen_block([NotNull] cobolParser.When_blockContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.when_block"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitWhen_block([NotNull] cobolParser.When_blockContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

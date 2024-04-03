@@ -56,6 +56,7 @@ statement
     | subtract
     | divide
     | if
+    | evaluate
     ;
 
 // Define the parser rules
@@ -96,6 +97,7 @@ atomic
     | INT
     | LITERAL
     ;
+    
 giving
     : GIVING identifiers
     ;
@@ -116,10 +118,30 @@ arithmetic_expression
     |   arithmetic_expression ARITHMETIC_OPERATOR arithmetic_expression
     ;
 
+string_expression
+    :   atomic
+    |   string_expression '+' string_expression
+    ;
+
 boolean
     :   TRUE
     |   FALSE
     |   arithmetic_expression COMPARISON_OPERATOR arithmetic_expression
     |   NOT boolean
     |   boolean BOOLEAN_OPERATOR boolean
+    ;
+
+expressions
+    : boolean
+    | arithmetic_expression
+    | string_expression
+    ;
+
+evaluate
+    : EVALUATE expressions (ALSO expressions)* when_block* END
+    ;
+
+when_block
+    : WHEN atomic (ALSO atomic)* statement+
+    | WHEN OTHER statement+
     ;
