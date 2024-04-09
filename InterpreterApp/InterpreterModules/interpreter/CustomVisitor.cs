@@ -478,4 +478,24 @@ public class CustomVisitor : cobolBaseVisitor<object>
         }
         return DefaultResult;
     }
+
+    public override object VisitStop([NotNull] cobolParser.StopContext context)
+    {
+        throw new StopException("The application was signaled to stop!");
+    }
+
+    public override object VisitNext_sentence([NotNull] cobolParser.Next_sentenceContext context)
+    {
+        throw new NextSentenceException("Next sentence was signaled!");
+    }
+
+    public override object VisitSentence([NotNull] cobolParser.SentenceContext context)
+    {
+        try{
+            VisitChildren(context);
+        }
+        catch(NextSentenceException){
+        }
+        return DefaultResult;
+    }
 }

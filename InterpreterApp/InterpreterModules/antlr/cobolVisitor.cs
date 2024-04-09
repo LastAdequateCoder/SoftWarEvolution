@@ -211,4 +211,16 @@ public interface IcobolVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitWhen_block([NotNull] cobolParser.When_blockContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.stop"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitStop([NotNull] cobolParser.StopContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.next_sentence"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitNext_sentence([NotNull] cobolParser.Next_sentenceContext context);
 }

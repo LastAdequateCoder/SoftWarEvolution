@@ -395,6 +395,30 @@ public partial class cobolBaseListener : IcobolListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitWhen_block([NotNull] cobolParser.When_blockContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.stop"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterStop([NotNull] cobolParser.StopContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.stop"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitStop([NotNull] cobolParser.StopContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.next_sentence"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterNext_sentence([NotNull] cobolParser.Next_sentenceContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.next_sentence"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitNext_sentence([NotNull] cobolParser.Next_sentenceContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

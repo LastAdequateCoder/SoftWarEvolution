@@ -330,4 +330,24 @@ public interface IcobolListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitWhen_block([NotNull] cobolParser.When_blockContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.stop"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterStop([NotNull] cobolParser.StopContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.stop"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitStop([NotNull] cobolParser.StopContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.next_sentence"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNext_sentence([NotNull] cobolParser.Next_sentenceContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.next_sentence"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNext_sentence([NotNull] cobolParser.Next_sentenceContext context);
 }

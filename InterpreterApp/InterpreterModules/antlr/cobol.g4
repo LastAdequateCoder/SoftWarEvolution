@@ -57,6 +57,8 @@ statement
     | divide
     | if
     | evaluate
+    | stop
+    | next_sentence
     ;
 
 // Define the parser rules
@@ -144,4 +146,12 @@ evaluate
 when_block
     : WHEN atomic (ALSO atomic)* statement+
     | WHEN OTHER statement+
+    ;
+
+stop
+    : STOP
+    ;
+
+next_sentence
+    : NEXT SENTENCE
     ;
