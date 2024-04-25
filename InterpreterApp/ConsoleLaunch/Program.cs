@@ -12,10 +12,12 @@ static class ConsoleApplication
         
         ICharStream input = CharStreams.fromString(builtString.ToString());
         cobolLexer lexer = new cobolLexer(input);
+        CustomListener listener = new CustomListener();
         cobolParser parser = new cobolParser(new CommonTokenStream(lexer));
+        parser.AddParseListener(listener);
         cobolParser.ProgramContext program = parser.program();
 
-        CustomVisitor visitor = new CustomVisitor();
+        CustomVisitor visitor = new CustomVisitor(listener.getProcedures());
         visitor.Visit(program);
     }
 }

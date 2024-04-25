@@ -71,6 +71,16 @@ public interface IcobolListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitVariables([NotNull] cobolParser.VariablesContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.occurs"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterOccurs([NotNull] cobolParser.OccursContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.occurs"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitOccurs([NotNull] cobolParser.OccursContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="cobolParser.level"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -140,6 +150,16 @@ public interface IcobolListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitSentence([NotNull] cobolParser.SentenceContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.proc"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterProc([NotNull] cobolParser.ProcContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.proc"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitProc([NotNull] cobolParser.ProcContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="cobolParser.statement"/>.
 	/// </summary>
@@ -350,4 +370,112 @@ public interface IcobolListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitNext_sentence([NotNull] cobolParser.Next_sentenceContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.perform"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterPerform([NotNull] cobolParser.PerformContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.perform"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitPerform([NotNull] cobolParser.PerformContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.times"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTimes([NotNull] cobolParser.TimesContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.times"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTimes([NotNull] cobolParser.TimesContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.copy"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCopy([NotNull] cobolParser.CopyContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.copy"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCopy([NotNull] cobolParser.CopyContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.replacing"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterReplacing([NotNull] cobolParser.ReplacingContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.replacing"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitReplacing([NotNull] cobolParser.ReplacingContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.replacements"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterReplacements([NotNull] cobolParser.ReplacementsContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.replacements"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitReplacements([NotNull] cobolParser.ReplacementsContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.loop"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterLoop([NotNull] cobolParser.LoopContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.loop"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitLoop([NotNull] cobolParser.LoopContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>loop_varying_expression</c>
+	/// labeled alternative in <see cref="cobolParser.loop_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterLoop_varying_expression([NotNull] cobolParser.Loop_varying_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>loop_varying_expression</c>
+	/// labeled alternative in <see cref="cobolParser.loop_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitLoop_varying_expression([NotNull] cobolParser.Loop_varying_expressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>loop_while_expression</c>
+	/// labeled alternative in <see cref="cobolParser.loop_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterLoop_while_expression([NotNull] cobolParser.Loop_while_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>loop_while_expression</c>
+	/// labeled alternative in <see cref="cobolParser.loop_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitLoop_while_expression([NotNull] cobolParser.Loop_while_expressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>loop_until_expression</c>
+	/// labeled alternative in <see cref="cobolParser.loop_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterLoop_until_expression([NotNull] cobolParser.Loop_until_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>loop_until_expression</c>
+	/// labeled alternative in <see cref="cobolParser.loop_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitLoop_until_expression([NotNull] cobolParser.Loop_until_expressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>loop_statement_expession</c>
+	/// labeled alternative in <see cref="cobolParser.loop_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterLoop_statement_expession([NotNull] cobolParser.Loop_statement_expessionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>loop_statement_expession</c>
+	/// labeled alternative in <see cref="cobolParser.loop_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitLoop_statement_expession([NotNull] cobolParser.Loop_statement_expessionContext context);
 }

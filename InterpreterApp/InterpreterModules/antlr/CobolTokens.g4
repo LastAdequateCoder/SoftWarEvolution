@@ -69,6 +69,14 @@ EVALUATE: 'E' SPACE* 'V' SPACE* 'A' SPACE* 'L' SPACE* 'U' SPACE* 'A' SPACE* 'T' 
 STOP: 'S' SPACE* 'T' SPACE* 'O' SPACE* 'P';
 NEXT: 'N' SPACE* 'E' SPACE* 'X' SPACE* 'T';
 SENTENCE: 'S' SPACE* 'E' SPACE* 'N' SPACE* 'T' SPACE* 'E' SPACE* 'N' SPACE* 'C' SPACE* 'E';
+PERFORM: 'P' SPACE* 'E' SPACE* 'R' SPACE* 'F' SPACE* 'O' SPACE* 'R' SPACE* 'M';
+THROUGH: 'T' SPACE* 'H' SPACE* 'R' SPACE* 'O' SPACE* 'U' SPACE* 'G' SPACE* 'H';
+COPY: 'C' SPACE* 'O' SPACE* 'P' SPACE* 'Y';
+REPLACING: 'R' SPACE* 'E' SPACE* 'P' SPACE* 'L' SPACE* 'A' SPACE* 'C' SPACE* 'I' SPACE* 'N' SPACE* 'G';
+LOOP: 'L' SPACE* 'O' SPACE* 'O' SPACE* 'P';
+VARYING: 'V' SPACE* 'A' SPACE* 'R' SPACE* 'Y' SPACE* 'I' SPACE* 'N' SPACE* 'G';
+WHILE: 'W' SPACE* 'H' SPACE* 'I' SPACE* 'L' SPACE* 'E';
+UNTIL: 'U' SPACE* 'N' SPACE* 'T' SPACE* 'I' SPACE* 'L';
 
 
 IDENTIFIER
@@ -89,6 +97,10 @@ DOT
 
 LITERAL
     : '"' ~'"'+ '"'
+    ;
+
+COPY_LITERAL
+    : '===' ~'='+ '==='
     ;
 
 fragment LETTER

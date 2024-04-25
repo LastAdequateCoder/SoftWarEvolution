@@ -15,7 +15,11 @@ data_division
     ;
 
 variables
-    : (level IDENTIFIER (picture | like)? (OCCURS INT TIMES)? DOT)
+    : (level IDENTIFIER (picture | like)? (occurs)? DOT)
+    ;
+
+occurs
+    : OCCURS INT TIMES
     ;
 
 level
@@ -45,7 +49,11 @@ use
     ;
 
 sentence
-    : (IDENTIFIER DOT)? statement+ DOT
+    : (proc DOT)? statement+ DOT
+    ;
+
+proc
+    : IDENTIFIER
     ;
 
 statement
@@ -59,6 +67,9 @@ statement
     | evaluate
     | stop
     | next_sentence
+    | perform
+    | copy
+    | loop
     ;
 
 // Define the parser rules
@@ -154,4 +165,35 @@ stop
 
 next_sentence
     : NEXT SENTENCE
+    ;
+
+perform
+    : PERFORM proc times?
+    ;
+
+times
+    : INT TIMES
+    ;
+
+copy
+    : COPY LITERAL replacing?
+    ;
+
+replacing
+    : REPLACING replacements+
+    ;
+
+replacements
+    : COPY_LITERAL BY COPY_LITERAL
+    ;
+
+loop
+    : LOOP loop_expression* END
+    ;
+
+loop_expression
+    : VARYING identifiers? (FROM from=atomic)? (TO to=atomic)? (BY by=atomic)?    #loop_varying_expression
+    | WHILE boolean                                                          #loop_while_expression
+    | UNTIL boolean                                                          #loop_until_expression
+    | statement                                                                           #loop_statement_expession
     ;

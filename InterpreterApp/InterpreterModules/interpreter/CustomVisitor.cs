@@ -9,7 +9,13 @@ using InterpreterModules.interpreter;
 /// </summary>
 public class CustomVisitor : cobolBaseVisitor<object> 
 {
+    public CustomVisitor(Dictionary<string, IParseTree> procedures){
+        this.procedures = procedures;
+    }
+
     private Dictionary<string, Value> _valueHashMap = new Dictionary<string, Value>();
+    private Dictionary<string, IParseTree> procedures;
+
     public override object VisitDisplay([NotNull] cobolParser.DisplayContext context)
     {
         int len = context.withnoadvancing() == null ? context.ChildCount : context.ChildCount - 1;
@@ -144,8 +150,8 @@ public class CustomVisitor : cobolBaseVisitor<object>
 
              if (picture != ""){
                  String value = Value.MakeValueByPicture(picture);
-                 if (variablesContexts[i].OCCURS() != null){
-                     for (int j = 0; j < int.Parse(variablesContexts[i].OCCURS().GetText()); j++)
+                 if (variablesContexts[i].occurs() != null){
+                     for (int j = 0; j < int.Parse(variablesContexts[i].occurs().INT().GetText()); j++)
                      {
                          String variable = variablesContexts[i].IDENTIFIER().GetText();
                          variable += "[" + j + "]";
@@ -495,6 +501,114 @@ public class CustomVisitor : cobolBaseVisitor<object>
             VisitChildren(context);
         }
         catch(NextSentenceException){
+        }
+        return DefaultResult;
+    }
+
+    public override object VisitPerform([NotNull] cobolParser.PerformContext context)
+    {
+        if (context.times() == null){
+            string name = context.proc().GetText();
+            if (!procedures.ContainsKey(name)){
+                throw new Exception("Illegal procedure name!");
+            }
+            Visit(procedures[name]);
+        }
+        else{
+            int times = int.Parse(context.times().INT().GetText());
+            string name = context.proc().GetText();
+            for (int i = 0; i < times; i++)
+            {
+                if (!procedures.ContainsKey(name)){
+                    throw new Exception("Illegal procedure name!");
+                }
+                Visit(procedures[name]);
+            }
+        }
+        return DefaultResult;
+    }
+
+    bool varyLoop = false;
+    public override object VisitLoop([NotNull] cobolParser.LoopContext context)
+    {
+        varyLoop = false;
+        while (true) {
+            try {
+                VisitChildren(context);
+            } catch (NextSentenceException e) {
+                return DefaultResult;
+            }
+            catch (ExitLoopException e){
+                return DefaultResult;
+            }
+        }
+    }
+
+    public override object VisitLoop_varying_expression([NotNull] cobolParser.Loop_varying_expressionContext context)
+    {
+        int from = 1, by = 1;
+        int to = int.MaxValue;
+        string loopVar = context.identifiers().GetText();
+
+        if (context.from != null)
+        {
+            from = int.Parse(context.from.INT().GetText());
+        }
+        if (context.to != null)
+        {
+            to = int.Parse(context.to.INT().GetText());
+        }
+        if (context.by != null)
+        {
+            by = int.Parse(context.by.INT().GetText());
+        }
+
+        from--;
+        to--;
+
+        if (!varyLoop)
+        {
+            if (!_valueHashMap.TryGetValue(loopVar, out Value loopVarObj) || !loopVarObj.IsNumerical())
+            {
+                throw new InvalidOperationException("Loop variable is not numerical");
+            }
+
+            loopVarObj.AssignValue(from.ToString());
+            _valueHashMap[loopVar] = loopVarObj;
+            varyLoop = true;
+        }
+
+        if (!_valueHashMap.TryGetValue(loopVar, out Value loopVarObjUpdated) || !loopVarObjUpdated.IsNumerical())
+        {
+            throw new InvalidOperationException("Loop variable is not numerical");
+        }
+        int loopIdx = int.Parse(loopVarObjUpdated.Val);
+        if (loopIdx > to)
+        {
+            throw new ExitLoopException("Exit Varying Loop");
+        }
+        loopVarObjUpdated.AssignValue((loopIdx + by).ToString());
+        _valueHashMap[loopVar] = loopVarObjUpdated;
+
+        return DefaultResult;
+    }
+
+    public override object VisitLoop_while_expression(cobolParser.Loop_while_expressionContext context)
+    {
+        bool condition = (bool)Visit(context.boolean());
+        if (!condition)
+        {
+            throw new ExitLoopException("Exit While Loop");
+        }
+        return DefaultResult;
+    }
+
+    public override object VisitLoop_until_expression(cobolParser.Loop_until_expressionContext context)
+    {
+        bool condition = (bool)Visit(context.boolean());
+        if (condition)
+        {
+            throw new ExitLoopException("Exit Until Loop");
         }
         return DefaultResult;
     }
