@@ -381,6 +381,16 @@ public interface IcobolListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitPerform([NotNull] cobolParser.PerformContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.through"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterThrough([NotNull] cobolParser.ThroughContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.through"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitThrough([NotNull] cobolParser.ThroughContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="cobolParser.times"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -478,4 +488,14 @@ public interface IcobolListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitLoop_statement_expession([NotNull] cobolParser.Loop_statement_expessionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.goto"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterGoto([NotNull] cobolParser.GotoContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.goto"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitGoto([NotNull] cobolParser.GotoContext context);
 }

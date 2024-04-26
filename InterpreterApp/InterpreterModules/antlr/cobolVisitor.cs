@@ -242,6 +242,12 @@ public interface IcobolVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitPerform([NotNull] cobolParser.PerformContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.through"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitThrough([NotNull] cobolParser.ThroughContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="cobolParser.times"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -299,4 +305,10 @@ public interface IcobolVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitLoop_statement_expession([NotNull] cobolParser.Loop_statement_expessionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.goto"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitGoto([NotNull] cobolParser.GotoContext context);
 }

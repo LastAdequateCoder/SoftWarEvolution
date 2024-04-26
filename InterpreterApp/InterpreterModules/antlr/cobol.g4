@@ -70,6 +70,7 @@ statement
     | perform
     | copy
     | loop
+    | goto
     ;
 
 // Define the parser rules
@@ -168,7 +169,11 @@ next_sentence
     ;
 
 perform
-    : PERFORM proc times?
+    : PERFORM proc through? times?
+    ;
+
+through
+    : THROUGH proc
     ;
 
 times
@@ -196,4 +201,8 @@ loop_expression
     | WHILE boolean                                                          #loop_while_expression
     | UNTIL boolean                                                          #loop_until_expression
     | statement                                                                           #loop_statement_expession
+    ;
+
+goto
+    : GO TO IDENTIFIER
     ;

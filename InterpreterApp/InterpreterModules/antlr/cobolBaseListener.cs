@@ -456,6 +456,18 @@ public partial class cobolBaseListener : IcobolListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitPerform([NotNull] cobolParser.PerformContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.through"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterThrough([NotNull] cobolParser.ThroughContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.through"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitThrough([NotNull] cobolParser.ThroughContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="cobolParser.times"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -571,6 +583,18 @@ public partial class cobolBaseListener : IcobolListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitLoop_statement_expession([NotNull] cobolParser.Loop_statement_expessionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.goto"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterGoto([NotNull] cobolParser.GotoContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.goto"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitGoto([NotNull] cobolParser.GotoContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

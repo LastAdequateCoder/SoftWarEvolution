@@ -508,24 +508,67 @@ public class CustomVisitor : cobolBaseVisitor<object>
     public override object VisitPerform([NotNull] cobolParser.PerformContext context)
     {
         if (context.times() == null){
-            string name = context.proc().GetText();
-            if (!procedures.ContainsKey(name)){
-                throw new Exception("Illegal procedure name!");
-            }
-            Visit(procedures[name]);
-        }
-        else{
-            int times = int.Parse(context.times().INT().GetText());
-            string name = context.proc().GetText();
-            for (int i = 0; i < times; i++)
-            {
+            if (context.through() == null){
+                string name = context.proc().GetText();
                 if (!procedures.ContainsKey(name)){
                     throw new Exception("Illegal procedure name!");
                 }
                 Visit(procedures[name]);
             }
+            else{
+                performThrough(context);
+            }
+        }
+        else{
+            int times = int.Parse(context.times().INT().GetText());
+            if (context.through() == null){
+                string name = context.proc().GetText();
+                for (int i = 0; i < times; i++)
+                {
+                    if (!procedures.ContainsKey(name)){
+                        throw new Exception("Illegal procedure name!");
+                    }
+                    Visit(procedures[name]);
+                }
+            }
+            else{
+                for (int i = 0; i < times; i++)
+                {
+                    performThrough(context);
+                }
+            }
         }
         return DefaultResult;
+    }
+
+    private void performThrough([NotNull] cobolParser.PerformContext context){
+        string from = context.proc().GetText();
+        string to = context.through().proc().GetText();
+        if (!procedures.ContainsKey(from)){
+            throw new Exception("Illegal procedure name!");
+        }
+        if (!procedures.ContainsKey(to)){
+            throw new Exception("Illegal procedure name!");
+        }
+
+        List<IParseTree> toVisit = new List<IParseTree>();
+        bool inBetween = false;
+        foreach (var item in procedures)
+        {
+            if (item.Key.Equals(from)){
+                inBetween = true;
+            }
+            if (inBetween){
+                toVisit.Add(item.Value);
+            }
+            if (item.Key.Equals(to)){
+                inBetween = false;
+            }
+        }
+        if (inBetween){
+            throw new Exception("Could not find second procedure!");
+        }
+        toVisit.ForEach(item => Visit(item));
     }
 
     bool varyLoop = false;
@@ -609,6 +652,47 @@ public class CustomVisitor : cobolBaseVisitor<object>
         if (condition)
         {
             throw new ExitLoopException("Exit Until Loop");
+        }
+        return DefaultResult;
+    }
+
+    public override object VisitGoto([NotNull] cobolParser.GotoContext context)
+    {
+        if (_valueHashMap.ContainsKey(context.IDENTIFIER().GetText())){
+            string variable = _valueHashMap[context.IDENTIFIER().GetText()].Val;
+            if (procedures.ContainsKey(variable)){
+                throw new GoToException(variable);
+            }
+        }
+        if (procedures.ContainsKey(context.IDENTIFIER().GetText())){
+            throw new GoToException(context.IDENTIFIER().GetText());
+        }
+        throw new Exception("No relevant identifier found!");
+    }
+
+    public override object VisitProcedure_division([NotNull] cobolParser.Procedure_divisionContext context)
+    {
+        int current = 0;
+        while (current < context.ChildCount){
+            try{
+                Visit(context.GetChild(current));
+                current++;
+            }
+            catch (GoToException e){
+                int i = 0;
+                for (; i < context.ChildCount; i++)
+                {
+                    if (context.GetChild(i).GetText().StartsWith(e.Message + ".")){
+                        current = i;
+                        break;
+                    }
+                }
+                if (i == context.ChildCount)
+                    throw new Exception("Failed to find: " + e.Message);
+            }
+            catch (Exception e){
+
+            }
         }
         return DefaultResult;
     }
