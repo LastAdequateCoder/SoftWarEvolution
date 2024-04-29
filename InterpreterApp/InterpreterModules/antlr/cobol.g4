@@ -71,6 +71,9 @@ statement
     | copy
     | loop
     | goto
+    | move
+    | alter
+    | signal
     ;
 
 // Define the parser rules
@@ -205,4 +208,24 @@ loop_expression
 
 goto
     : GO TO IDENTIFIER
+    ;
+
+move
+    : MOVE (INT | singlevar | HIGH_VALUES | LOW_VALUES | SPACES) TO multivar
+    ;
+
+singlevar
+    : identifiers+
+    ;
+
+multivar
+    : identifiers+
+    ;
+
+alter
+    : ALTER proc 'TO PROCEED TO' proc
+    ;
+
+signal
+    : SIGNAL (OFF | proc) ON ERROR
     ;

@@ -595,6 +595,66 @@ public partial class cobolBaseListener : IcobolListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitGoto([NotNull] cobolParser.GotoContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.move"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMove([NotNull] cobolParser.MoveContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.move"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMove([NotNull] cobolParser.MoveContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.singlevar"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterSinglevar([NotNull] cobolParser.SinglevarContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.singlevar"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitSinglevar([NotNull] cobolParser.SinglevarContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.multivar"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMultivar([NotNull] cobolParser.MultivarContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.multivar"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMultivar([NotNull] cobolParser.MultivarContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.alter"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAlter([NotNull] cobolParser.AlterContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.alter"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAlter([NotNull] cobolParser.AlterContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.signal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterSignal([NotNull] cobolParser.SignalContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.signal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitSignal([NotNull] cobolParser.SignalContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

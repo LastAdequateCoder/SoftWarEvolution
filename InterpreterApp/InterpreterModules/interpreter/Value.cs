@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -101,6 +102,75 @@ namespace InterpreterModules.interpreter
                 }
             }
             return true;
+        }
+
+        public static string BuildSpacesOnPicture(string picture){
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < picture.Length; i++)
+        {
+            if (picture[i] == '9')
+                sb.Append("0");
+            else if (picture[i] == 'A' || picture[i] == 'X' || picture[i] == 'Z' || picture[i] == 'S')
+                sb.Append(" ");
+            else if (picture[i] == 'V')
+                sb.Append(".");
+        }
+        return sb.ToString();
+        }
+        public static string BuildHighValueOnPicture(string picture){
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < picture.Length; i++)
+        {
+            if (picture[i] == '9' || picture[i] == 'Z')
+                sb.Append("9");
+            else if (picture[i] == 'A')
+                sb.Append("z");
+            else if (picture[i] == 'X')
+                sb.Append((char) 255);
+            else if (picture[i] == 'S')
+                sb.Append('+');
+            else if (picture[i] == 'V')
+                sb.Append(".");
+        }
+        return sb.ToString();
+        }
+
+        public static string BuildLowValueOnPicture(string picture)
+        {
+        bool startsWithS = picture.StartsWith("S");
+        bool isAll9 = true;
+        if (startsWithS)
+        {
+            for (int i = 1; i < picture.Length; i++)
+            {
+                if (picture[i] != '9')
+                {
+                    isAll9 = false;
+                    break;
+                }
+            }
+        }
+
+        StringBuilder value = new StringBuilder();
+        for (int i = 0; i < picture.Length; i++)
+        {
+            if (picture[i] == '9'){
+                value.Append(startsWithS && isAll9 ? '9' : '0');
+            }
+            else if (picture[i] == 'A' || picture[i]=='Z'){
+                value.Append(' ');
+            }
+            else if (picture[i]=='X'){
+                value.Append((char)0);
+            }
+            else if (picture[i] == 'S'){
+                value.Append('-');
+            }
+            else if (picture[i] == 'V'){
+                value.Append('.');
+            }
+        }
+        return value.ToString();
         }
     }
 }

@@ -498,4 +498,54 @@ public interface IcobolListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitGoto([NotNull] cobolParser.GotoContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.move"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMove([NotNull] cobolParser.MoveContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.move"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMove([NotNull] cobolParser.MoveContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.singlevar"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterSinglevar([NotNull] cobolParser.SinglevarContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.singlevar"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitSinglevar([NotNull] cobolParser.SinglevarContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.multivar"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMultivar([NotNull] cobolParser.MultivarContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.multivar"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMultivar([NotNull] cobolParser.MultivarContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.alter"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAlter([NotNull] cobolParser.AlterContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.alter"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAlter([NotNull] cobolParser.AlterContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="cobolParser.signal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterSignal([NotNull] cobolParser.SignalContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="cobolParser.signal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitSignal([NotNull] cobolParser.SignalContext context);
 }

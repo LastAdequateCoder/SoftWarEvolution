@@ -311,4 +311,34 @@ public interface IcobolVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitGoto([NotNull] cobolParser.GotoContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.move"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitMove([NotNull] cobolParser.MoveContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.singlevar"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSinglevar([NotNull] cobolParser.SinglevarContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.multivar"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitMultivar([NotNull] cobolParser.MultivarContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.alter"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAlter([NotNull] cobolParser.AlterContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="cobolParser.signal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSignal([NotNull] cobolParser.SignalContext context);
 }

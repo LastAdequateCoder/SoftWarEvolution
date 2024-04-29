@@ -15,6 +15,7 @@ public class CustomVisitor : cobolBaseVisitor<object>
 
     private Dictionary<string, Value> _valueHashMap = new Dictionary<string, Value>();
     private Dictionary<string, IParseTree> procedures;
+    private Signal signal = new Signal();
 
     public override object VisitDisplay([NotNull] cobolParser.DisplayContext context)
     {
@@ -677,22 +678,117 @@ public class CustomVisitor : cobolBaseVisitor<object>
             try{
                 Visit(context.GetChild(current));
                 current++;
+                signal.isSet = false;
             }
             catch (GoToException e){
                 int i = 0;
+                bool found = false;
                 for (; i < context.ChildCount; i++)
                 {
                     if (context.GetChild(i).GetText().StartsWith(e.Message + ".")){
                         current = i;
+                        found = true;
                         break;
                     }
                 }
-                if (i == context.ChildCount)
+                if (!found)
                     throw new Exception("Failed to find: " + e.Message);
             }
             catch (Exception e){
-
+                if (signal.procedure != null && signal.isSet == false){
+                    bool found = false;
+                    int i = 0;
+                    for (; i < context.ChildCount; i++)
+                    {
+                        if (context.GetChild(i).GetText().StartsWith(signal.procedure + ".")){
+                            current = i;
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found)
+                        throw new Exception("Failed to find: " + signal.procedure);
+                    signal.isSet = true;
+                }
+                else{
+                    throw;
+                }
             }
+        }
+        return DefaultResult;
+    }
+
+    public override object VisitMove([NotNull] cobolParser.MoveContext context)
+    {
+        string val = "";
+        VariableParser variableParser = new VariableParser();
+        if (context.INT() != null){
+            val = context.INT().GetText();
+        }
+        else if (context.singlevar() != null){
+            string variableName = variableParser.ParseSingleVar(context.singlevar());
+            val = _valueHashMap[variableName].Val;
+        }
+
+        List<string> multivar = variableParser.ParseMultiVar(context.multivar().identifiers().ToList(),
+         _valueHashMap.Keys);
+
+        if (!multivar.Any()){
+            throw new Exception("No multivar given!");
+        }
+
+        foreach (string name in multivar){
+            Value current = _valueHashMap[name];
+
+            if (context.SPACES() != null){
+                val = Value.BuildSpacesOnPicture(current.Picture);
+            } 
+            else if (context.HIGH_VALUES() != null){
+                val = Value.BuildHighValueOnPicture(current.Picture);
+            }
+            else if (context.LOW_VALUES() != null){
+                val = Value.BuildLowValueOnPicture(current.Picture);
+            }
+            else{
+                if (!Value.CheckValueWithPicture(val, current.Picture)){
+                    throw new Exception("Move value is not matching the picture!");
+                }
+            }
+            current.AssignValue(val);
+            _valueHashMap[name] = current;
+        }
+        return DefaultResult;
+    }
+
+    public override object VisitAlter([NotNull] cobolParser.AlterContext context)
+    {
+        string from = context.proc(0).GetText();
+        string to = context.proc(1).GetText();
+
+        if (from == null || to == null){
+            throw new Exception("Incorrect procedure initialization in ALTER");
+        }
+
+        if (!procedures.ContainsKey(from) || !procedures.ContainsKey(to)){
+            throw new Exception("Procedures were not found in the text of the program!");
+        }
+
+        IParseTree tree = procedures[from];
+        if (tree.GetChild(4) == null){
+            if(tree.GetChild(2).GetText().StartsWith("GO TO")){
+                procedures.Add(from, procedures[to]);
+            }
+        }
+        return DefaultResult;
+    }
+
+    public override object VisitSignal([NotNull] cobolParser.SignalContext context)
+    {
+        if (context.OFF() == null){
+            signal.procedure = context.proc().GetText();
+        }
+        else{
+            signal.procedure = null;
         }
         return DefaultResult;
     }
