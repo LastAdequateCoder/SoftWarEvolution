@@ -36,33 +36,64 @@ public partial class cobolParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
-		T__0=1, T__1=2, REPRESENTATION=3, IDENTIFICATION=4, DIVISION=5, OCCURS=6, 
-		TIMES=7, PICTURE=8, IS=9, PROCEDURE=10, USING=11, BY=12, REFERENCE=13, 
-		CONTENT=14, VALUE=15, LIKE=16, DISPLAY=17, OF=18, WITH=19, NO=20, ADVANCING=21, 
-		DATA=22, ADD=23, IDENTIFIER=24, INT=25, SPACE=26, DOT=27, LITERAL=28, 
-		TO=29, GIVING=30;
+		T__0=1, T__1=2, T__2=3, T__3=4, REPRESENTATION=5, ARITHMETIC_OPERATOR=6, 
+		COMPARISON_OPERATOR=7, BOOLEAN_OPERATOR=8, IDENTIFICATION=9, DIVISION=10, 
+		OCCURS=11, TIMES=12, PICTURE=13, IS=14, PROCEDURE=15, USING=16, BY=17, 
+		FROM=18, REFERENCE=19, CONTENT=20, VALUE=21, LIKE=22, DISPLAY=23, OF=24, 
+		WITH=25, NO=26, ADVANCING=27, DATA=28, ADD=29, TO=30, INTO=31, GIVING=32, 
+		REMAINDER=33, ACCEPT=34, MULTIPLY=35, SUBTRACT=36, DIVIDE=37, IF=38, ELSE=39, 
+		THEN=40, END=41, TRUE=42, FALSE=43, NOT=44, WHEN=45, ALSO=46, OTHER=47, 
+		EVALUATE=48, STOP=49, NEXT=50, SENTENCE=51, PERFORM=52, THROUGH=53, COPY=54, 
+		REPLACING=55, LOOP=56, VARYING=57, WHILE=58, UNTIL=59, GO=60, MOVE=61, 
+		SPACES=62, HIGH_VALUES=63, LOW_VALUES=64, ALTER=65, SIGNAL=66, OFF=67, 
+		ON=68, ERROR=69, IDENTIFIER=70, INT=71, SPACE=72, DOT=73, LITERAL=74, 
+		COPY_LITERAL=75;
 	public const int
 		RULE_program = 0, RULE_identification_division = 1, RULE_data_division = 2, 
-		RULE_picture = 3, RULE_like = 4, RULE_procedure_division = 5, RULE_using = 6, 
-		RULE_use = 7, RULE_sentence = 8, RULE_statement = 9, RULE_display = 10, 
-		RULE_add = 11, RULE_withnoadvancing = 12, RULE_atomic = 13, RULE_giving = 14, 
-		RULE_identifiers = 15;
+		RULE_variables = 3, RULE_occurs = 4, RULE_level = 5, RULE_picture = 6, 
+		RULE_like = 7, RULE_procedure_division = 8, RULE_using = 9, RULE_use = 10, 
+		RULE_sentence = 11, RULE_proc = 12, RULE_statement = 13, RULE_display = 14, 
+		RULE_add = 15, RULE_multiply = 16, RULE_divide = 17, RULE_subtract = 18, 
+		RULE_accept = 19, RULE_withnoadvancing = 20, RULE_atomic = 21, RULE_giving = 22, 
+		RULE_identifiers = 23, RULE_remainder = 24, RULE_if = 25, RULE_arithmetic_expression = 26, 
+		RULE_string_expression = 27, RULE_boolean = 28, RULE_expressions = 29, 
+		RULE_evaluate = 30, RULE_when_block = 31, RULE_stop = 32, RULE_next_sentence = 33, 
+		RULE_perform = 34, RULE_through = 35, RULE_times = 36, RULE_copy = 37, 
+		RULE_replacing = 38, RULE_replacements = 39, RULE_loop = 40, RULE_loop_expression = 41, 
+		RULE_goto = 42, RULE_move = 43, RULE_singlevar = 44, RULE_multivar = 45, 
+		RULE_alter = 46, RULE_signal = 47;
 	public static readonly string[] ruleNames = {
-		"program", "identification_division", "data_division", "picture", "like", 
-		"procedure_division", "using", "use", "sentence", "statement", "display", 
-		"add", "withnoadvancing", "atomic", "giving", "identifiers"
+		"program", "identification_division", "data_division", "variables", "occurs", 
+		"level", "picture", "like", "procedure_division", "using", "use", "sentence", 
+		"proc", "statement", "display", "add", "multiply", "divide", "subtract", 
+		"accept", "withnoadvancing", "atomic", "giving", "identifiers", "remainder", 
+		"if", "arithmetic_expression", "string_expression", "boolean", "expressions", 
+		"evaluate", "when_block", "stop", "next_sentence", "perform", "through", 
+		"times", "copy", "replacing", "replacements", "loop", "loop_expression", 
+		"goto", "move", "singlevar", "multivar", "alter", "signal"
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, "'('", "')'", null, null, null, null, null, null, null, null, null, 
+		null, "'('", "')'", "'+'", "'TO PROCEED TO'", null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, null, "'.'"
+		null, null, null, null, null, null, null, null, null, null, null, null, 
+		null, null, null, null, null, null, null, null, null, null, null, null, 
+		null, null, null, null, null, null, null, null, null, null, null, null, 
+		null, null, null, null, null, null, null, null, null, null, null, null, 
+		null, null, null, null, "'.'"
 	};
 	private static readonly string[] _SymbolicNames = {
-		null, null, null, "REPRESENTATION", "IDENTIFICATION", "DIVISION", "OCCURS", 
-		"TIMES", "PICTURE", "IS", "PROCEDURE", "USING", "BY", "REFERENCE", "CONTENT", 
-		"VALUE", "LIKE", "DISPLAY", "OF", "WITH", "NO", "ADVANCING", "DATA", "ADD", 
-		"IDENTIFIER", "INT", "SPACE", "DOT", "LITERAL", "TO", "GIVING"
+		null, null, null, null, null, "REPRESENTATION", "ARITHMETIC_OPERATOR", 
+		"COMPARISON_OPERATOR", "BOOLEAN_OPERATOR", "IDENTIFICATION", "DIVISION", 
+		"OCCURS", "TIMES", "PICTURE", "IS", "PROCEDURE", "USING", "BY", "FROM", 
+		"REFERENCE", "CONTENT", "VALUE", "LIKE", "DISPLAY", "OF", "WITH", "NO", 
+		"ADVANCING", "DATA", "ADD", "TO", "INTO", "GIVING", "REMAINDER", "ACCEPT", 
+		"MULTIPLY", "SUBTRACT", "DIVIDE", "IF", "ELSE", "THEN", "END", "TRUE", 
+		"FALSE", "NOT", "WHEN", "ALSO", "OTHER", "EVALUATE", "STOP", "NEXT", "SENTENCE", 
+		"PERFORM", "THROUGH", "COPY", "REPLACING", "LOOP", "VARYING", "WHILE", 
+		"UNTIL", "GO", "MOVE", "SPACES", "HIGH_VALUES", "LOW_VALUES", "ALTER", 
+		"SIGNAL", "OFF", "ON", "ERROR", "IDENTIFIER", "INT", "SPACE", "DOT", "LITERAL", 
+		"COPY_LITERAL"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -138,23 +169,23 @@ public partial class cobolParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 32;
+			State = 96;
 			identification_division();
-			State = 34;
+			State = 98;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==DATA) {
 				{
-				State = 33;
+				State = 97;
 				data_division();
 				}
 			}
 
 			{
-			State = 36;
+			State = 100;
 			procedure_division();
 			}
-			State = 37;
+			State = 101;
 			Match(Eof);
 			}
 		}
@@ -215,29 +246,29 @@ public partial class cobolParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 39;
+			State = 103;
 			Match(IDENTIFICATION);
-			State = 40;
+			State = 104;
 			Match(DIVISION);
-			State = 41;
+			State = 105;
 			Match(DOT);
-			State = 48;
+			State = 112;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==IDENTIFIER) {
 				{
 				{
-				State = 42;
+				State = 106;
 				Match(IDENTIFIER);
-				State = 43;
+				State = 107;
 				Match(DOT);
-				State = 44;
+				State = 108;
 				Match(LITERAL);
-				State = 45;
+				State = 109;
 				Match(DOT);
 				}
 				}
-				State = 50;
+				State = 114;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
@@ -257,37 +288,12 @@ public partial class cobolParser : Parser {
 	public partial class Data_divisionContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATA() { return GetToken(cobolParser.DATA, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DIVISION() { return GetToken(cobolParser.DIVISION, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] DOT() { return GetTokens(cobolParser.DOT); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DOT(int i) {
-			return GetToken(cobolParser.DOT, i);
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DOT() { return GetToken(cobolParser.DOT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public VariablesContext[] variables() {
+			return GetRuleContexts<VariablesContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] INT() { return GetTokens(cobolParser.INT); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INT(int i) {
-			return GetToken(cobolParser.INT, i);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] IDENTIFIER() { return GetTokens(cobolParser.IDENTIFIER); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER(int i) {
-			return GetToken(cobolParser.IDENTIFIER, i);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public PictureContext[] picture() {
-			return GetRuleContexts<PictureContext>();
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public PictureContext picture(int i) {
-			return GetRuleContext<PictureContext>(i);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public LikeContext[] like() {
-			return GetRuleContexts<LikeContext>();
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public LikeContext like(int i) {
-			return GetRuleContext<LikeContext>(i);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] OCCURS() { return GetTokens(cobolParser.OCCURS); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCCURS(int i) {
-			return GetToken(cobolParser.OCCURS, i);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] TIMES() { return GetTokens(cobolParser.TIMES); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIMES(int i) {
-			return GetToken(cobolParser.TIMES, i);
+		[System.Diagnostics.DebuggerNonUserCode] public VariablesContext variables(int i) {
+			return GetRuleContext<VariablesContext>(i);
 		}
 		public Data_divisionContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -320,65 +326,224 @@ public partial class cobolParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 51;
+			State = 115;
 			Match(DATA);
-			State = 52;
+			State = 116;
 			Match(DIVISION);
-			State = 53;
+			State = 117;
 			Match(DOT);
-			State = 68;
+			State = 121;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==INT) {
 				{
 				{
-				State = 54;
-				Match(INT);
-				State = 55;
-				Match(IDENTIFIER);
-				State = 58;
-				ErrorHandler.Sync(this);
-				switch (TokenStream.LA(1)) {
-				case PICTURE:
-					{
-					State = 56;
-					picture();
-					}
-					break;
-				case LIKE:
-					{
-					State = 57;
-					like();
-					}
-					break;
-				case OCCURS:
-				case DOT:
-					break;
-				default:
-					break;
-				}
-				State = 63;
-				ErrorHandler.Sync(this);
-				_la = TokenStream.LA(1);
-				if (_la==OCCURS) {
-					{
-					State = 60;
-					Match(OCCURS);
-					State = 61;
-					Match(INT);
-					State = 62;
-					Match(TIMES);
-					}
-				}
-
-				State = 65;
-				Match(DOT);
+				State = 118;
+				variables();
 				}
 				}
-				State = 70;
+				State = 123;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class VariablesContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public LevelContext level() {
+			return GetRuleContext<LevelContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(cobolParser.IDENTIFIER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DOT() { return GetToken(cobolParser.DOT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public PictureContext picture() {
+			return GetRuleContext<PictureContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public LikeContext like() {
+			return GetRuleContext<LikeContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public OccursContext occurs() {
+			return GetRuleContext<OccursContext>(0);
+		}
+		public VariablesContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_variables; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterVariables(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitVariables(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitVariables(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public VariablesContext variables() {
+		VariablesContext _localctx = new VariablesContext(Context, State);
+		EnterRule(_localctx, 6, RULE_variables);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			{
+			State = 124;
+			level();
+			State = 125;
+			Match(IDENTIFIER);
+			State = 128;
+			ErrorHandler.Sync(this);
+			switch (TokenStream.LA(1)) {
+			case PICTURE:
+				{
+				State = 126;
+				picture();
+				}
+				break;
+			case LIKE:
+				{
+				State = 127;
+				like();
+				}
+				break;
+			case OCCURS:
+			case DOT:
+				break;
+			default:
+				break;
+			}
+			State = 131;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			if (_la==OCCURS) {
+				{
+				State = 130;
+				occurs();
+				}
+			}
+
+			State = 133;
+			Match(DOT);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class OccursContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCCURS() { return GetToken(cobolParser.OCCURS, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INT() { return GetToken(cobolParser.INT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIMES() { return GetToken(cobolParser.TIMES, 0); }
+		public OccursContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_occurs; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterOccurs(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitOccurs(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitOccurs(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public OccursContext occurs() {
+		OccursContext _localctx = new OccursContext(Context, State);
+		EnterRule(_localctx, 8, RULE_occurs);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 135;
+			Match(OCCURS);
+			State = 136;
+			Match(INT);
+			State = 137;
+			Match(TIMES);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class LevelContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INT() { return GetToken(cobolParser.INT, 0); }
+		public LevelContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_level; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterLevel(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitLevel(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitLevel(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public LevelContext level() {
+		LevelContext _localctx = new LevelContext(Context, State);
+		EnterRule(_localctx, 10, RULE_level);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 139;
+			Match(INT);
 			}
 		}
 		catch (RecognitionException re) {
@@ -422,15 +587,15 @@ public partial class cobolParser : Parser {
 	[RuleVersion(0)]
 	public PictureContext picture() {
 		PictureContext _localctx = new PictureContext(Context, State);
-		EnterRule(_localctx, 6, RULE_picture);
+		EnterRule(_localctx, 12, RULE_picture);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 71;
+			State = 141;
 			Match(PICTURE);
-			State = 72;
+			State = 142;
 			Match(IS);
-			State = 73;
+			State = 143;
 			Match(REPRESENTATION);
 			}
 		}
@@ -476,13 +641,13 @@ public partial class cobolParser : Parser {
 	[RuleVersion(0)]
 	public LikeContext like() {
 		LikeContext _localctx = new LikeContext(Context, State);
-		EnterRule(_localctx, 8, RULE_like);
+		EnterRule(_localctx, 14, RULE_like);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 75;
+			State = 145;
 			Match(LIKE);
-			State = 76;
+			State = 146;
 			identifiers();
 			}
 		}
@@ -536,41 +701,41 @@ public partial class cobolParser : Parser {
 	[RuleVersion(0)]
 	public Procedure_divisionContext procedure_division() {
 		Procedure_divisionContext _localctx = new Procedure_divisionContext(Context, State);
-		EnterRule(_localctx, 10, RULE_procedure_division);
+		EnterRule(_localctx, 16, RULE_procedure_division);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 78;
+			State = 148;
 			Match(PROCEDURE);
-			State = 79;
+			State = 149;
 			Match(DIVISION);
-			State = 81;
+			State = 151;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==USING) {
 				{
-				State = 80;
+				State = 150;
 				@using();
 				}
 			}
 
-			State = 83;
+			State = 153;
 			Match(DOT);
-			State = 85;
+			State = 155;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			do {
 				{
 				{
-				State = 84;
+				State = 154;
 				sentence();
 				}
 				}
-				State = 87;
+				State = 157;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 25296896L) != 0) );
+			} while ( ((((_la - 23)) & ~0x3f) == 0 && ((1L << (_la - 23)) & 154355453982785L) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -618,24 +783,24 @@ public partial class cobolParser : Parser {
 	[RuleVersion(0)]
 	public UsingContext @using() {
 		UsingContext _localctx = new UsingContext(Context, State);
-		EnterRule(_localctx, 12, RULE_using);
+		EnterRule(_localctx, 18, RULE_using);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 89;
+			State = 159;
 			Match(USING);
-			State = 91;
+			State = 161;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			do {
 				{
 				{
-				State = 90;
+				State = 160;
 				use();
 				}
 				}
-				State = 93;
+				State = 163;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			} while ( _la==BY );
@@ -689,41 +854,41 @@ public partial class cobolParser : Parser {
 	[RuleVersion(0)]
 	public UseContext use() {
 		UseContext _localctx = new UseContext(Context, State);
-		EnterRule(_localctx, 14, RULE_use);
+		EnterRule(_localctx, 20, RULE_use);
 		try {
-			State = 104;
+			State = 174;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,8,Context) ) {
 			case 1:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 95;
+				State = 165;
 				Match(BY);
-				State = 96;
+				State = 166;
 				Match(REFERENCE);
-				State = 97;
+				State = 167;
 				identifiers();
 				}
 				break;
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 98;
+				State = 168;
 				Match(BY);
-				State = 99;
+				State = 169;
 				Match(CONTENT);
-				State = 100;
+				State = 170;
 				atomic();
 				}
 				break;
 			case 3:
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 101;
+				State = 171;
 				Match(BY);
-				State = 102;
+				State = 172;
 				Match(VALUE);
-				State = 103;
+				State = 173;
 				atomic();
 				}
 				break;
@@ -745,7 +910,9 @@ public partial class cobolParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DOT(int i) {
 			return GetToken(cobolParser.DOT, i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(cobolParser.IDENTIFIER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ProcContext proc() {
+			return GetRuleContext<ProcContext>(0);
+		}
 		[System.Diagnostics.DebuggerNonUserCode] public StatementContext[] statement() {
 			return GetRuleContexts<StatementContext>();
 		}
@@ -778,39 +945,86 @@ public partial class cobolParser : Parser {
 	[RuleVersion(0)]
 	public SentenceContext sentence() {
 		SentenceContext _localctx = new SentenceContext(Context, State);
-		EnterRule(_localctx, 16, RULE_sentence);
+		EnterRule(_localctx, 22, RULE_sentence);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 108;
+			State = 179;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==IDENTIFIER) {
 				{
-				State = 106;
-				Match(IDENTIFIER);
-				State = 107;
+				State = 176;
+				proc();
+				State = 177;
 				Match(DOT);
 				}
 			}
 
-			State = 111;
+			State = 182;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			do {
 				{
 				{
-				State = 110;
+				State = 181;
 				statement();
 				}
 				}
-				State = 113;
+				State = 184;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-			} while ( _la==DISPLAY || _la==ADD );
-			State = 115;
+			} while ( ((((_la - 23)) & ~0x3f) == 0 && ((1L << (_la - 23)) & 13617965627457L) != 0) );
+			State = 186;
 			Match(DOT);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class ProcContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(cobolParser.IDENTIFIER, 0); }
+		public ProcContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_proc; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterProc(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitProc(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitProc(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public ProcContext proc() {
+		ProcContext _localctx = new ProcContext(Context, State);
+		EnterRule(_localctx, 24, RULE_proc);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 188;
+			Match(IDENTIFIER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -830,6 +1044,51 @@ public partial class cobolParser : Parser {
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public AddContext add() {
 			return GetRuleContext<AddContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public AcceptContext accept() {
+			return GetRuleContext<AcceptContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public MultiplyContext multiply() {
+			return GetRuleContext<MultiplyContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public SubtractContext subtract() {
+			return GetRuleContext<SubtractContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public DivideContext divide() {
+			return GetRuleContext<DivideContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public IfContext @if() {
+			return GetRuleContext<IfContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public EvaluateContext evaluate() {
+			return GetRuleContext<EvaluateContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public StopContext stop() {
+			return GetRuleContext<StopContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public Next_sentenceContext next_sentence() {
+			return GetRuleContext<Next_sentenceContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public PerformContext perform() {
+			return GetRuleContext<PerformContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public CopyContext copy() {
+			return GetRuleContext<CopyContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public LoopContext loop() {
+			return GetRuleContext<LoopContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public GotoContext @goto() {
+			return GetRuleContext<GotoContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public MoveContext move() {
+			return GetRuleContext<MoveContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public AlterContext alter() {
+			return GetRuleContext<AlterContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public SignalContext signal() {
+			return GetRuleContext<SignalContext>(0);
 		}
 		public StatementContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -857,23 +1116,128 @@ public partial class cobolParser : Parser {
 	[RuleVersion(0)]
 	public StatementContext statement() {
 		StatementContext _localctx = new StatementContext(Context, State);
-		EnterRule(_localctx, 18, RULE_statement);
+		EnterRule(_localctx, 26, RULE_statement);
 		try {
-			State = 119;
+			State = 207;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case DISPLAY:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 117;
+				State = 190;
 				display();
 				}
 				break;
 			case ADD:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 118;
+				State = 191;
 				add();
+				}
+				break;
+			case ACCEPT:
+				EnterOuterAlt(_localctx, 3);
+				{
+				State = 192;
+				accept();
+				}
+				break;
+			case MULTIPLY:
+				EnterOuterAlt(_localctx, 4);
+				{
+				State = 193;
+				multiply();
+				}
+				break;
+			case SUBTRACT:
+				EnterOuterAlt(_localctx, 5);
+				{
+				State = 194;
+				subtract();
+				}
+				break;
+			case DIVIDE:
+				EnterOuterAlt(_localctx, 6);
+				{
+				State = 195;
+				divide();
+				}
+				break;
+			case IF:
+				EnterOuterAlt(_localctx, 7);
+				{
+				State = 196;
+				@if();
+				}
+				break;
+			case EVALUATE:
+				EnterOuterAlt(_localctx, 8);
+				{
+				State = 197;
+				evaluate();
+				}
+				break;
+			case STOP:
+				EnterOuterAlt(_localctx, 9);
+				{
+				State = 198;
+				stop();
+				}
+				break;
+			case NEXT:
+				EnterOuterAlt(_localctx, 10);
+				{
+				State = 199;
+				next_sentence();
+				}
+				break;
+			case PERFORM:
+				EnterOuterAlt(_localctx, 11);
+				{
+				State = 200;
+				perform();
+				}
+				break;
+			case COPY:
+				EnterOuterAlt(_localctx, 12);
+				{
+				State = 201;
+				copy();
+				}
+				break;
+			case LOOP:
+				EnterOuterAlt(_localctx, 13);
+				{
+				State = 202;
+				loop();
+				}
+				break;
+			case GO:
+				EnterOuterAlt(_localctx, 14);
+				{
+				State = 203;
+				@goto();
+				}
+				break;
+			case MOVE:
+				EnterOuterAlt(_localctx, 15);
+				{
+				State = 204;
+				move();
+				}
+				break;
+			case ALTER:
+				EnterOuterAlt(_localctx, 16);
+				{
+				State = 205;
+				alter();
+				}
+				break;
+			case SIGNAL:
+				EnterOuterAlt(_localctx, 17);
+				{
+				State = 206;
+				signal();
 				}
 				break;
 			default:
@@ -928,33 +1292,33 @@ public partial class cobolParser : Parser {
 	[RuleVersion(0)]
 	public DisplayContext display() {
 		DisplayContext _localctx = new DisplayContext(Context, State);
-		EnterRule(_localctx, 20, RULE_display);
+		EnterRule(_localctx, 28, RULE_display);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 121;
+			State = 209;
 			Match(DISPLAY);
-			State = 123;
+			State = 211;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			do {
 				{
 				{
-				State = 122;
+				State = 210;
 				atomic();
 				}
 				}
-				State = 125;
+				State = 213;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 318767104L) != 0) );
-			State = 128;
+			} while ( ((((_la - 70)) & ~0x3f) == 0 && ((1L << (_la - 70)) & 19L) != 0) );
+			State = 216;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==WITH) {
 				{
-				State = 127;
+				State = 215;
 				withnoadvancing();
 				}
 			}
@@ -1014,54 +1378,475 @@ public partial class cobolParser : Parser {
 	[RuleVersion(0)]
 	public AddContext add() {
 		AddContext _localctx = new AddContext(Context, State);
-		EnterRule(_localctx, 22, RULE_add);
+		EnterRule(_localctx, 30, RULE_add);
 		int _la;
 		try {
-			State = 143;
+			State = 235;
 			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,15,Context) ) {
+			switch ( Interpreter.AdaptivePredict(TokenStream,16,Context) ) {
 			case 1:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 130;
+				State = 218;
 				Match(ADD);
-				State = 132;
+				State = 220;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 131;
+					State = 219;
 					_localctx._INT = Match(INT);
 					_localctx._additions.Add(_localctx._INT);
 					}
 					}
-					State = 134;
+					State = 222;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				} while ( _la==INT );
-				State = 136;
+				State = 224;
 				Match(TO);
-				State = 137;
+				State = 225;
 				identifiers();
 				}
 				break;
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 138;
+				State = 226;
 				Match(ADD);
-				State = 139;
-				_localctx._INT = Match(INT);
-				_localctx._additions.Add(_localctx._INT);
-				State = 140;
+				State = 228;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				do {
+					{
+					{
+					State = 227;
+					_localctx._INT = Match(INT);
+					_localctx._additions.Add(_localctx._INT);
+					}
+					}
+					State = 230;
+					ErrorHandler.Sync(this);
+					_la = TokenStream.LA(1);
+				} while ( _la==INT );
+				State = 232;
 				Match(TO);
-				State = 141;
+				State = 233;
 				_localctx.@base = Match(INT);
-				State = 142;
+				State = 234;
 				giving();
 				}
 				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class MultiplyContext : ParserRuleContext {
+		public IToken multiplier;
+		public IToken @base;
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MULTIPLY() { return GetToken(cobolParser.MULTIPLY, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BY() { return GetToken(cobolParser.BY, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] INT() { return GetTokens(cobolParser.INT); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INT(int i) {
+			return GetToken(cobolParser.INT, i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public IdentifiersContext[] identifiers() {
+			return GetRuleContexts<IdentifiersContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public IdentifiersContext identifiers(int i) {
+			return GetRuleContext<IdentifiersContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public GivingContext giving() {
+			return GetRuleContext<GivingContext>(0);
+		}
+		public MultiplyContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_multiply; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterMultiply(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitMultiply(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitMultiply(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public MultiplyContext multiply() {
+		MultiplyContext _localctx = new MultiplyContext(Context, State);
+		EnterRule(_localctx, 32, RULE_multiply);
+		int _la;
+		try {
+			State = 250;
+			ErrorHandler.Sync(this);
+			switch ( Interpreter.AdaptivePredict(TokenStream,18,Context) ) {
+			case 1:
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 237;
+				Match(MULTIPLY);
+				State = 238;
+				_localctx.multiplier = Match(INT);
+				State = 239;
+				Match(BY);
+				State = 241;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				do {
+					{
+					{
+					State = 240;
+					identifiers();
+					}
+					}
+					State = 243;
+					ErrorHandler.Sync(this);
+					_la = TokenStream.LA(1);
+				} while ( _la==IDENTIFIER );
+				}
+				break;
+			case 2:
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 245;
+				Match(MULTIPLY);
+				State = 246;
+				_localctx.multiplier = Match(INT);
+				State = 247;
+				Match(BY);
+				State = 248;
+				_localctx.@base = Match(INT);
+				State = 249;
+				giving();
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class DivideContext : ParserRuleContext {
+		public IToken divisor;
+		public IToken @base;
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DIVIDE() { return GetToken(cobolParser.DIVIDE, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INTO() { return GetToken(cobolParser.INTO, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] INT() { return GetTokens(cobolParser.INT); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INT(int i) {
+			return GetToken(cobolParser.INT, i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public IdentifiersContext[] identifiers() {
+			return GetRuleContexts<IdentifiersContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public IdentifiersContext identifiers(int i) {
+			return GetRuleContext<IdentifiersContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public GivingContext giving() {
+			return GetRuleContext<GivingContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public RemainderContext remainder() {
+			return GetRuleContext<RemainderContext>(0);
+		}
+		public DivideContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_divide; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterDivide(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitDivide(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitDivide(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public DivideContext divide() {
+		DivideContext _localctx = new DivideContext(Context, State);
+		EnterRule(_localctx, 34, RULE_divide);
+		int _la;
+		try {
+			State = 272;
+			ErrorHandler.Sync(this);
+			switch ( Interpreter.AdaptivePredict(TokenStream,20,Context) ) {
+			case 1:
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 252;
+				Match(DIVIDE);
+				State = 253;
+				_localctx.divisor = Match(INT);
+				State = 254;
+				Match(INTO);
+				State = 256;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				do {
+					{
+					{
+					State = 255;
+					identifiers();
+					}
+					}
+					State = 258;
+					ErrorHandler.Sync(this);
+					_la = TokenStream.LA(1);
+				} while ( _la==IDENTIFIER );
+				}
+				break;
+			case 2:
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 260;
+				Match(DIVIDE);
+				State = 261;
+				_localctx.divisor = Match(INT);
+				State = 262;
+				Match(INTO);
+				State = 263;
+				_localctx.@base = Match(INT);
+				State = 264;
+				giving();
+				}
+				break;
+			case 3:
+				EnterOuterAlt(_localctx, 3);
+				{
+				State = 265;
+				Match(DIVIDE);
+				State = 266;
+				_localctx.divisor = Match(INT);
+				State = 267;
+				Match(INTO);
+				State = 268;
+				_localctx.@base = Match(INT);
+				State = 269;
+				giving();
+				State = 270;
+				remainder();
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class SubtractContext : ParserRuleContext {
+		public IToken _INT;
+		public IList<IToken> _subtractors = new List<IToken>();
+		public IToken @base;
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUBTRACT() { return GetToken(cobolParser.SUBTRACT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FROM() { return GetToken(cobolParser.FROM, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public IdentifiersContext identifiers() {
+			return GetRuleContext<IdentifiersContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] INT() { return GetTokens(cobolParser.INT); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INT(int i) {
+			return GetToken(cobolParser.INT, i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public GivingContext giving() {
+			return GetRuleContext<GivingContext>(0);
+		}
+		public SubtractContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_subtract; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterSubtract(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitSubtract(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitSubtract(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public SubtractContext subtract() {
+		SubtractContext _localctx = new SubtractContext(Context, State);
+		EnterRule(_localctx, 36, RULE_subtract);
+		int _la;
+		try {
+			State = 291;
+			ErrorHandler.Sync(this);
+			switch ( Interpreter.AdaptivePredict(TokenStream,23,Context) ) {
+			case 1:
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 274;
+				Match(SUBTRACT);
+				State = 276;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				do {
+					{
+					{
+					State = 275;
+					_localctx._INT = Match(INT);
+					_localctx._subtractors.Add(_localctx._INT);
+					}
+					}
+					State = 278;
+					ErrorHandler.Sync(this);
+					_la = TokenStream.LA(1);
+				} while ( _la==INT );
+				State = 280;
+				Match(FROM);
+				State = 281;
+				identifiers();
+				}
+				break;
+			case 2:
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 282;
+				Match(SUBTRACT);
+				State = 284;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				do {
+					{
+					{
+					State = 283;
+					_localctx._INT = Match(INT);
+					_localctx._subtractors.Add(_localctx._INT);
+					}
+					}
+					State = 286;
+					ErrorHandler.Sync(this);
+					_la = TokenStream.LA(1);
+				} while ( _la==INT );
+				State = 288;
+				Match(FROM);
+				State = 289;
+				_localctx.@base = Match(INT);
+				State = 290;
+				giving();
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class AcceptContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ACCEPT() { return GetToken(cobolParser.ACCEPT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public IdentifiersContext[] identifiers() {
+			return GetRuleContexts<IdentifiersContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public IdentifiersContext identifiers(int i) {
+			return GetRuleContext<IdentifiersContext>(i);
+		}
+		public AcceptContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_accept; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterAccept(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitAccept(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAccept(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public AcceptContext accept() {
+		AcceptContext _localctx = new AcceptContext(Context, State);
+		EnterRule(_localctx, 38, RULE_accept);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 293;
+			Match(ACCEPT);
+			State = 295;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			do {
+				{
+				{
+				State = 294;
+				identifiers();
+				}
+				}
+				State = 297;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+			} while ( _la==IDENTIFIER );
 			}
 		}
 		catch (RecognitionException re) {
@@ -1105,15 +1890,15 @@ public partial class cobolParser : Parser {
 	[RuleVersion(0)]
 	public WithnoadvancingContext withnoadvancing() {
 		WithnoadvancingContext _localctx = new WithnoadvancingContext(Context, State);
-		EnterRule(_localctx, 24, RULE_withnoadvancing);
+		EnterRule(_localctx, 40, RULE_withnoadvancing);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 145;
+			State = 299;
 			Match(WITH);
-			State = 146;
+			State = 300;
 			Match(NO);
-			State = 147;
+			State = 301;
 			Match(ADVANCING);
 			}
 		}
@@ -1160,29 +1945,29 @@ public partial class cobolParser : Parser {
 	[RuleVersion(0)]
 	public AtomicContext atomic() {
 		AtomicContext _localctx = new AtomicContext(Context, State);
-		EnterRule(_localctx, 26, RULE_atomic);
+		EnterRule(_localctx, 42, RULE_atomic);
 		try {
-			State = 152;
+			State = 306;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case IDENTIFIER:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 149;
+				State = 303;
 				identifiers();
 				}
 				break;
 			case INT:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 150;
+				State = 304;
 				Match(INT);
 				}
 				break;
 			case LITERAL:
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 151;
+				State = 305;
 				Match(LITERAL);
 				}
 				break;
@@ -1232,13 +2017,13 @@ public partial class cobolParser : Parser {
 	[RuleVersion(0)]
 	public GivingContext giving() {
 		GivingContext _localctx = new GivingContext(Context, State);
-		EnterRule(_localctx, 28, RULE_giving);
+		EnterRule(_localctx, 44, RULE_giving);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 154;
+			State = 308;
 			Match(GIVING);
-			State = 155;
+			State = 309;
 			identifiers();
 			}
 		}
@@ -1289,40 +2074,998 @@ public partial class cobolParser : Parser {
 	[RuleVersion(0)]
 	public IdentifiersContext identifiers() {
 		IdentifiersContext _localctx = new IdentifiersContext(Context, State);
-		EnterRule(_localctx, 30, RULE_identifiers);
+		EnterRule(_localctx, 46, RULE_identifiers);
+		try {
+			int _alt;
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 311;
+			Match(IDENTIFIER);
+			State = 316;
+			ErrorHandler.Sync(this);
+			_alt = Interpreter.AdaptivePredict(TokenStream,26,Context);
+			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					{
+					{
+					State = 312;
+					Match(OF);
+					State = 313;
+					Match(IDENTIFIER);
+					}
+					} 
+				}
+				State = 318;
+				ErrorHandler.Sync(this);
+				_alt = Interpreter.AdaptivePredict(TokenStream,26,Context);
+			}
+			State = 322;
+			ErrorHandler.Sync(this);
+			switch ( Interpreter.AdaptivePredict(TokenStream,27,Context) ) {
+			case 1:
+				{
+				State = 319;
+				Match(T__0);
+				State = 320;
+				Match(INT);
+				State = 321;
+				Match(T__1);
+				}
+				break;
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class RemainderContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REMAINDER() { return GetToken(cobolParser.REMAINDER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public IdentifiersContext identifiers() {
+			return GetRuleContext<IdentifiersContext>(0);
+		}
+		public RemainderContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_remainder; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterRemainder(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitRemainder(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitRemainder(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public RemainderContext remainder() {
+		RemainderContext _localctx = new RemainderContext(Context, State);
+		EnterRule(_localctx, 48, RULE_remainder);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 324;
+			Match(REMAINDER);
+			State = 325;
+			identifiers();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class IfContext : ParserRuleContext {
+		public StatementContext _statement;
+		public IList<StatementContext> _i = new List<StatementContext>();
+		public IList<StatementContext> _e = new List<StatementContext>();
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IF() { return GetToken(cobolParser.IF, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public BooleanContext boolean() {
+			return GetRuleContext<BooleanContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode THEN() { return GetToken(cobolParser.THEN, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode END() { return GetToken(cobolParser.END, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ELSE() { return GetToken(cobolParser.ELSE, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public StatementContext[] statement() {
+			return GetRuleContexts<StatementContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public StatementContext statement(int i) {
+			return GetRuleContext<StatementContext>(i);
+		}
+		public IfContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_if; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterIf(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitIf(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitIf(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public IfContext @if() {
+		IfContext _localctx = new IfContext(Context, State);
+		EnterRule(_localctx, 50, RULE_if);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 157;
-			Match(IDENTIFIER);
-			State = 162;
+			State = 327;
+			Match(IF);
+			State = 328;
+			boolean(0);
+			State = 329;
+			Match(THEN);
+			State = 331;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			while (_la==OF) {
+			do {
 				{
 				{
-				State = 158;
-				Match(OF);
-				State = 159;
-				Match(IDENTIFIER);
+				State = 330;
+				_localctx._statement = statement();
+				_localctx._i.Add(_localctx._statement);
 				}
 				}
-				State = 164;
+				State = 333;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+			} while ( ((((_la - 23)) & ~0x3f) == 0 && ((1L << (_la - 23)) & 13617965627457L) != 0) );
+			State = 341;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			if (_la==ELSE) {
+				{
+				State = 335;
+				Match(ELSE);
+				State = 337;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				do {
+					{
+					{
+					State = 336;
+					_localctx._statement = statement();
+					_localctx._e.Add(_localctx._statement);
+					}
+					}
+					State = 339;
+					ErrorHandler.Sync(this);
+					_la = TokenStream.LA(1);
+				} while ( ((((_la - 23)) & ~0x3f) == 0 && ((1L << (_la - 23)) & 13617965627457L) != 0) );
+				}
+			}
+
+			State = 343;
+			Match(END);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class Arithmetic_expressionContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public AtomicContext atomic() {
+			return GetRuleContext<AtomicContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public Arithmetic_expressionContext[] arithmetic_expression() {
+			return GetRuleContexts<Arithmetic_expressionContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public Arithmetic_expressionContext arithmetic_expression(int i) {
+			return GetRuleContext<Arithmetic_expressionContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ARITHMETIC_OPERATOR() { return GetToken(cobolParser.ARITHMETIC_OPERATOR, 0); }
+		public Arithmetic_expressionContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_arithmetic_expression; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterArithmetic_expression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitArithmetic_expression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitArithmetic_expression(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public Arithmetic_expressionContext arithmetic_expression() {
+		return arithmetic_expression(0);
+	}
+
+	private Arithmetic_expressionContext arithmetic_expression(int _p) {
+		ParserRuleContext _parentctx = Context;
+		int _parentState = State;
+		Arithmetic_expressionContext _localctx = new Arithmetic_expressionContext(Context, _parentState);
+		Arithmetic_expressionContext _prevctx = _localctx;
+		int _startState = 52;
+		EnterRecursionRule(_localctx, 52, RULE_arithmetic_expression, _p);
+		try {
+			int _alt;
+			EnterOuterAlt(_localctx, 1);
+			{
+			{
+			State = 346;
+			atomic();
+			}
+			Context.Stop = TokenStream.LT(-1);
+			State = 353;
+			ErrorHandler.Sync(this);
+			_alt = Interpreter.AdaptivePredict(TokenStream,31,Context);
+			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					if ( ParseListeners!=null )
+						TriggerExitRuleEvent();
+					_prevctx = _localctx;
+					{
+					{
+					_localctx = new Arithmetic_expressionContext(_parentctx, _parentState);
+					PushNewRecursionContext(_localctx, _startState, RULE_arithmetic_expression);
+					State = 348;
+					if (!(Precpred(Context, 1))) throw new FailedPredicateException(this, "Precpred(Context, 1)");
+					State = 349;
+					Match(ARITHMETIC_OPERATOR);
+					State = 350;
+					arithmetic_expression(2);
+					}
+					} 
+				}
+				State = 355;
+				ErrorHandler.Sync(this);
+				_alt = Interpreter.AdaptivePredict(TokenStream,31,Context);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			UnrollRecursionContexts(_parentctx);
+		}
+		return _localctx;
+	}
+
+	public partial class String_expressionContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public AtomicContext atomic() {
+			return GetRuleContext<AtomicContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public String_expressionContext[] string_expression() {
+			return GetRuleContexts<String_expressionContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public String_expressionContext string_expression(int i) {
+			return GetRuleContext<String_expressionContext>(i);
+		}
+		public String_expressionContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_string_expression; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterString_expression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitString_expression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitString_expression(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public String_expressionContext string_expression() {
+		return string_expression(0);
+	}
+
+	private String_expressionContext string_expression(int _p) {
+		ParserRuleContext _parentctx = Context;
+		int _parentState = State;
+		String_expressionContext _localctx = new String_expressionContext(Context, _parentState);
+		String_expressionContext _prevctx = _localctx;
+		int _startState = 54;
+		EnterRecursionRule(_localctx, 54, RULE_string_expression, _p);
+		try {
+			int _alt;
+			EnterOuterAlt(_localctx, 1);
+			{
+			{
+			State = 357;
+			atomic();
+			}
+			Context.Stop = TokenStream.LT(-1);
+			State = 364;
+			ErrorHandler.Sync(this);
+			_alt = Interpreter.AdaptivePredict(TokenStream,32,Context);
+			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					if ( ParseListeners!=null )
+						TriggerExitRuleEvent();
+					_prevctx = _localctx;
+					{
+					{
+					_localctx = new String_expressionContext(_parentctx, _parentState);
+					PushNewRecursionContext(_localctx, _startState, RULE_string_expression);
+					State = 359;
+					if (!(Precpred(Context, 1))) throw new FailedPredicateException(this, "Precpred(Context, 1)");
+					State = 360;
+					Match(T__2);
+					State = 361;
+					string_expression(2);
+					}
+					} 
+				}
+				State = 366;
+				ErrorHandler.Sync(this);
+				_alt = Interpreter.AdaptivePredict(TokenStream,32,Context);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			UnrollRecursionContexts(_parentctx);
+		}
+		return _localctx;
+	}
+
+	public partial class BooleanContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRUE() { return GetToken(cobolParser.TRUE, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FALSE() { return GetToken(cobolParser.FALSE, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public Arithmetic_expressionContext[] arithmetic_expression() {
+			return GetRuleContexts<Arithmetic_expressionContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public Arithmetic_expressionContext arithmetic_expression(int i) {
+			return GetRuleContext<Arithmetic_expressionContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMPARISON_OPERATOR() { return GetToken(cobolParser.COMPARISON_OPERATOR, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NOT() { return GetToken(cobolParser.NOT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public BooleanContext[] boolean() {
+			return GetRuleContexts<BooleanContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public BooleanContext boolean(int i) {
+			return GetRuleContext<BooleanContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BOOLEAN_OPERATOR() { return GetToken(cobolParser.BOOLEAN_OPERATOR, 0); }
+		public BooleanContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_boolean; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterBoolean(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitBoolean(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitBoolean(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public BooleanContext boolean() {
+		return boolean(0);
+	}
+
+	private BooleanContext boolean(int _p) {
+		ParserRuleContext _parentctx = Context;
+		int _parentState = State;
+		BooleanContext _localctx = new BooleanContext(Context, _parentState);
+		BooleanContext _prevctx = _localctx;
+		int _startState = 56;
+		EnterRecursionRule(_localctx, 56, RULE_boolean, _p);
+		try {
+			int _alt;
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 376;
+			ErrorHandler.Sync(this);
+			switch (TokenStream.LA(1)) {
+			case TRUE:
+				{
+				State = 368;
+				Match(TRUE);
+				}
+				break;
+			case FALSE:
+				{
+				State = 369;
+				Match(FALSE);
+				}
+				break;
+			case IDENTIFIER:
+			case INT:
+			case LITERAL:
+				{
+				State = 370;
+				arithmetic_expression(0);
+				State = 371;
+				Match(COMPARISON_OPERATOR);
+				State = 372;
+				arithmetic_expression(0);
+				}
+				break;
+			case NOT:
+				{
+				State = 374;
+				Match(NOT);
+				State = 375;
+				boolean(2);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+			Context.Stop = TokenStream.LT(-1);
+			State = 383;
+			ErrorHandler.Sync(this);
+			_alt = Interpreter.AdaptivePredict(TokenStream,34,Context);
+			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					if ( ParseListeners!=null )
+						TriggerExitRuleEvent();
+					_prevctx = _localctx;
+					{
+					{
+					_localctx = new BooleanContext(_parentctx, _parentState);
+					PushNewRecursionContext(_localctx, _startState, RULE_boolean);
+					State = 378;
+					if (!(Precpred(Context, 1))) throw new FailedPredicateException(this, "Precpred(Context, 1)");
+					State = 379;
+					Match(BOOLEAN_OPERATOR);
+					State = 380;
+					boolean(2);
+					}
+					} 
+				}
+				State = 385;
+				ErrorHandler.Sync(this);
+				_alt = Interpreter.AdaptivePredict(TokenStream,34,Context);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			UnrollRecursionContexts(_parentctx);
+		}
+		return _localctx;
+	}
+
+	public partial class ExpressionsContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public BooleanContext boolean() {
+			return GetRuleContext<BooleanContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public Arithmetic_expressionContext arithmetic_expression() {
+			return GetRuleContext<Arithmetic_expressionContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public String_expressionContext string_expression() {
+			return GetRuleContext<String_expressionContext>(0);
+		}
+		public ExpressionsContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_expressions; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterExpressions(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitExpressions(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitExpressions(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public ExpressionsContext expressions() {
+		ExpressionsContext _localctx = new ExpressionsContext(Context, State);
+		EnterRule(_localctx, 58, RULE_expressions);
+		try {
+			State = 389;
+			ErrorHandler.Sync(this);
+			switch ( Interpreter.AdaptivePredict(TokenStream,35,Context) ) {
+			case 1:
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 386;
+				boolean(0);
+				}
+				break;
+			case 2:
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 387;
+				arithmetic_expression(0);
+				}
+				break;
+			case 3:
+				EnterOuterAlt(_localctx, 3);
+				{
+				State = 388;
+				string_expression(0);
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class EvaluateContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EVALUATE() { return GetToken(cobolParser.EVALUATE, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionsContext[] expressions() {
+			return GetRuleContexts<ExpressionsContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionsContext expressions(int i) {
+			return GetRuleContext<ExpressionsContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode END() { return GetToken(cobolParser.END, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] ALSO() { return GetTokens(cobolParser.ALSO); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ALSO(int i) {
+			return GetToken(cobolParser.ALSO, i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public When_blockContext[] when_block() {
+			return GetRuleContexts<When_blockContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public When_blockContext when_block(int i) {
+			return GetRuleContext<When_blockContext>(i);
+		}
+		public EvaluateContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_evaluate; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterEvaluate(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitEvaluate(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitEvaluate(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public EvaluateContext evaluate() {
+		EvaluateContext _localctx = new EvaluateContext(Context, State);
+		EnterRule(_localctx, 60, RULE_evaluate);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 391;
+			Match(EVALUATE);
+			State = 392;
+			expressions();
+			State = 397;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			while (_la==ALSO) {
+				{
+				{
+				State = 393;
+				Match(ALSO);
+				State = 394;
+				expressions();
+				}
+				}
+				State = 399;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
-			State = 168;
+			State = 403;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if (_la==T__0) {
+			while (_la==WHEN) {
 				{
-				State = 165;
-				Match(T__0);
-				State = 166;
-				Match(INT);
-				State = 167;
-				Match(T__1);
+				{
+				State = 400;
+				when_block();
+				}
+				}
+				State = 405;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+			}
+			State = 406;
+			Match(END);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class When_blockContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WHEN() { return GetToken(cobolParser.WHEN, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public AtomicContext[] atomic() {
+			return GetRuleContexts<AtomicContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public AtomicContext atomic(int i) {
+			return GetRuleContext<AtomicContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] ALSO() { return GetTokens(cobolParser.ALSO); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ALSO(int i) {
+			return GetToken(cobolParser.ALSO, i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public StatementContext[] statement() {
+			return GetRuleContexts<StatementContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public StatementContext statement(int i) {
+			return GetRuleContext<StatementContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OTHER() { return GetToken(cobolParser.OTHER, 0); }
+		public When_blockContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_when_block; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterWhen_block(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitWhen_block(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitWhen_block(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public When_blockContext when_block() {
+		When_blockContext _localctx = new When_blockContext(Context, State);
+		EnterRule(_localctx, 62, RULE_when_block);
+		int _la;
+		try {
+			State = 429;
+			ErrorHandler.Sync(this);
+			switch ( Interpreter.AdaptivePredict(TokenStream,41,Context) ) {
+			case 1:
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 408;
+				Match(WHEN);
+				State = 409;
+				atomic();
+				State = 414;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				while (_la==ALSO) {
+					{
+					{
+					State = 410;
+					Match(ALSO);
+					State = 411;
+					atomic();
+					}
+					}
+					State = 416;
+					ErrorHandler.Sync(this);
+					_la = TokenStream.LA(1);
+				}
+				State = 418;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				do {
+					{
+					{
+					State = 417;
+					statement();
+					}
+					}
+					State = 420;
+					ErrorHandler.Sync(this);
+					_la = TokenStream.LA(1);
+				} while ( ((((_la - 23)) & ~0x3f) == 0 && ((1L << (_la - 23)) & 13617965627457L) != 0) );
+				}
+				break;
+			case 2:
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 422;
+				Match(WHEN);
+				State = 423;
+				Match(OTHER);
+				State = 425;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				do {
+					{
+					{
+					State = 424;
+					statement();
+					}
+					}
+					State = 427;
+					ErrorHandler.Sync(this);
+					_la = TokenStream.LA(1);
+				} while ( ((((_la - 23)) & ~0x3f) == 0 && ((1L << (_la - 23)) & 13617965627457L) != 0) );
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class StopContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STOP() { return GetToken(cobolParser.STOP, 0); }
+		public StopContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_stop; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterStop(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitStop(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitStop(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public StopContext stop() {
+		StopContext _localctx = new StopContext(Context, State);
+		EnterRule(_localctx, 64, RULE_stop);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 431;
+			Match(STOP);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class Next_sentenceContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NEXT() { return GetToken(cobolParser.NEXT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SENTENCE() { return GetToken(cobolParser.SENTENCE, 0); }
+		public Next_sentenceContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_next_sentence; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterNext_sentence(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitNext_sentence(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitNext_sentence(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public Next_sentenceContext next_sentence() {
+		Next_sentenceContext _localctx = new Next_sentenceContext(Context, State);
+		EnterRule(_localctx, 66, RULE_next_sentence);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 433;
+			Match(NEXT);
+			State = 434;
+			Match(SENTENCE);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class PerformContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERFORM() { return GetToken(cobolParser.PERFORM, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ProcContext proc() {
+			return GetRuleContext<ProcContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ThroughContext through() {
+			return GetRuleContext<ThroughContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public TimesContext times() {
+			return GetRuleContext<TimesContext>(0);
+		}
+		public PerformContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_perform; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterPerform(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitPerform(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitPerform(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public PerformContext perform() {
+		PerformContext _localctx = new PerformContext(Context, State);
+		EnterRule(_localctx, 68, RULE_perform);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 436;
+			Match(PERFORM);
+			State = 437;
+			proc();
+			State = 439;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			if (_la==THROUGH) {
+				{
+				State = 438;
+				through();
+				}
+			}
+
+			State = 442;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			if (_la==INT) {
+				{
+				State = 441;
+				times();
 				}
 			}
 
@@ -1339,59 +3082,1226 @@ public partial class cobolParser : Parser {
 		return _localctx;
 	}
 
+	public partial class ThroughContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode THROUGH() { return GetToken(cobolParser.THROUGH, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ProcContext proc() {
+			return GetRuleContext<ProcContext>(0);
+		}
+		public ThroughContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_through; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterThrough(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitThrough(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitThrough(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public ThroughContext through() {
+		ThroughContext _localctx = new ThroughContext(Context, State);
+		EnterRule(_localctx, 70, RULE_through);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 444;
+			Match(THROUGH);
+			State = 445;
+			proc();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class TimesContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INT() { return GetToken(cobolParser.INT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIMES() { return GetToken(cobolParser.TIMES, 0); }
+		public TimesContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_times; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterTimes(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitTimes(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitTimes(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public TimesContext times() {
+		TimesContext _localctx = new TimesContext(Context, State);
+		EnterRule(_localctx, 72, RULE_times);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 447;
+			Match(INT);
+			State = 448;
+			Match(TIMES);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class CopyContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COPY() { return GetToken(cobolParser.COPY, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LITERAL() { return GetToken(cobolParser.LITERAL, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ReplacingContext replacing() {
+			return GetRuleContext<ReplacingContext>(0);
+		}
+		public CopyContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_copy; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterCopy(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitCopy(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitCopy(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public CopyContext copy() {
+		CopyContext _localctx = new CopyContext(Context, State);
+		EnterRule(_localctx, 74, RULE_copy);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 450;
+			Match(COPY);
+			State = 451;
+			Match(LITERAL);
+			State = 453;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			if (_la==REPLACING) {
+				{
+				State = 452;
+				replacing();
+				}
+			}
+
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class ReplacingContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REPLACING() { return GetToken(cobolParser.REPLACING, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ReplacementsContext[] replacements() {
+			return GetRuleContexts<ReplacementsContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ReplacementsContext replacements(int i) {
+			return GetRuleContext<ReplacementsContext>(i);
+		}
+		public ReplacingContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_replacing; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterReplacing(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitReplacing(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitReplacing(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public ReplacingContext replacing() {
+		ReplacingContext _localctx = new ReplacingContext(Context, State);
+		EnterRule(_localctx, 76, RULE_replacing);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 455;
+			Match(REPLACING);
+			State = 457;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			do {
+				{
+				{
+				State = 456;
+				replacements();
+				}
+				}
+				State = 459;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+			} while ( _la==COPY_LITERAL );
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class ReplacementsContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] COPY_LITERAL() { return GetTokens(cobolParser.COPY_LITERAL); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COPY_LITERAL(int i) {
+			return GetToken(cobolParser.COPY_LITERAL, i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BY() { return GetToken(cobolParser.BY, 0); }
+		public ReplacementsContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_replacements; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterReplacements(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitReplacements(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitReplacements(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public ReplacementsContext replacements() {
+		ReplacementsContext _localctx = new ReplacementsContext(Context, State);
+		EnterRule(_localctx, 78, RULE_replacements);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 461;
+			Match(COPY_LITERAL);
+			State = 462;
+			Match(BY);
+			State = 463;
+			Match(COPY_LITERAL);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class LoopContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOOP() { return GetToken(cobolParser.LOOP, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode END() { return GetToken(cobolParser.END, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public Loop_expressionContext[] loop_expression() {
+			return GetRuleContexts<Loop_expressionContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public Loop_expressionContext loop_expression(int i) {
+			return GetRuleContext<Loop_expressionContext>(i);
+		}
+		public LoopContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_loop; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterLoop(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitLoop(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitLoop(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public LoopContext loop() {
+		LoopContext _localctx = new LoopContext(Context, State);
+		EnterRule(_localctx, 80, RULE_loop);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 465;
+			Match(LOOP);
+			State = 469;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			while (((((_la - 23)) & ~0x3f) == 0 && ((1L << (_la - 23)) & 13738224711745L) != 0)) {
+				{
+				{
+				State = 466;
+				loop_expression();
+				}
+				}
+				State = 471;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+			}
+			State = 472;
+			Match(END);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class Loop_expressionContext : ParserRuleContext {
+		public Loop_expressionContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_loop_expression; } }
+	 
+		public Loop_expressionContext() { }
+		public virtual void CopyFrom(Loop_expressionContext context) {
+			base.CopyFrom(context);
+		}
+	}
+	public partial class Loop_while_expressionContext : Loop_expressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WHILE() { return GetToken(cobolParser.WHILE, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public BooleanContext boolean() {
+			return GetRuleContext<BooleanContext>(0);
+		}
+		public Loop_while_expressionContext(Loop_expressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterLoop_while_expression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitLoop_while_expression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitLoop_while_expression(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Loop_varying_expressionContext : Loop_expressionContext {
+		public AtomicContext from;
+		public AtomicContext to;
+		public AtomicContext by;
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VARYING() { return GetToken(cobolParser.VARYING, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public IdentifiersContext identifiers() {
+			return GetRuleContext<IdentifiersContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FROM() { return GetToken(cobolParser.FROM, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TO() { return GetToken(cobolParser.TO, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BY() { return GetToken(cobolParser.BY, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public AtomicContext[] atomic() {
+			return GetRuleContexts<AtomicContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public AtomicContext atomic(int i) {
+			return GetRuleContext<AtomicContext>(i);
+		}
+		public Loop_varying_expressionContext(Loop_expressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterLoop_varying_expression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitLoop_varying_expression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitLoop_varying_expression(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Loop_statement_expessionContext : Loop_expressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public StatementContext statement() {
+			return GetRuleContext<StatementContext>(0);
+		}
+		public Loop_statement_expessionContext(Loop_expressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterLoop_statement_expession(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitLoop_statement_expession(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitLoop_statement_expession(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Loop_until_expressionContext : Loop_expressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode UNTIL() { return GetToken(cobolParser.UNTIL, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public BooleanContext boolean() {
+			return GetRuleContext<BooleanContext>(0);
+		}
+		public Loop_until_expressionContext(Loop_expressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterLoop_until_expression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitLoop_until_expression(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitLoop_until_expression(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public Loop_expressionContext loop_expression() {
+		Loop_expressionContext _localctx = new Loop_expressionContext(Context, State);
+		EnterRule(_localctx, 82, RULE_loop_expression);
+		int _la;
+		try {
+			State = 495;
+			ErrorHandler.Sync(this);
+			switch (TokenStream.LA(1)) {
+			case VARYING:
+				_localctx = new Loop_varying_expressionContext(_localctx);
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 474;
+				Match(VARYING);
+				State = 476;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				if (_la==IDENTIFIER) {
+					{
+					State = 475;
+					identifiers();
+					}
+				}
+
+				State = 480;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				if (_la==FROM) {
+					{
+					State = 478;
+					Match(FROM);
+					State = 479;
+					((Loop_varying_expressionContext)_localctx).from = atomic();
+					}
+				}
+
+				State = 484;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				if (_la==TO) {
+					{
+					State = 482;
+					Match(TO);
+					State = 483;
+					((Loop_varying_expressionContext)_localctx).to = atomic();
+					}
+				}
+
+				State = 488;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				if (_la==BY) {
+					{
+					State = 486;
+					Match(BY);
+					State = 487;
+					((Loop_varying_expressionContext)_localctx).by = atomic();
+					}
+				}
+
+				}
+				break;
+			case WHILE:
+				_localctx = new Loop_while_expressionContext(_localctx);
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 490;
+				Match(WHILE);
+				State = 491;
+				boolean(0);
+				}
+				break;
+			case UNTIL:
+				_localctx = new Loop_until_expressionContext(_localctx);
+				EnterOuterAlt(_localctx, 3);
+				{
+				State = 492;
+				Match(UNTIL);
+				State = 493;
+				boolean(0);
+				}
+				break;
+			case DISPLAY:
+			case ADD:
+			case ACCEPT:
+			case MULTIPLY:
+			case SUBTRACT:
+			case DIVIDE:
+			case IF:
+			case EVALUATE:
+			case STOP:
+			case NEXT:
+			case PERFORM:
+			case COPY:
+			case LOOP:
+			case GO:
+			case MOVE:
+			case ALTER:
+			case SIGNAL:
+				_localctx = new Loop_statement_expessionContext(_localctx);
+				EnterOuterAlt(_localctx, 4);
+				{
+				State = 494;
+				statement();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class GotoContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GO() { return GetToken(cobolParser.GO, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TO() { return GetToken(cobolParser.TO, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(cobolParser.IDENTIFIER, 0); }
+		public GotoContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_goto; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterGoto(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitGoto(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitGoto(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public GotoContext @goto() {
+		GotoContext _localctx = new GotoContext(Context, State);
+		EnterRule(_localctx, 84, RULE_goto);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 497;
+			Match(GO);
+			State = 498;
+			Match(TO);
+			State = 499;
+			Match(IDENTIFIER);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class MoveContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MOVE() { return GetToken(cobolParser.MOVE, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TO() { return GetToken(cobolParser.TO, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public MultivarContext multivar() {
+			return GetRuleContext<MultivarContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INT() { return GetToken(cobolParser.INT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public SinglevarContext singlevar() {
+			return GetRuleContext<SinglevarContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HIGH_VALUES() { return GetToken(cobolParser.HIGH_VALUES, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOW_VALUES() { return GetToken(cobolParser.LOW_VALUES, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SPACES() { return GetToken(cobolParser.SPACES, 0); }
+		public MoveContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_move; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterMove(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitMove(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitMove(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public MoveContext move() {
+		MoveContext _localctx = new MoveContext(Context, State);
+		EnterRule(_localctx, 86, RULE_move);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 501;
+			Match(MOVE);
+			State = 507;
+			ErrorHandler.Sync(this);
+			switch (TokenStream.LA(1)) {
+			case INT:
+				{
+				State = 502;
+				Match(INT);
+				}
+				break;
+			case IDENTIFIER:
+				{
+				State = 503;
+				singlevar();
+				}
+				break;
+			case HIGH_VALUES:
+				{
+				State = 504;
+				Match(HIGH_VALUES);
+				}
+				break;
+			case LOW_VALUES:
+				{
+				State = 505;
+				Match(LOW_VALUES);
+				}
+				break;
+			case SPACES:
+				{
+				State = 506;
+				Match(SPACES);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+			State = 509;
+			Match(TO);
+			State = 510;
+			multivar();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class SinglevarContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public IdentifiersContext[] identifiers() {
+			return GetRuleContexts<IdentifiersContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public IdentifiersContext identifiers(int i) {
+			return GetRuleContext<IdentifiersContext>(i);
+		}
+		public SinglevarContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_singlevar; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterSinglevar(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitSinglevar(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitSinglevar(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public SinglevarContext singlevar() {
+		SinglevarContext _localctx = new SinglevarContext(Context, State);
+		EnterRule(_localctx, 88, RULE_singlevar);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 513;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			do {
+				{
+				{
+				State = 512;
+				identifiers();
+				}
+				}
+				State = 515;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+			} while ( _la==IDENTIFIER );
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class MultivarContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public IdentifiersContext[] identifiers() {
+			return GetRuleContexts<IdentifiersContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public IdentifiersContext identifiers(int i) {
+			return GetRuleContext<IdentifiersContext>(i);
+		}
+		public MultivarContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_multivar; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterMultivar(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitMultivar(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitMultivar(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public MultivarContext multivar() {
+		MultivarContext _localctx = new MultivarContext(Context, State);
+		EnterRule(_localctx, 90, RULE_multivar);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 518;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			do {
+				{
+				{
+				State = 517;
+				identifiers();
+				}
+				}
+				State = 520;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+			} while ( _la==IDENTIFIER );
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class AlterContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ALTER() { return GetToken(cobolParser.ALTER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ProcContext[] proc() {
+			return GetRuleContexts<ProcContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ProcContext proc(int i) {
+			return GetRuleContext<ProcContext>(i);
+		}
+		public AlterContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_alter; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterAlter(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitAlter(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAlter(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public AlterContext alter() {
+		AlterContext _localctx = new AlterContext(Context, State);
+		EnterRule(_localctx, 92, RULE_alter);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 522;
+			Match(ALTER);
+			State = 523;
+			proc();
+			State = 524;
+			Match(T__3);
+			State = 525;
+			proc();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class SignalContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SIGNAL() { return GetToken(cobolParser.SIGNAL, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ON() { return GetToken(cobolParser.ON, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ERROR() { return GetToken(cobolParser.ERROR, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OFF() { return GetToken(cobolParser.OFF, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ProcContext proc() {
+			return GetRuleContext<ProcContext>(0);
+		}
+		public SignalContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_signal; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.EnterSignal(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IcobolListener typedListener = listener as IcobolListener;
+			if (typedListener != null) typedListener.ExitSignal(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IcobolVisitor<TResult> typedVisitor = visitor as IcobolVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitSignal(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public SignalContext signal() {
+		SignalContext _localctx = new SignalContext(Context, State);
+		EnterRule(_localctx, 94, RULE_signal);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 527;
+			Match(SIGNAL);
+			State = 530;
+			ErrorHandler.Sync(this);
+			switch (TokenStream.LA(1)) {
+			case OFF:
+				{
+				State = 528;
+				Match(OFF);
+				}
+				break;
+			case IDENTIFIER:
+				{
+				State = 529;
+				proc();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+			State = 532;
+			Match(ON);
+			State = 533;
+			Match(ERROR);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public override bool Sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
+		switch (ruleIndex) {
+		case 26: return arithmetic_expression_sempred((Arithmetic_expressionContext)_localctx, predIndex);
+		case 27: return string_expression_sempred((String_expressionContext)_localctx, predIndex);
+		case 28: return boolean_sempred((BooleanContext)_localctx, predIndex);
+		}
+		return true;
+	}
+	private bool arithmetic_expression_sempred(Arithmetic_expressionContext _localctx, int predIndex) {
+		switch (predIndex) {
+		case 0: return Precpred(Context, 1);
+		}
+		return true;
+	}
+	private bool string_expression_sempred(String_expressionContext _localctx, int predIndex) {
+		switch (predIndex) {
+		case 1: return Precpred(Context, 1);
+		}
+		return true;
+	}
+	private bool boolean_sempred(BooleanContext _localctx, int predIndex) {
+		switch (predIndex) {
+		case 2: return Precpred(Context, 1);
+		}
+		return true;
+	}
+
 	private static int[] _serializedATN = {
-		4,1,30,171,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
+		4,1,75,536,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
 		7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,2,14,7,14,
-		2,15,7,15,1,0,1,0,3,0,35,8,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,
-		1,47,8,1,10,1,12,1,50,9,1,1,2,1,2,1,2,1,2,1,2,1,2,1,2,3,2,59,8,2,1,2,1,
-		2,1,2,3,2,64,8,2,1,2,5,2,67,8,2,10,2,12,2,70,9,2,1,3,1,3,1,3,1,3,1,4,1,
-		4,1,4,1,5,1,5,1,5,3,5,82,8,5,1,5,1,5,4,5,86,8,5,11,5,12,5,87,1,6,1,6,4,
-		6,92,8,6,11,6,12,6,93,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,3,7,105,8,7,
-		1,8,1,8,3,8,109,8,8,1,8,4,8,112,8,8,11,8,12,8,113,1,8,1,8,1,9,1,9,3,9,
-		120,8,9,1,10,1,10,4,10,124,8,10,11,10,12,10,125,1,10,3,10,129,8,10,1,11,
-		1,11,4,11,133,8,11,11,11,12,11,134,1,11,1,11,1,11,1,11,1,11,1,11,1,11,
-		3,11,144,8,11,1,12,1,12,1,12,1,12,1,13,1,13,1,13,3,13,153,8,13,1,14,1,
-		14,1,14,1,15,1,15,1,15,5,15,161,8,15,10,15,12,15,164,9,15,1,15,1,15,1,
-		15,3,15,169,8,15,1,15,0,0,16,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,
-		0,0,176,0,32,1,0,0,0,2,39,1,0,0,0,4,51,1,0,0,0,6,71,1,0,0,0,8,75,1,0,0,
-		0,10,78,1,0,0,0,12,89,1,0,0,0,14,104,1,0,0,0,16,108,1,0,0,0,18,119,1,0,
-		0,0,20,121,1,0,0,0,22,143,1,0,0,0,24,145,1,0,0,0,26,152,1,0,0,0,28,154,
-		1,0,0,0,30,157,1,0,0,0,32,34,3,2,1,0,33,35,3,4,2,0,34,33,1,0,0,0,34,35,
-		1,0,0,0,35,36,1,0,0,0,36,37,3,10,5,0,37,38,5,0,0,1,38,1,1,0,0,0,39,40,
-		5,4,0,0,40,41,5,5,0,0,41,48,5,27,0,0,42,43,5,24,0,0,43,44,5,27,0,0,44,
-		45,5,28,0,0,45,47,5,27,0,0,46,42,1,0,0,0,47,50,1,0,0,0,48,46,1,0,0,0,48,
-		49,1,0,0,0,49,3,1,0,0,0,50,48,1,0,0,0,51,52,5,22,0,0,52,53,5,5,0,0,53,
-		68,5,27,0,0,54,55,5,25,0,0,55,58,5,24,0,0,56,59,3,6,3,0,57,59,3,8,4,0,
-		58,56,1,0,0,0,58,57,1,0,0,0,58,59,1,0,0,0,59,63,1,0,0,0,60,61,5,6,0,0,
-		61,62,5,25,0,0,62,64,5,7,0,0,63,60,1,0,0,0,63,64,1,0,0,0,64,65,1,0,0,0,
-		65,67,5,27,0,0,66,54,1,0,0,0,67,70,1,0,0,0,68,66,1,0,0,0,68,69,1,0,0,0,
-		69,5,1,0,0,0,70,68,1,0,0,0,71,72,5,8,0,0,72,73,5,9,0,0,73,74,5,3,0,0,74,
-		7,1,0,0,0,75,76,5,16,0,0,76,77,3,30,15,0,77,9,1,0,0,0,78,79,5,10,0,0,79,
-		81,5,5,0,0,80,82,3,12,6,0,81,80,1,0,0,0,81,82,1,0,0,0,82,83,1,0,0,0,83,
-		85,5,27,0,0,84,86,3,16,8,0,85,84,1,0,0,0,86,87,1,0,0,0,87,85,1,0,0,0,87,
-		88,1,0,0,0,88,11,1,0,0,0,89,91,5,11,0,0,90,92,3,14,7,0,91,90,1,0,0,0,92,
-		93,1,0,0,0,93,91,1,0,0,0,93,94,1,0,0,0,94,13,1,0,0,0,95,96,5,12,0,0,96,
-		97,5,13,0,0,97,105,3,30,15,0,98,99,5,12,0,0,99,100,5,14,0,0,100,105,3,
-		26,13,0,101,102,5,12,0,0,102,103,5,15,0,0,103,105,3,26,13,0,104,95,1,0,
-		0,0,104,98,1,0,0,0,104,101,1,0,0,0,105,15,1,0,0,0,106,107,5,24,0,0,107,
-		109,5,27,0,0,108,106,1,0,0,0,108,109,1,0,0,0,109,111,1,0,0,0,110,112,3,
-		18,9,0,111,110,1,0,0,0,112,113,1,0,0,0,113,111,1,0,0,0,113,114,1,0,0,0,
-		114,115,1,0,0,0,115,116,5,27,0,0,116,17,1,0,0,0,117,120,3,20,10,0,118,
-		120,3,22,11,0,119,117,1,0,0,0,119,118,1,0,0,0,120,19,1,0,0,0,121,123,5,
-		17,0,0,122,124,3,26,13,0,123,122,1,0,0,0,124,125,1,0,0,0,125,123,1,0,0,
-		0,125,126,1,0,0,0,126,128,1,0,0,0,127,129,3,24,12,0,128,127,1,0,0,0,128,
-		129,1,0,0,0,129,21,1,0,0,0,130,132,5,23,0,0,131,133,5,25,0,0,132,131,1,
-		0,0,0,133,134,1,0,0,0,134,132,1,0,0,0,134,135,1,0,0,0,135,136,1,0,0,0,
-		136,137,5,29,0,0,137,144,3,30,15,0,138,139,5,23,0,0,139,140,5,25,0,0,140,
-		141,5,29,0,0,141,142,5,25,0,0,142,144,3,28,14,0,143,130,1,0,0,0,143,138,
-		1,0,0,0,144,23,1,0,0,0,145,146,5,19,0,0,146,147,5,20,0,0,147,148,5,21,
-		0,0,148,25,1,0,0,0,149,153,3,30,15,0,150,153,5,25,0,0,151,153,5,28,0,0,
-		152,149,1,0,0,0,152,150,1,0,0,0,152,151,1,0,0,0,153,27,1,0,0,0,154,155,
-		5,30,0,0,155,156,3,30,15,0,156,29,1,0,0,0,157,162,5,24,0,0,158,159,5,18,
-		0,0,159,161,5,24,0,0,160,158,1,0,0,0,161,164,1,0,0,0,162,160,1,0,0,0,162,
-		163,1,0,0,0,163,168,1,0,0,0,164,162,1,0,0,0,165,166,5,1,0,0,166,167,5,
-		25,0,0,167,169,5,2,0,0,168,165,1,0,0,0,168,169,1,0,0,0,169,31,1,0,0,0,
-		19,34,48,58,63,68,81,87,93,104,108,113,119,125,128,134,143,152,162,168
+		2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,7,20,2,21,7,21,
+		2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,2,27,7,27,2,28,7,28,
+		2,29,7,29,2,30,7,30,2,31,7,31,2,32,7,32,2,33,7,33,2,34,7,34,2,35,7,35,
+		2,36,7,36,2,37,7,37,2,38,7,38,2,39,7,39,2,40,7,40,2,41,7,41,2,42,7,42,
+		2,43,7,43,2,44,7,44,2,45,7,45,2,46,7,46,2,47,7,47,1,0,1,0,3,0,99,8,0,1,
+		0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,111,8,1,10,1,12,1,114,9,1,1,
+		2,1,2,1,2,1,2,5,2,120,8,2,10,2,12,2,123,9,2,1,3,1,3,1,3,1,3,3,3,129,8,
+		3,1,3,3,3,132,8,3,1,3,1,3,1,4,1,4,1,4,1,4,1,5,1,5,1,6,1,6,1,6,1,6,1,7,
+		1,7,1,7,1,8,1,8,1,8,3,8,152,8,8,1,8,1,8,4,8,156,8,8,11,8,12,8,157,1,9,
+		1,9,4,9,162,8,9,11,9,12,9,163,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,
+		1,10,3,10,175,8,10,1,11,1,11,1,11,3,11,180,8,11,1,11,4,11,183,8,11,11,
+		11,12,11,184,1,11,1,11,1,12,1,12,1,13,1,13,1,13,1,13,1,13,1,13,1,13,1,
+		13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,3,13,208,8,13,1,14,1,14,
+		4,14,212,8,14,11,14,12,14,213,1,14,3,14,217,8,14,1,15,1,15,4,15,221,8,
+		15,11,15,12,15,222,1,15,1,15,1,15,1,15,4,15,229,8,15,11,15,12,15,230,1,
+		15,1,15,1,15,3,15,236,8,15,1,16,1,16,1,16,1,16,4,16,242,8,16,11,16,12,
+		16,243,1,16,1,16,1,16,1,16,1,16,3,16,251,8,16,1,17,1,17,1,17,1,17,4,17,
+		257,8,17,11,17,12,17,258,1,17,1,17,1,17,1,17,1,17,1,17,1,17,1,17,1,17,
+		1,17,1,17,1,17,3,17,273,8,17,1,18,1,18,4,18,277,8,18,11,18,12,18,278,1,
+		18,1,18,1,18,1,18,4,18,285,8,18,11,18,12,18,286,1,18,1,18,1,18,3,18,292,
+		8,18,1,19,1,19,4,19,296,8,19,11,19,12,19,297,1,20,1,20,1,20,1,20,1,21,
+		1,21,1,21,3,21,307,8,21,1,22,1,22,1,22,1,23,1,23,1,23,5,23,315,8,23,10,
+		23,12,23,318,9,23,1,23,1,23,1,23,3,23,323,8,23,1,24,1,24,1,24,1,25,1,25,
+		1,25,1,25,4,25,332,8,25,11,25,12,25,333,1,25,1,25,4,25,338,8,25,11,25,
+		12,25,339,3,25,342,8,25,1,25,1,25,1,26,1,26,1,26,1,26,1,26,1,26,5,26,352,
+		8,26,10,26,12,26,355,9,26,1,27,1,27,1,27,1,27,1,27,1,27,5,27,363,8,27,
+		10,27,12,27,366,9,27,1,28,1,28,1,28,1,28,1,28,1,28,1,28,1,28,1,28,3,28,
+		377,8,28,1,28,1,28,1,28,5,28,382,8,28,10,28,12,28,385,9,28,1,29,1,29,1,
+		29,3,29,390,8,29,1,30,1,30,1,30,1,30,5,30,396,8,30,10,30,12,30,399,9,30,
+		1,30,5,30,402,8,30,10,30,12,30,405,9,30,1,30,1,30,1,31,1,31,1,31,1,31,
+		5,31,413,8,31,10,31,12,31,416,9,31,1,31,4,31,419,8,31,11,31,12,31,420,
+		1,31,1,31,1,31,4,31,426,8,31,11,31,12,31,427,3,31,430,8,31,1,32,1,32,1,
+		33,1,33,1,33,1,34,1,34,1,34,3,34,440,8,34,1,34,3,34,443,8,34,1,35,1,35,
+		1,35,1,36,1,36,1,36,1,37,1,37,1,37,3,37,454,8,37,1,38,1,38,4,38,458,8,
+		38,11,38,12,38,459,1,39,1,39,1,39,1,39,1,40,1,40,5,40,468,8,40,10,40,12,
+		40,471,9,40,1,40,1,40,1,41,1,41,3,41,477,8,41,1,41,1,41,3,41,481,8,41,
+		1,41,1,41,3,41,485,8,41,1,41,1,41,3,41,489,8,41,1,41,1,41,1,41,1,41,1,
+		41,3,41,496,8,41,1,42,1,42,1,42,1,42,1,43,1,43,1,43,1,43,1,43,1,43,3,43,
+		508,8,43,1,43,1,43,1,43,1,44,4,44,514,8,44,11,44,12,44,515,1,45,4,45,519,
+		8,45,11,45,12,45,520,1,46,1,46,1,46,1,46,1,46,1,47,1,47,1,47,3,47,531,
+		8,47,1,47,1,47,1,47,1,47,0,3,52,54,56,48,0,2,4,6,8,10,12,14,16,18,20,22,
+		24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,
+		72,74,76,78,80,82,84,86,88,90,92,94,0,0,570,0,96,1,0,0,0,2,103,1,0,0,0,
+		4,115,1,0,0,0,6,124,1,0,0,0,8,135,1,0,0,0,10,139,1,0,0,0,12,141,1,0,0,
+		0,14,145,1,0,0,0,16,148,1,0,0,0,18,159,1,0,0,0,20,174,1,0,0,0,22,179,1,
+		0,0,0,24,188,1,0,0,0,26,207,1,0,0,0,28,209,1,0,0,0,30,235,1,0,0,0,32,250,
+		1,0,0,0,34,272,1,0,0,0,36,291,1,0,0,0,38,293,1,0,0,0,40,299,1,0,0,0,42,
+		306,1,0,0,0,44,308,1,0,0,0,46,311,1,0,0,0,48,324,1,0,0,0,50,327,1,0,0,
+		0,52,345,1,0,0,0,54,356,1,0,0,0,56,376,1,0,0,0,58,389,1,0,0,0,60,391,1,
+		0,0,0,62,429,1,0,0,0,64,431,1,0,0,0,66,433,1,0,0,0,68,436,1,0,0,0,70,444,
+		1,0,0,0,72,447,1,0,0,0,74,450,1,0,0,0,76,455,1,0,0,0,78,461,1,0,0,0,80,
+		465,1,0,0,0,82,495,1,0,0,0,84,497,1,0,0,0,86,501,1,0,0,0,88,513,1,0,0,
+		0,90,518,1,0,0,0,92,522,1,0,0,0,94,527,1,0,0,0,96,98,3,2,1,0,97,99,3,4,
+		2,0,98,97,1,0,0,0,98,99,1,0,0,0,99,100,1,0,0,0,100,101,3,16,8,0,101,102,
+		5,0,0,1,102,1,1,0,0,0,103,104,5,9,0,0,104,105,5,10,0,0,105,112,5,73,0,
+		0,106,107,5,70,0,0,107,108,5,73,0,0,108,109,5,74,0,0,109,111,5,73,0,0,
+		110,106,1,0,0,0,111,114,1,0,0,0,112,110,1,0,0,0,112,113,1,0,0,0,113,3,
+		1,0,0,0,114,112,1,0,0,0,115,116,5,28,0,0,116,117,5,10,0,0,117,121,5,73,
+		0,0,118,120,3,6,3,0,119,118,1,0,0,0,120,123,1,0,0,0,121,119,1,0,0,0,121,
+		122,1,0,0,0,122,5,1,0,0,0,123,121,1,0,0,0,124,125,3,10,5,0,125,128,5,70,
+		0,0,126,129,3,12,6,0,127,129,3,14,7,0,128,126,1,0,0,0,128,127,1,0,0,0,
+		128,129,1,0,0,0,129,131,1,0,0,0,130,132,3,8,4,0,131,130,1,0,0,0,131,132,
+		1,0,0,0,132,133,1,0,0,0,133,134,5,73,0,0,134,7,1,0,0,0,135,136,5,11,0,
+		0,136,137,5,71,0,0,137,138,5,12,0,0,138,9,1,0,0,0,139,140,5,71,0,0,140,
+		11,1,0,0,0,141,142,5,13,0,0,142,143,5,14,0,0,143,144,5,5,0,0,144,13,1,
+		0,0,0,145,146,5,22,0,0,146,147,3,46,23,0,147,15,1,0,0,0,148,149,5,15,0,
+		0,149,151,5,10,0,0,150,152,3,18,9,0,151,150,1,0,0,0,151,152,1,0,0,0,152,
+		153,1,0,0,0,153,155,5,73,0,0,154,156,3,22,11,0,155,154,1,0,0,0,156,157,
+		1,0,0,0,157,155,1,0,0,0,157,158,1,0,0,0,158,17,1,0,0,0,159,161,5,16,0,
+		0,160,162,3,20,10,0,161,160,1,0,0,0,162,163,1,0,0,0,163,161,1,0,0,0,163,
+		164,1,0,0,0,164,19,1,0,0,0,165,166,5,17,0,0,166,167,5,19,0,0,167,175,3,
+		46,23,0,168,169,5,17,0,0,169,170,5,20,0,0,170,175,3,42,21,0,171,172,5,
+		17,0,0,172,173,5,21,0,0,173,175,3,42,21,0,174,165,1,0,0,0,174,168,1,0,
+		0,0,174,171,1,0,0,0,175,21,1,0,0,0,176,177,3,24,12,0,177,178,5,73,0,0,
+		178,180,1,0,0,0,179,176,1,0,0,0,179,180,1,0,0,0,180,182,1,0,0,0,181,183,
+		3,26,13,0,182,181,1,0,0,0,183,184,1,0,0,0,184,182,1,0,0,0,184,185,1,0,
+		0,0,185,186,1,0,0,0,186,187,5,73,0,0,187,23,1,0,0,0,188,189,5,70,0,0,189,
+		25,1,0,0,0,190,208,3,28,14,0,191,208,3,30,15,0,192,208,3,38,19,0,193,208,
+		3,32,16,0,194,208,3,36,18,0,195,208,3,34,17,0,196,208,3,50,25,0,197,208,
+		3,60,30,0,198,208,3,64,32,0,199,208,3,66,33,0,200,208,3,68,34,0,201,208,
+		3,74,37,0,202,208,3,80,40,0,203,208,3,84,42,0,204,208,3,86,43,0,205,208,
+		3,92,46,0,206,208,3,94,47,0,207,190,1,0,0,0,207,191,1,0,0,0,207,192,1,
+		0,0,0,207,193,1,0,0,0,207,194,1,0,0,0,207,195,1,0,0,0,207,196,1,0,0,0,
+		207,197,1,0,0,0,207,198,1,0,0,0,207,199,1,0,0,0,207,200,1,0,0,0,207,201,
+		1,0,0,0,207,202,1,0,0,0,207,203,1,0,0,0,207,204,1,0,0,0,207,205,1,0,0,
+		0,207,206,1,0,0,0,208,27,1,0,0,0,209,211,5,23,0,0,210,212,3,42,21,0,211,
+		210,1,0,0,0,212,213,1,0,0,0,213,211,1,0,0,0,213,214,1,0,0,0,214,216,1,
+		0,0,0,215,217,3,40,20,0,216,215,1,0,0,0,216,217,1,0,0,0,217,29,1,0,0,0,
+		218,220,5,29,0,0,219,221,5,71,0,0,220,219,1,0,0,0,221,222,1,0,0,0,222,
+		220,1,0,0,0,222,223,1,0,0,0,223,224,1,0,0,0,224,225,5,30,0,0,225,236,3,
+		46,23,0,226,228,5,29,0,0,227,229,5,71,0,0,228,227,1,0,0,0,229,230,1,0,
+		0,0,230,228,1,0,0,0,230,231,1,0,0,0,231,232,1,0,0,0,232,233,5,30,0,0,233,
+		234,5,71,0,0,234,236,3,44,22,0,235,218,1,0,0,0,235,226,1,0,0,0,236,31,
+		1,0,0,0,237,238,5,35,0,0,238,239,5,71,0,0,239,241,5,17,0,0,240,242,3,46,
+		23,0,241,240,1,0,0,0,242,243,1,0,0,0,243,241,1,0,0,0,243,244,1,0,0,0,244,
+		251,1,0,0,0,245,246,5,35,0,0,246,247,5,71,0,0,247,248,5,17,0,0,248,249,
+		5,71,0,0,249,251,3,44,22,0,250,237,1,0,0,0,250,245,1,0,0,0,251,33,1,0,
+		0,0,252,253,5,37,0,0,253,254,5,71,0,0,254,256,5,31,0,0,255,257,3,46,23,
+		0,256,255,1,0,0,0,257,258,1,0,0,0,258,256,1,0,0,0,258,259,1,0,0,0,259,
+		273,1,0,0,0,260,261,5,37,0,0,261,262,5,71,0,0,262,263,5,31,0,0,263,264,
+		5,71,0,0,264,273,3,44,22,0,265,266,5,37,0,0,266,267,5,71,0,0,267,268,5,
+		31,0,0,268,269,5,71,0,0,269,270,3,44,22,0,270,271,3,48,24,0,271,273,1,
+		0,0,0,272,252,1,0,0,0,272,260,1,0,0,0,272,265,1,0,0,0,273,35,1,0,0,0,274,
+		276,5,36,0,0,275,277,5,71,0,0,276,275,1,0,0,0,277,278,1,0,0,0,278,276,
+		1,0,0,0,278,279,1,0,0,0,279,280,1,0,0,0,280,281,5,18,0,0,281,292,3,46,
+		23,0,282,284,5,36,0,0,283,285,5,71,0,0,284,283,1,0,0,0,285,286,1,0,0,0,
+		286,284,1,0,0,0,286,287,1,0,0,0,287,288,1,0,0,0,288,289,5,18,0,0,289,290,
+		5,71,0,0,290,292,3,44,22,0,291,274,1,0,0,0,291,282,1,0,0,0,292,37,1,0,
+		0,0,293,295,5,34,0,0,294,296,3,46,23,0,295,294,1,0,0,0,296,297,1,0,0,0,
+		297,295,1,0,0,0,297,298,1,0,0,0,298,39,1,0,0,0,299,300,5,25,0,0,300,301,
+		5,26,0,0,301,302,5,27,0,0,302,41,1,0,0,0,303,307,3,46,23,0,304,307,5,71,
+		0,0,305,307,5,74,0,0,306,303,1,0,0,0,306,304,1,0,0,0,306,305,1,0,0,0,307,
+		43,1,0,0,0,308,309,5,32,0,0,309,310,3,46,23,0,310,45,1,0,0,0,311,316,5,
+		70,0,0,312,313,5,24,0,0,313,315,5,70,0,0,314,312,1,0,0,0,315,318,1,0,0,
+		0,316,314,1,0,0,0,316,317,1,0,0,0,317,322,1,0,0,0,318,316,1,0,0,0,319,
+		320,5,1,0,0,320,321,5,71,0,0,321,323,5,2,0,0,322,319,1,0,0,0,322,323,1,
+		0,0,0,323,47,1,0,0,0,324,325,5,33,0,0,325,326,3,46,23,0,326,49,1,0,0,0,
+		327,328,5,38,0,0,328,329,3,56,28,0,329,331,5,40,0,0,330,332,3,26,13,0,
+		331,330,1,0,0,0,332,333,1,0,0,0,333,331,1,0,0,0,333,334,1,0,0,0,334,341,
+		1,0,0,0,335,337,5,39,0,0,336,338,3,26,13,0,337,336,1,0,0,0,338,339,1,0,
+		0,0,339,337,1,0,0,0,339,340,1,0,0,0,340,342,1,0,0,0,341,335,1,0,0,0,341,
+		342,1,0,0,0,342,343,1,0,0,0,343,344,5,41,0,0,344,51,1,0,0,0,345,346,6,
+		26,-1,0,346,347,3,42,21,0,347,353,1,0,0,0,348,349,10,1,0,0,349,350,5,6,
+		0,0,350,352,3,52,26,2,351,348,1,0,0,0,352,355,1,0,0,0,353,351,1,0,0,0,
+		353,354,1,0,0,0,354,53,1,0,0,0,355,353,1,0,0,0,356,357,6,27,-1,0,357,358,
+		3,42,21,0,358,364,1,0,0,0,359,360,10,1,0,0,360,361,5,3,0,0,361,363,3,54,
+		27,2,362,359,1,0,0,0,363,366,1,0,0,0,364,362,1,0,0,0,364,365,1,0,0,0,365,
+		55,1,0,0,0,366,364,1,0,0,0,367,368,6,28,-1,0,368,377,5,42,0,0,369,377,
+		5,43,0,0,370,371,3,52,26,0,371,372,5,7,0,0,372,373,3,52,26,0,373,377,1,
+		0,0,0,374,375,5,44,0,0,375,377,3,56,28,2,376,367,1,0,0,0,376,369,1,0,0,
+		0,376,370,1,0,0,0,376,374,1,0,0,0,377,383,1,0,0,0,378,379,10,1,0,0,379,
+		380,5,8,0,0,380,382,3,56,28,2,381,378,1,0,0,0,382,385,1,0,0,0,383,381,
+		1,0,0,0,383,384,1,0,0,0,384,57,1,0,0,0,385,383,1,0,0,0,386,390,3,56,28,
+		0,387,390,3,52,26,0,388,390,3,54,27,0,389,386,1,0,0,0,389,387,1,0,0,0,
+		389,388,1,0,0,0,390,59,1,0,0,0,391,392,5,48,0,0,392,397,3,58,29,0,393,
+		394,5,46,0,0,394,396,3,58,29,0,395,393,1,0,0,0,396,399,1,0,0,0,397,395,
+		1,0,0,0,397,398,1,0,0,0,398,403,1,0,0,0,399,397,1,0,0,0,400,402,3,62,31,
+		0,401,400,1,0,0,0,402,405,1,0,0,0,403,401,1,0,0,0,403,404,1,0,0,0,404,
+		406,1,0,0,0,405,403,1,0,0,0,406,407,5,41,0,0,407,61,1,0,0,0,408,409,5,
+		45,0,0,409,414,3,42,21,0,410,411,5,46,0,0,411,413,3,42,21,0,412,410,1,
+		0,0,0,413,416,1,0,0,0,414,412,1,0,0,0,414,415,1,0,0,0,415,418,1,0,0,0,
+		416,414,1,0,0,0,417,419,3,26,13,0,418,417,1,0,0,0,419,420,1,0,0,0,420,
+		418,1,0,0,0,420,421,1,0,0,0,421,430,1,0,0,0,422,423,5,45,0,0,423,425,5,
+		47,0,0,424,426,3,26,13,0,425,424,1,0,0,0,426,427,1,0,0,0,427,425,1,0,0,
+		0,427,428,1,0,0,0,428,430,1,0,0,0,429,408,1,0,0,0,429,422,1,0,0,0,430,
+		63,1,0,0,0,431,432,5,49,0,0,432,65,1,0,0,0,433,434,5,50,0,0,434,435,5,
+		51,0,0,435,67,1,0,0,0,436,437,5,52,0,0,437,439,3,24,12,0,438,440,3,70,
+		35,0,439,438,1,0,0,0,439,440,1,0,0,0,440,442,1,0,0,0,441,443,3,72,36,0,
+		442,441,1,0,0,0,442,443,1,0,0,0,443,69,1,0,0,0,444,445,5,53,0,0,445,446,
+		3,24,12,0,446,71,1,0,0,0,447,448,5,71,0,0,448,449,5,12,0,0,449,73,1,0,
+		0,0,450,451,5,54,0,0,451,453,5,74,0,0,452,454,3,76,38,0,453,452,1,0,0,
+		0,453,454,1,0,0,0,454,75,1,0,0,0,455,457,5,55,0,0,456,458,3,78,39,0,457,
+		456,1,0,0,0,458,459,1,0,0,0,459,457,1,0,0,0,459,460,1,0,0,0,460,77,1,0,
+		0,0,461,462,5,75,0,0,462,463,5,17,0,0,463,464,5,75,0,0,464,79,1,0,0,0,
+		465,469,5,56,0,0,466,468,3,82,41,0,467,466,1,0,0,0,468,471,1,0,0,0,469,
+		467,1,0,0,0,469,470,1,0,0,0,470,472,1,0,0,0,471,469,1,0,0,0,472,473,5,
+		41,0,0,473,81,1,0,0,0,474,476,5,57,0,0,475,477,3,46,23,0,476,475,1,0,0,
+		0,476,477,1,0,0,0,477,480,1,0,0,0,478,479,5,18,0,0,479,481,3,42,21,0,480,
+		478,1,0,0,0,480,481,1,0,0,0,481,484,1,0,0,0,482,483,5,30,0,0,483,485,3,
+		42,21,0,484,482,1,0,0,0,484,485,1,0,0,0,485,488,1,0,0,0,486,487,5,17,0,
+		0,487,489,3,42,21,0,488,486,1,0,0,0,488,489,1,0,0,0,489,496,1,0,0,0,490,
+		491,5,58,0,0,491,496,3,56,28,0,492,493,5,59,0,0,493,496,3,56,28,0,494,
+		496,3,26,13,0,495,474,1,0,0,0,495,490,1,0,0,0,495,492,1,0,0,0,495,494,
+		1,0,0,0,496,83,1,0,0,0,497,498,5,60,0,0,498,499,5,30,0,0,499,500,5,70,
+		0,0,500,85,1,0,0,0,501,507,5,61,0,0,502,508,5,71,0,0,503,508,3,88,44,0,
+		504,508,5,63,0,0,505,508,5,64,0,0,506,508,5,62,0,0,507,502,1,0,0,0,507,
+		503,1,0,0,0,507,504,1,0,0,0,507,505,1,0,0,0,507,506,1,0,0,0,508,509,1,
+		0,0,0,509,510,5,30,0,0,510,511,3,90,45,0,511,87,1,0,0,0,512,514,3,46,23,
+		0,513,512,1,0,0,0,514,515,1,0,0,0,515,513,1,0,0,0,515,516,1,0,0,0,516,
+		89,1,0,0,0,517,519,3,46,23,0,518,517,1,0,0,0,519,520,1,0,0,0,520,518,1,
+		0,0,0,520,521,1,0,0,0,521,91,1,0,0,0,522,523,5,65,0,0,523,524,3,24,12,
+		0,524,525,5,4,0,0,525,526,3,24,12,0,526,93,1,0,0,0,527,530,5,66,0,0,528,
+		531,5,67,0,0,529,531,3,24,12,0,530,528,1,0,0,0,530,529,1,0,0,0,531,532,
+		1,0,0,0,532,533,5,68,0,0,533,534,5,69,0,0,534,95,1,0,0,0,56,98,112,121,
+		128,131,151,157,163,174,179,184,207,213,216,222,230,235,243,250,258,272,
+		278,286,291,297,306,316,322,333,339,341,353,364,376,383,389,397,403,414,
+		420,427,429,439,442,453,459,469,476,480,484,488,495,507,515,520,530
 	};
 
 	public static readonly ATN _ATN =
