@@ -22,7 +22,7 @@ namespace InterpreterUI
     {
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent(); //TODO UI if we have time
         }
     }
 }
